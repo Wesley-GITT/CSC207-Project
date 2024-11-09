@@ -28,7 +28,7 @@ The domain of this project is second hand book transaction. This software should
 
 ### Entities:
 - User: id, username, password, name, addresses, list_of_contact_information, list_of_book_posting, list_of_orders, shopping_cart (list of products)
-- Book: id, google_book_api_id, title, authors, language, translators, publishers, description, samples (table of contents and first few pages)
+- Book: id, title, authors, language, translators, publishers, description, samples (table of contents and first few pages)
 - Comment: id, writer, rating, value
 - Product: id, book_id, book_condition, isbn, language, book_id, price, seller, comment_id
 - Order: id, seller_id, buyer_id, transaction_id, order_number, date, status, delivery_address
@@ -37,8 +37,7 @@ The domain of this project is second hand book transaction. This software should
 \* Note that a product must corresponds a book instance. A book instance is either automatically created using Google Book API or manually by users.
 
 ### Proposed API:
-- Google Books API: use Google Books API for caching book details.
-- Elastic Search API: use to search for products, orders and transactions
+- Google Books API: use Google Books API for searching book details.
 
 ### More:
 Meetings: every Saturday offline or online meetings
