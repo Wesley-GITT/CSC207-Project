@@ -35,10 +35,23 @@ The domain of this project is second hand book transaction. This software should
 
 \* Note that a product must corresponds a book instance. A book instance is created by accessing Google Books API
 
+### Database:
+Here are how the database record the data, entities should rely on then but they don't necessarily have the same attributes.
+
+#### Order
+![Order](order.png)
+
+#### Comment
+![Comment](comment.png)
+
+#### Product
+![Product](product.png)
+
+#### User
+![User](user.png)
+
 ### Proposed API:
 - Google Books API: use Google Books API for searching book details.
 
 ### More:
 Meetings: every Saturday offline or online meetings
-
-
