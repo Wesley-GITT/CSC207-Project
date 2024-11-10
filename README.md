@@ -36,7 +36,7 @@ The domain of this project is second hand book transaction. This software should
 \* Note that a product must corresponds a book instance. A book instance is created by accessing Google Books API
 
 ### Database:
-Here are how the database is designed to record the data, entities should rely on then but shouldn't be identical to their database conterparts.
+Here are how the database is designed to record the data, entities should rely on them but shouldn't be identical to their database conterparts.
 
 <table>
   <tbody>
