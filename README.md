@@ -18,6 +18,7 @@ The domain of this project is second hand book transaction. This software should
 + Bonus Features
   - Notify buyers when there's a price decrease
   - Recommend a book to buyer
+  - (Exp: Mario asks for futuristic scientific fiction that must contains aliens. Gpt will return 10 books related to this topic and write few sentences recommending each book) 
 
 ### User stories:
 - User story #1: ... wants to sell some books he has read but no longer wishes to read in the future.
