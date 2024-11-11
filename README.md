@@ -43,21 +43,21 @@ Here are how the database is designed to record the data, entities should rely o
     <tr>
       <td>
         <h4>Comment</h4>
-        <img src='comment.png' style='max-width: 50%'/>
+        <img src='image/comment.png' style='max-width: 50%'/>
       </td>
       <td>
         <h4>Product</h4>
-        <img src='product.png' style='max-width: 50%'/>
+        <img src='image/product.png' style='max-width: 50%'/>
       </td>
     </tr>
     <tr>
       <td>
         <h4>User</h4>
-        <img src='user.png' style='max-width: 50%'/>
+        <img src='image/user.png' style='max-width: 50%'/>
       </td>
       <td>
         <h4>Order</h4>
-        <img src='order.png' style='max-width: 50%'/>
+        <img src='image/order.png' style='max-width: 50%'/>
       </td>
     </tr>
   </tbody>
