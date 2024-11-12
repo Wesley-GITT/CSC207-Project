@@ -11,15 +11,14 @@ Implement the sign-up use case logic
  */
 @Service
 public abstract class SignUpInteractor implements SignUpInputBoundary {
-    private UserRepository userRepository;
-    private BCryptPasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
     private SignUpOutputBoundary signUpOutputBoundary;
 
     @Autowired
-    public SignUpInteractor(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    protected SignUpInteractor(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
-        this.signUpOutputBoundary = signUpOutputBoundary;
     }
 
     @Override
