@@ -1,3 +1,8 @@
+package entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
 public class Book {
     private String id;
     private String title;
