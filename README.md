@@ -27,7 +27,7 @@ The domain of this project is second hand book transaction. This software should
 - User story #5: ... would like to sell some textbooks to other students because he bought extras and can't return the book and request for refund.
 ### Entities:
 - User: id, username, password, name, addresses, list_of_contact_information, list_of_book_posting, list_of_orders, cart_items (list of products)
-- Book: id, title, authors, language, translators, publishers, description, samples (table of contents and first few pages)
+- com.example.demo.entity.Book: id, title, authors, language, translators, publishers, description, samples (table of contents and first few pages)
 - Comment: id, writer, rating, value
 - Product: id, book_id, book_condition, isbn, language, price, seller, comment_id
 - Order: id, seller_id, buyer_id, transaction_id, order_number, date, status, delivery_address
