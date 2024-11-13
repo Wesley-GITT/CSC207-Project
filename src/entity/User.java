@@ -10,7 +10,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
     private String password;
     private String name;
@@ -68,6 +67,4 @@ public class User {
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
     }
-    // Getters and Setters
-    // (optionally add validation here)
 }

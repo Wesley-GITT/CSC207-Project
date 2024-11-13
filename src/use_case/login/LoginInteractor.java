@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public abstract class LoginInteractor implements LoginInputBoundary{
+
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final LoginOutputBoundary loginOutputBoundary;
@@ -27,11 +28,13 @@ public abstract class LoginInteractor implements LoginInputBoundary{
             loginOutputBoundary.presentLoginResult(outputData);
             return outputData;
         }
+
         if (!passwordEncoder.matches(loginInputData.getPassword(), user.getPassword())) {
             LoginOutputData outputData = new LoginOutputData(false, "Wrong Password");
             loginOutputBoundary.presentLoginResult(outputData);
             return outputData;
         }
+
         LoginOutputData outputData = new LoginOutputData(true, "Success");
         loginOutputBoundary.presentLoginResult(outputData);
         return outputData;

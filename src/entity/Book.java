@@ -1,23 +1,32 @@
 package entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 
 @Entity
 public class Book {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String title;
     private String author;
     private String condition;
     private double price;
+    @Column(length = 2000)
     private String description;
     private String imageUrl;
     private String seller;
-    private String listed;
+
+
+    public Book() {}
 
     // Constructor
-    public Book(String id, String title, String author, String condition,
+    public Book(Integer id, String title, String author, String condition,
                 double price, String description, String imageUrl,
-                String seller, String listed) {
+                String seller) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -26,12 +35,11 @@ public class Book {
         this.description = description;
         this.imageUrl = imageUrl;
         this.seller = seller;
-        this.listed = listed;
     }
 
     // Getters and setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -53,7 +61,4 @@ public class Book {
 
     public String getSeller() { return seller; }
     public void setSeller(String seller) { this.seller = seller; }
-
-    public String getListed() { return listed; }
-    public void setListed(String listed) { this.listed = listed; }
 }
