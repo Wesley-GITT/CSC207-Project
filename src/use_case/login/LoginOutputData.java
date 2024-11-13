@@ -1,13 +1,13 @@
-package use_case.signup;
+package use_case.login;
 
 /*
-A data class for sign-up output
+A data class for sign in input
  */
-public class SignUpOutputData {
+public class LoginOutputData {
     private final boolean success;
     private final String message;
 
-    public SignUpOutputData(boolean success, String message) {
+    public LoginOutputData(boolean success, String message) {
         this.success = success;
         this.message = message;
     }
@@ -19,6 +19,4 @@ public class SignUpOutputData {
     public String getMessage() {
         return message;
     }
-
-    // Setters
 }
