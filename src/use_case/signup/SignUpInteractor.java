@@ -26,7 +26,7 @@ public abstract class SignUpInteractor implements SignUpInputBoundary {
 
         String hashPassword = passwordEncoder.encode(signUpInputData.getPassword());
 
-        User user = new User(signUpInputData.getUsername(), hashPassword, signUpInputData.getName()
+        Object user = new User(signUpInputData.getUsername(), hashPassword, signUpInputData.getName()
                 , signUpInputData.getAddress(), signUpInputData.getContactInfo());
         userRepository.save(user);
 
