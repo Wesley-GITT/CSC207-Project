@@ -6,11 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class User implements UserInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
     private String password;
     private String name;
@@ -29,48 +28,59 @@ public class User {
         this.contactInfo = contactInfo;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
 
+    @Override
     public void setUsername(String username) {
         this.username = username;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
 
+    @Override
     public void setPassword(String password) {
         this.password = password;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    @Override
     public String getAddress() {
         return address;
     }
 
+    @Override
     public void setAddress(String address) {
         this.address = address;
     }
 
+    @Override
     public String getContactInfo() {
         return contactInfo;
     }
 
+    @Override
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
     }
     // Getters and Setters
     // (optionally add validation here)
 
+    @Override
     public void changepassword(String password) {
         this.password = password;
     }
