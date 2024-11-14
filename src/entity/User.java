@@ -70,4 +70,8 @@ public class User {
     }
     // Getters and Setters
     // (optionally add validation here)
+
+    public void changepassword(String password) {
+        this.password = password;
+    }
 }
