@@ -5,19 +5,19 @@ A data class for sign-up output
  */
 public class SignUpOutputData {
     private final boolean success;
-    private final String message;
+    private final String username;
 
-    public SignUpOutputData(boolean success, String message) {
+    public SignUpOutputData(boolean success, String username) {
         this.success = success;
-        this.message = message;
+        this.username = username;
     }
 
     public boolean isSuccess() {
         return success;
     }
 
-    public String getMessage() {
-        return message;
+    public String getUsername() {
+        return username;
     }
 
     // Setters
