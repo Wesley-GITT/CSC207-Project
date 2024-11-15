@@ -66,5 +66,13 @@ Here are how the database is designed to record the data, entities should rely o
 ### Proposed API:
 - Google Books API: use Google Books API for searching book details.
 
-### More:
+### Meeting Schedules:
 Meetings: every Saturday offline or online meetings
+
+### Team Members
+| Team Members | Github Username |
+| ------------ | --------------- |
+| Jing Wei     | Wesley-GITT     |
+| Bosco Zeng   | BoscoZZZ        |
+| Tianao       | aotian69        |
+| Eric Zhang   | Juntongdalao    |
