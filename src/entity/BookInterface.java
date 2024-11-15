@@ -2,9 +2,9 @@ package entity;
 
 public interface BookInterface {
     // Getters and setters
-    String getId();
+    Integer getId();
 
-    void setId(String id);
+    void setId(Integer id);
 
     String getTitle();
 
@@ -34,7 +34,4 @@ public interface BookInterface {
 
     void setSeller(String seller);
 
-    String getListed();
-
-    void setListed(String listed);
 }
