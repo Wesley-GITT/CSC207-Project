@@ -1,25 +1,31 @@
 package entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 
 @Entity
-public class Book implements BookInterface {
-    private String id;
+public class Book implements BookInterface{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String title;
     private String author;
     private String condition;
     private double price;
+    @Column(length = 2000)
     private String description;
     private String imageUrl;
     private String seller;
-    private String listed;
 
-    // Constructor
     public Book() {}
 
-    public Book(String id, String title, String author, String condition,
+    public Book(Integer id, String title, String author, String condition,
                 double price, String description, String imageUrl,
-                String seller, String listed) {
+                String seller) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -28,14 +34,15 @@ public class Book implements BookInterface {
         this.description = description;
         this.imageUrl = imageUrl;
         this.seller = seller;
-        this.listed = listed;
     }
+
+
 
     // Getters and setters
     @Override
-    public String getId() { return id; }
+    public Integer getId() { return id; }
     @Override
-    public void setId(String id) { this.id = id; }
+    public void setId(Integer id) { this.id = id; }
 
     @Override
     public String getTitle() { return title; }
@@ -72,8 +79,4 @@ public class Book implements BookInterface {
     @Override
     public void setSeller(String seller) { this.seller = seller; }
 
-    @Override
-    public String getListed() { return listed; }
-    @Override
-    public void setListed(String listed) { this.listed = listed; }
 }
