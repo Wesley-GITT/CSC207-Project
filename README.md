@@ -42,22 +42,18 @@ Here are how the database is designed to record the data, entities should rely o
   <tbody>
     <tr>
       <td>
-        <h4>Comment</h4>
-        <img src='image/comment.png' style='max-width: 50%'/>
+        <h4>User</h4>
+        <img src='image/user.png' style='max-width: 50%' alt="user"/>
       </td>
       <td>
         <h4>Product</h4>
-        <img src='image/product.png' style='max-width: 50%'/>
+        <img src='image/product.png' style='max-width: 50%' alt="product"/>
       </td>
     </tr>
     <tr>
-      <td>
-        <h4>User</h4>
-        <img src='image/user.png' style='max-width: 50%'/>
-      </td>
-      <td>
+      <td colspan="2">
         <h4>Order</h4>
-        <img src='image/order.png' style='max-width: 50%'/>
+        <img src='image/order.png' style='max-width: 50%' alt="order"/>
       </td>
     </tr>
   </tbody>
@@ -71,7 +67,7 @@ Meetings: every Saturday offline or online meetings
 
 ### Team Members
 | Team Members | Github Username |
-| ------------ | --------------- |
+|--------------|-----------------|
 | Jing Wei     | Wesley-GITT     |
 | Bosco Zeng   | BoscoZZZ        |
 | Tianao       | aotian69        |
