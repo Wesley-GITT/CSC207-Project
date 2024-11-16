@@ -17,23 +17,23 @@ The domain of this project is second hand book transaction. This software should
   - Add a book to shopping cart
 + Bonus Features
   - Notify buyers when there's a price decrease
-  - Recommend a book to buyer
+  - Recommend a book to buyer (Exp: Mario asks for futuristic scientific fiction that must contains aliens. Gpt will return 10 books related to this topic and write few sentences recommending each book)
 
 ### User stories:
-- User story #1: ... wants to sell some books he has read but no longer wishes to read in the future.
-- User story #2: ... wants to buy some entertaining books but have no idea which book fits her need. She wants to search for book  based on genre and would like to read a book's table of contents and first few pages to decide if she really wants it.
-- User story #3: ... wants to buy some text books at lower price because he doesn't afford new ones. He doesn't mind if the book contains notes and drawings. He would also like to receive a price drop notification on books he added to shopping cart
-- User story #4: ... wants to buy some books for her kids but she doesn't know which one her kids really like. So she want to pick a few and store them in the cart for later use.
-- User story #5: ... would like to sell some textbooks to other students because he bought extras and can't return the book and request for refund.
+- User story #1: Tom wants to sell some books he has read but no longer wishes to read in the future. (**assigned to Jing**)
+- User story #2: Lucas wants to buy some entertaining books but have no idea which book fits her need. She wants to search for book  based on genre and would like to read a book's table of contents and first few pages to decide if she really wants it. (**assigned to Bosco**)
+- User story #3: Louis wants to buy some text books at lower price because he doesn't afford new ones. He doesn't mind if the book contains notes and drawings. He would also like to receive a price drop notification on books he added to shopping cart. (**assigned to Tianao**)
+- User story #4: Britney wants to buy some books for her kids but she doesn't know which one her kids really like. So she want to pick a few and store them in the cart for later use. (**assigned to Eric**)
+- Team user story: Jack would like to sell some textbooks to other students because he bought extras and can't return the book and request for refund. (**assigned to Team**)
 ### Entities:
 - User: id, username, password, name, addresses, list_of_contact_information, list_of_book_posting, list_of_orders, cart_items (list of products)
-- Book: id, title, authors, language, translators, publishers, description, samples (table of contents and first few pages)
+- com.example.demo.entity.Book: id, title, authors, language, translators, publishers, description, samples (table of contents and first few pages)
 - Comment: id, writer, rating, value
 - Product: id, book_id, book_condition, isbn, language, price, seller, comment_id
 - Order: id, seller_id, buyer_id, transaction_id, order_number, date, status, delivery_address
 - Transaction: id, buyer_id, lists_of_products
 
-\* Note that a product must corresponds a book instance. A book instance is created by accessing Google Books API
+**\* Note that a product must corresponds a book instance. A book instance is created by accessing Google Books API**
 
 ### Database:
 Here are how the database is designed to record the data, entities should rely on them but shouldn't be identical to their database conterparts.
@@ -43,21 +43,21 @@ Here are how the database is designed to record the data, entities should rely o
     <tr>
       <td>
         <h4>Comment</h4>
-        <img src='comment.png' style='max-width: 50%'/>
+        <img src='image/comment.png' style='max-width: 50%'/>
       </td>
       <td>
         <h4>Product</h4>
-        <img src='product.png' style='max-width: 50%'/>
+        <img src='image/product.png' style='max-width: 50%'/>
       </td>
     </tr>
     <tr>
       <td>
         <h4>User</h4>
-        <img src='user.png' style='max-width: 50%'/>
+        <img src='image/user.png' style='max-width: 50%'/>
       </td>
       <td>
         <h4>Order</h4>
-        <img src='order.png' style='max-width: 50%'/>
+        <img src='image/order.png' style='max-width: 50%'/>
       </td>
     </tr>
   </tbody>
@@ -66,5 +66,13 @@ Here are how the database is designed to record the data, entities should rely o
 ### Proposed API:
 - Google Books API: use Google Books API for searching book details.
 
-### More:
+### Meeting Schedules:
 Meetings: every Saturday offline or online meetings
+
+### Team Members
+| Team Members | Github Username |
+| ------------ | --------------- |
+| Jing Wei     | Wesley-GITT     |
+| Bosco Zeng   | BoscoZZZ        |
+| Tianao       | aotian69        |
+| Eric Zhang   | Juntongdalao    |
