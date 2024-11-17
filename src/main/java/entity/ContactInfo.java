@@ -1,7 +1,5 @@
 package entity;
 
-import org.json.JSONObject;
-
 public class ContactInfo {
 
     private String telephone;
@@ -26,17 +24,5 @@ public class ContactInfo {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "Tel: " + this.telephone + "; Email: " + this.email;
-    }
-
-    public String toJson() {
-         return new JSONObject()
-                 .put("telephone", this.telephone)
-                 .put("email", this.email)
-                 .toString();
     }
 }
