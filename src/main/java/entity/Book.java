@@ -7,96 +7,64 @@ public class Book {
     private String id;
     private String imageUrl;
     private String title;
-    private Set<String> authorIds;
-    private Set<String> translatorIds;
-    private String lang;
-    private String publishers;
+    private String publisher;
+    private String publishedDate;
     private String description;
     private String sampleUrl;
+    private String language;
+    private Set<String> authors;
+    private Set<String> categories;
 
-    public Book(
-            String id, String imageUrl, String title, Set<String> authorIds, Set<String> translatorIds, String lang,
-            String publishers, String description, String sampleUrl) {
+    public Book(String id, String imageUrl, String title, String publisher, String publishedDate, String description, String sampleUrl, String language, Set<String> authors, Set<String> categories) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.title = title;
-        this.authorIds = authorIds;
-        this.translatorIds = translatorIds;
-        this.lang = lang;
-        this.publishers = publishers;
+        this.publisher = publisher;
+        this.publishedDate = publishedDate;
         this.description = description;
         this.sampleUrl = sampleUrl;
+        this.language = language;
+        this.authors = authors;
+        this.categories = categories;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getImageUrl() {
         return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getPublisher() {
+        return publisher;
     }
 
-    public Set<String> getAuthorIds() {
-        return authorIds;
-    }
-
-    public void setAuthorIds(Set<String> authorIds) {
-        this.authorIds = authorIds;
-    }
-
-    public Set<String> getTranslatorIds() {
-        return translatorIds;
-    }
-
-    public void setTranslatorIds(Set<String> translatorIds) {
-        this.translatorIds = translatorIds;
-    }
-
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
-    public String getPublishers() {
-        return publishers;
-    }
-
-    public void setPublishers(String publishers) {
-        this.publishers = publishers;
+    public String getPublishedDate() {
+        return publishedDate;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getSampleUrl() {
         return sampleUrl;
     }
 
-    public void setSampleUrl(String sampleUrl) {
-        this.sampleUrl = sampleUrl;
+    public String getLanguage() {
+        return language;
+    }
+
+    public Set<String> getAuthors() {
+        return authors;
+    }
+
+    public Set<String> getCategories() {
+        return categories;
     }
 }
