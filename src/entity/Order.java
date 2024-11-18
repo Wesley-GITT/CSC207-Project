@@ -33,6 +33,7 @@ public class Order implements OrderInterface {
     public Integer getId() {
         return id;
     }
+
     @Override
     public void setId(Integer id) {
         this.id = id;
