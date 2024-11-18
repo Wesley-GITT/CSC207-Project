@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 
-public class Order {
+public class Order implements OrderInterface {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,30 +29,38 @@ public class Order {
         this.status = status;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }
 
+    @Override
     public Book getBook() {
         return book;
     }
+    @Override
     public void setBook(Book book) {
         this.book = book;
     }
 
+    @Override
     public String getBuyer() {
         return buyer;
     }
+    @Override
     public void setBuyer(String buyer) {
         this.buyer = buyer;
     }
 
+    @Override
     public String getStatus() {
         return status;
     }
+    @Override
     public void setStatus(String status) {
         this.status = status;
     }
