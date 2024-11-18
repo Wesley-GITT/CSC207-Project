@@ -1,68 +1,56 @@
 package entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import java.util.Date;
 
-public class Order implements OrderInterface {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Order {
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", nullable = false)
-    private Book book; // Reference to the book being bought
+    private int id;
+    private int buyerId;
+    private int sellerId;
+    private int productId;
+    private Date orderTime;
+    private int orderStatus;
+    private String deliveryAddress;
 
-    private String buyer; // Reference to the buyer's username or ID
-    private String status; // e.g., "Pending", "Completed", "Canceled"
-
-    // Default constructor
-    public Order() {}
-
-    // Parameterized constructor
-    public Order(Book book, String buyer, String status) {
-        this.book = book;
-        this.buyer = buyer;
-        this.status = status;
+    public Order(int id, int buyerId, int sellerId, int productId, Date orderTime, int orderStatus, String deliveryAddress) {
+        this.id = id;
+        this.buyerId = buyerId;
+        this.sellerId = sellerId;
+        this.productId = productId;
+        this.orderTime = orderTime;
+        this.orderStatus = orderStatus;
+        this.deliveryAddress = deliveryAddress;
     }
 
-    @Override
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
+    public int getBuyerId() {
+        return buyerId;
     }
 
-    @Override
-    public Book getBook() {
-        return book;
-    }
-    @Override
-    public void setBook(Book book) {
-        this.book = book;
+    public int getSellerId() {
+        return sellerId;
     }
 
-    @Override
-    public String getBuyer() {
-        return buyer;
-    }
-    @Override
-    public void setBuyer(String buyer) {
-        this.buyer = buyer;
+    public int getProductId() {
+        return productId;
     }
 
-    @Override
-    public String getStatus() {
-        return status;
+    public Date getOrderTime() {
+        return orderTime;
     }
-    @Override
-    public void setStatus(String status) {
-        this.status = status;
+
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
     }
 }

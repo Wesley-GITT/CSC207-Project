@@ -1,6 +1,5 @@
 package use_case.signup;
 
-import entity.User;
 import Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

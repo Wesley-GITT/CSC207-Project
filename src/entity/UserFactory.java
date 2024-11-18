@@ -1,12 +1,15 @@
 package entity;
 
-/**
- * Factory for creating CommonUser objects.
- */
-public class UserFactory implements UserFactoryInterface {
+import java.util.Set;
 
-    @Override
-    public User create(String username, String password, String name, String address, String contactInfo) {
-        return new User(username, password, name, address, contactInfo);
+public class UserFactory {
+
+    public OtherUser create(String username, ContactInfo contactInfo, Set<Integer> productIds) {
+        return new OtherUser(username, contactInfo, productIds);
+    }
+
+    public MyUser create(
+            String username, String password, String address, ContactInfo contactInfo, Set<Integer> cartItems, Set<Integer> productIds) {
+        return new MyUser(username, password, address, contactInfo, cartItems, productIds);
     }
 }
