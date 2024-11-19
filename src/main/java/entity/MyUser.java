@@ -2,14 +2,14 @@ package entity;
 
 import java.util.Set;
 
-public class MyUser extends OtherUser implements User {
+public class MyUser extends OtherUser {
 
     private String password;
     private String address;
     private Set<Integer> cartItems;
 
-    public MyUser(String username, String password, String address, ContactInfo contactInfo, Set<Integer> cartItems, Set<Integer> productIds) {
-        super(username, contactInfo, productIds);
+    public MyUser(int id, String username, String password, String address, ContactInfo contactInfo, Set<Integer> cartItems) {
+        super(id, username, contactInfo);
         this.password = password;
         this.address = address;
         this.cartItems = cartItems;
@@ -43,19 +43,9 @@ public class MyUser extends OtherUser implements User {
         this.contactInfo.setTelephone(telephone);
     }
 
-    public void addCartItem(int productId) {
-        this.cartItems.add(productId);
+    public Set<Integer> getCartItems() {
+        return this.cartItems;
     }
 
-    public void removeCartItem(int productId) {
-        this.cartItems.remove(productId);
-    }
-
-    public void addProduct(int productId) {
-        this.productIds.add(productId);
-    }
-
-    public void removeProduct(int productId) {
-        this.productIds.remove(productId);
-    }
+    public void setCartItems(Set<Integer> cartItems) { this.cartItems = cartItems; }
 }
