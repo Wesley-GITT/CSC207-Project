@@ -4,7 +4,7 @@ import use_case.user.BasicAuthDataAccessInterface;
 import use_case.user.UserGetDataAccessInterface;
 import use_case.user.UserSaveDataAccessInterface;
 
-public interface showCartUserDataAccessInterface extends
+public interface ShowCartUserDataAccessInterface extends
         BasicAuthDataAccessInterface,
         UserGetDataAccessInterface,
         UserSaveDataAccessInterface {

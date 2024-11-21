@@ -1,13 +1,11 @@
 package use_case.user.show_cart;
 
-import java.util.Set;
-
-public class showCartInputData {
+public class ShowCartInputData {
 
     private final String username;
     private final String password;
 
-    public showCartInputData(String username, String password, Set<Integer> cartItems) {
+    public ShowCartInputData(String username, String password) {
         this.username = username;
         this.password = password;
     }

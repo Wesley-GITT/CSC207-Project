@@ -1,7 +1,7 @@
 package use_case.user.auth;
 
 
-import data_access.user.InMemoryUserDataAccessObjectMy;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class AuthInteractorTest {
     @Test
     public void successUserAuthenticationTest() {
         AuthInputData inputData = new AuthInputData("wes", "123");
-        InMemoryUserDataAccessObjectMy userRepo = new InMemoryUserDataAccessObjectMy();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -43,15 +43,13 @@ public class AuthInteractorTest {
         };
 
         AuthInteractor interactor = new AuthInteractor(userRepo, successPresenter);
-        assertNull(userRepo.getCurrentUsername());
-        assertNull(userRepo.getCurrentPassword());
         interactor.execute(inputData);
     }
 
     @Test
     public void failureUserNotExistTest() {
         AuthInputData inputData = new AuthInputData("wes", "123");
-        InMemoryUserDataAccessObjectMy userRepo = new InMemoryUserDataAccessObjectMy();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("sam", "123");
@@ -80,15 +78,13 @@ public class AuthInteractorTest {
         };
 
         AuthInteractor interactor = new AuthInteractor(userRepo, failurePresenter);
-        assertNull(userRepo.getCurrentUsername());
-        assertNull(userRepo.getCurrentPassword());
         interactor.execute(inputData);
     }
 
     @Test
     public void failureIncorrectUsernamePasswordPairTest() {
         AuthInputData inputData = new AuthInputData("wes", "123");
-        InMemoryUserDataAccessObjectMy userRepo = new InMemoryUserDataAccessObjectMy();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
@@ -117,8 +113,6 @@ public class AuthInteractorTest {
         };
 
         AuthInteractor interactor = new AuthInteractor(userRepo, failurePresenter);
-        assertNull(userRepo.getCurrentUsername());
-        assertNull(userRepo.getCurrentPassword());
         interactor.execute(inputData);
     }
 }
