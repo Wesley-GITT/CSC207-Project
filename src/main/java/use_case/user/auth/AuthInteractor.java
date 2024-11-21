@@ -25,8 +25,6 @@ public class AuthInteractor implements AuthInputBoundary {
             authPresenter.prepareFailView("Incorrect username and/or password");
         } else {
             final MyUser user = userDataAccessObject.get(username, password);
-            userDataAccessObject.setCurrentUsername(username);
-            userDataAccessObject.setCurrentPassword(password);
             final AuthOutputData authOutputData = new AuthOutputData(user.getId(), username, password);
             authPresenter.prepareSuccessView(authOutputData);
         }

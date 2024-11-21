@@ -19,12 +19,12 @@ public class ShowMyProfileInteractor implements ShowMyProfileInputBoundary {
         final String password = showMyProfileInputData.getPassword();
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
-            showMyProfilePresenter.prepareFailView("Authentication Failed");
+            showMyProfilePresenter.prepareFailView("Authentication failed");
         } else {
             final MyUser user = userDataAccessObject.get(username, password);
             final String address = user.getAddress();
             final String telephone = user.getTelephone();
-            final String email = user.getTelephone();
+            final String email = user.getEmail();
 
             ShowMyProfileOutputData outputData = new ShowMyProfileOutputData(address, telephone, email);
             showMyProfilePresenter.prepareSuccessView(outputData);

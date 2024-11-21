@@ -1,7 +1,7 @@
 package use_case.user.reg;
 
 
-import data_access.user.InMemoryUserDataAccessObjectMy;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class RegInteractorTest {
     @Test
     public void successUserRegistrationTest() {
         RegInputData inputData = new RegInputData("wes", "123", "123");
-        RegUserDataAccessInterface userRepo = new InMemoryUserDataAccessObjectMy();
+        RegUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
 
         RegOutputBoundary successPresenter = new RegOutputBoundary() {
             @Override
@@ -45,7 +45,7 @@ public class RegInteractorTest {
     @Test
     public void failureUserAlreadyExistTest() {
         RegInputData inputData = new RegInputData("wes", "123", "123");
-        RegUserDataAccessInterface userRepo = new InMemoryUserDataAccessObjectMy();
+        RegUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -78,9 +78,9 @@ public class RegInteractorTest {
     }
 
     @Test
-    public void failureIncorrectUsernamePasswordPairTest() {
+    public void failurePasswordPairMismatchedTest() {
         RegInputData inputData = new RegInputData("wes", "123", "321");
-        RegUserDataAccessInterface userRepo = new InMemoryUserDataAccessObjectMy();
+        RegUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
 
         RegOutputBoundary failurePresenter = new RegOutputBoundary() {
             @Override

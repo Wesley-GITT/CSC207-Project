@@ -21,7 +21,7 @@ public class UpdatePasswordInteractor implements UpdatePasswordInputBoundary {
         final String newPasswordRepeated = updatePasswordInputData.getNewPasswordRepeated();
 
         if (!userDataAccessObject.isAuthenticated(username, originalPassword)) {
-            updatePasswordPresenter.prepareFailView("Authentication Failed");
+            updatePasswordPresenter.prepareFailView("Authentication failed");
         } else if (!newPassword.equals(newPasswordRepeated)) {
             updatePasswordPresenter.prepareFailView("Passwords don't match");
         } else {

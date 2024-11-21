@@ -20,9 +20,9 @@ public class UpdateNameInteractor implements UpdateNameInputBoundary {
         final String newUsername = updateNameInputData.getNewUsername();
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
-            updateNamePresenter.prepareFailView("Authentication Failed");
+            updateNamePresenter.prepareFailView("Authentication failed");
         } else if (userDataAccessObject.doesUserExist(newUsername)) {
-            updateNamePresenter.prepareFailView("Username already exist");
+            updateNamePresenter.prepareFailView("Username `" + newUsername + "` is taken");
         } else {
             final String address = updateNameInputData.getNewUsername();
             final MyUser user = userDataAccessObject.get(username, password);

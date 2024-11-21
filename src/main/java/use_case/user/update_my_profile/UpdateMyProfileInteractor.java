@@ -19,7 +19,7 @@ public class UpdateMyProfileInteractor implements UpdateMyProfileInputBoundary {
         final String password = updateMyProfileInputData.getPassword();
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
-            updateMyProfilePresenter.prepareFailView("Authentication Failed");
+            updateMyProfilePresenter.prepareFailView("Authentication failed");
         } else {
             final String address = updateMyProfileInputData.getAddress();
             final String telephone = updateMyProfileInputData.getTelephone();

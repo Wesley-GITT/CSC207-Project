@@ -21,7 +21,7 @@ public class UpdateCartInteractor implements UpdateCartInputBoundary {
         final String password = updateCartInputData.getPassword();
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
-            updateCartPresenter.prepareFailView("Authentication Failed");
+            updateCartPresenter.prepareFailView("Authentication failed");
         } else {
             final Set<Integer> cartItems = updateCartInputData.getCartItems();
             final MyUser user = userDataAccessObject.get(username, password);

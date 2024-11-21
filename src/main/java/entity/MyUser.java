@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class MyUser extends OtherUser {
@@ -12,7 +14,8 @@ public class MyUser extends OtherUser {
         super(id, username, contactInfo);
         this.password = password;
         this.address = address;
-        this.cartItems = cartItems;
+        this.cartItems = new HashSet<>();
+        this.setCartItems(cartItems);
     }
 
     public void setUsername(String username) {
@@ -44,8 +47,26 @@ public class MyUser extends OtherUser {
     }
 
     public Set<Integer> getCartItems() {
-        return this.cartItems;
+        // don't allow code of other scope to modify cartItems without using setter
+        return Set.copyOf(this.cartItems);
     }
 
-    public void setCartItems(Set<Integer> cartItems) { this.cartItems = cartItems; }
+    public void setCartItems(Set<Integer> cartItems) {
+        // add and remove manually to save memory for copying
+        Iterator<Integer> selfCartItemsIterator = this.cartItems.iterator();
+        while (selfCartItemsIterator.hasNext()) {
+            Integer cartItem = selfCartItemsIterator.next();
+            if (!cartItems.contains(cartItem)) {
+                selfCartItemsIterator.remove();
+            }
+        }
+
+        Iterator<Integer> resultantCartItemsIterator = cartItems.iterator();
+        while (resultantCartItemsIterator.hasNext()) {
+            Integer cartItem = resultantCartItemsIterator.next();
+            if (!this.cartItems.contains(cartItem)) {
+                this.cartItems.add(cartItem);
+            }
+        }
+    }
 }

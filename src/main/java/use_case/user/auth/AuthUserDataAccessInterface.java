@@ -8,12 +8,4 @@ public interface AuthUserDataAccessInterface extends
         BasicAuthDataAccessInterface,
         UserExistDataAccessInterface,
         UserGetDataAccessInterface {
-
-    void setCurrentUsername(String username);
-
-    void setCurrentPassword(String password);
-
-    String getCurrentUsername();
-
-    String getCurrentPassword();
 }

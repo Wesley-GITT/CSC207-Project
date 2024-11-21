@@ -1,8 +1,8 @@
 package use_case.user.show_cart;
 
-public interface showCartOutputBoundary {
+public interface ShowCartOutputBoundary {
 
-    void prepareSuccessView(showCartOutputData showCartOutputData);
+    void prepareSuccessView(ShowCartOutputData showCartOutputData);
 
     void prepareFailView(String errorMessage);
 }

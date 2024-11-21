@@ -1,6 +1,6 @@
 package use_case.user.show_cart;
 
-public interface showCartInputBoundary {
+public interface ShowCartInputBoundary {
 
-    void execute(showCartInputData showCartInputData);
+    void execute(ShowCartInputData showCartInputData);
 }
