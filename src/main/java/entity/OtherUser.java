@@ -1,18 +1,20 @@
 package entity;
 
-import java.util.Set;
+public class OtherUser {
 
-public class OtherUser implements User {
-
+    protected int id;
     protected String username;
     protected ContactInfo contactInfo;
-    protected Set<Integer> productIds;
 
-    public OtherUser(String username, ContactInfo contactInfo, Set<Integer> productIds) {
+    public OtherUser(int id, String username, ContactInfo contactInfo) {
+        this.id = id;
         this.username = username;
         this.contactInfo = contactInfo;
-        this.productIds = productIds;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getUsername() {
         return username;
@@ -24,9 +26,5 @@ public class OtherUser implements User {
 
     public String getTelephone() {
         return contactInfo.getTelephone();
-    }
-
-    public Set<Integer> getProductIds() {
-        return productIds;
     }
 }
