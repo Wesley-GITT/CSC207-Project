@@ -1,7 +1,7 @@
 package use_case.user.auth;
 
 
-import data_access.user.InMemoryUserDataAccessObject;
+import data_access.user.InMemoryItemsUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class AuthInteractorTest {
     @Test
     public void successUserAuthenticationTest() {
         AuthInputData inputData = new AuthInputData("wes", "123");
-        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryItemsUserDataAccessObject userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -30,16 +30,6 @@ public class AuthInteractorTest {
             public void prepareFailView(String errorMessage) {
                 fail("Use case failure is unexpected");
             }
-
-            @Override
-            public void switchToOriginalView() {
-                // this might be expected
-            }
-
-            @Override
-            public void switchToMyUserView() {
-                // this might be expected
-            }
         };
 
         AuthInteractor interactor = new AuthInteractor(userRepo, successPresenter);
@@ -49,7 +39,7 @@ public class AuthInteractorTest {
     @Test
     public void failureUserNotExistTest() {
         AuthInputData inputData = new AuthInputData("wes", "123");
-        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryItemsUserDataAccessObject userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("sam", "123");
@@ -65,16 +55,6 @@ public class AuthInteractorTest {
             public void prepareFailView(String errorMessage) {
                 assertEquals("User `wes` doesn't exist", errorMessage);
             }
-
-            @Override
-            public void switchToOriginalView() {
-                // this might be expected
-            }
-
-            @Override
-            public void switchToMyUserView() {
-                // this might be expected
-            }
         };
 
         AuthInteractor interactor = new AuthInteractor(userRepo, failurePresenter);
@@ -84,7 +64,7 @@ public class AuthInteractorTest {
     @Test
     public void failureIncorrectUsernamePasswordPairTest() {
         AuthInputData inputData = new AuthInputData("wes", "123");
-        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryItemsUserDataAccessObject userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
@@ -99,16 +79,6 @@ public class AuthInteractorTest {
             @Override
             public void prepareFailView(String errorMessage) {
                 assertEquals("Incorrect username and/or password", errorMessage);
-            }
-
-            @Override
-            public void switchToOriginalView() {
-                // this might be expected
-            }
-
-            @Override
-            public void switchToMyUserView() {
-                // this might be expected
             }
         };
 

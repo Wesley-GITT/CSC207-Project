@@ -2,9 +2,10 @@ package data_access.user;
 
 import entity.MyUser;
 import entity.OtherUser;
+import entity.OtherUserFactory;
 import use_case.user.auth.AuthUserDataAccessInterface;
+import use_case.user.list_cart_items.ListCartItemsUserDataAccessInterface;
 import use_case.user.reg.RegUserDataAccessInterface;
-import use_case.user.show_cart.ShowCartUserDataAccessInterface;
 import use_case.user.show_my_profile.ShowMyProfileUserDataAccessInterface;
 import use_case.user.show_other_profile.ShowOtherProfileUserDataAccessInterface;
 import use_case.user.update_cart.UpdateCartUserDataAccessInterface;
@@ -15,10 +16,10 @@ import use_case.user.update_pwd.UpdatePasswordUserDataAccessInterface;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements
+public class InMemoryItemsUserDataAccessObject implements
         AuthUserDataAccessInterface,
         RegUserDataAccessInterface,
-        ShowCartUserDataAccessInterface,
+        ListCartItemsUserDataAccessInterface,
         ShowMyProfileUserDataAccessInterface,
         ShowOtherProfileUserDataAccessInterface,
         UpdateCartUserDataAccessInterface,
@@ -26,12 +27,12 @@ public class InMemoryUserDataAccessObject implements
         UpdateNameUserDataAccessInterface,
         UpdatePasswordUserDataAccessInterface {
 
-    private final Map<String, MyUser> users = new HashMap<>();
-    private final Map<Integer, OtherUser> otherUsers = new HashMap<>();
+    private final Map<String, MyUser> usersByName = new HashMap<>();
+    private final Map<Integer, MyUser> usersById = new HashMap<>();
 
     @Override
     public boolean doesUserExist(String username) {
-        return users.containsKey(username);
+        return usersByName.containsKey(username);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class InMemoryUserDataAccessObject implements
             return false;
         }
 
-        MyUser u = users.get(username);
+        MyUser u = usersByName.get(username);
 
         if (u.getPassword() != password) {
             return false;
@@ -51,26 +52,29 @@ public class InMemoryUserDataAccessObject implements
 
     @Override
     public MyUser get(String username, String password) {
-        return users.get(username);
+        return usersByName.get(username);
     }
 
     @Override
-    public void save(MyUser user) { users.put(user.getUsername(), user); }
-
-    public void saveOther(OtherUser user) { otherUsers.put(user.getId(), user); }
+    public void save(MyUser user) {
+        usersByName.put(user.getUsername(), user);
+        usersById.put(user.getId(), user);
+    }
 
     @Override
     public void add(MyUser user) {
-        users.put(user.getUsername(), user);
+        usersByName.put(user.getUsername(), user);
+        usersById.put(user.getId(), user);
     }
 
     @Override
     public boolean doesUserExistById(int id) {
-        return otherUsers.containsKey(id);
+        return usersById.containsKey(id);
     }
 
     @Override
     public OtherUser getOther(int id) {
-        return otherUsers.get(id);
+        OtherUserFactory userFactory = new OtherUserFactory();
+        return userFactory.create(usersById.get(id));
     }
 }

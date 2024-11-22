@@ -1,10 +1,10 @@
-package use_case.user.show_cart;
+package use_case.user.list_cart_items;
 
 import use_case.user.BasicAuthDataAccessInterface;
 import use_case.user.UserGetDataAccessInterface;
 import use_case.user.UserSaveDataAccessInterface;
 
-public interface ShowCartUserDataAccessInterface extends
+public interface ListCartItemsUserDataAccessInterface extends
         BasicAuthDataAccessInterface,
         UserGetDataAccessInterface,
         UserSaveDataAccessInterface {

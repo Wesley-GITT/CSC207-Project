@@ -1,6 +1,6 @@
 package use_case.user.update_cart;
 
-import data_access.user.InMemoryUserDataAccessObject;
+import data_access.user.InMemoryItemsUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class UpdateCartInteractorTest {
         cartItems1.add(4);
 
         UpdateCartInputData inputData = new UpdateCartInputData("wes", "123", cartItems1);
-        UpdateCartUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdateCartUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -51,7 +51,7 @@ public class UpdateCartInteractorTest {
     @Test
     public void failureUserNotAuthorizedUpdateCartTest() {
         UpdateCartInputData inputData = new UpdateCartInputData("wes", "123", new HashSet<>());
-        UpdateCartUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdateCartUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");

@@ -1,12 +1,12 @@
-package use_case.user.show_cart;
+package use_case.user.list_cart_items;
 
 import java.util.Set;
 
-public class ShowCartOutputData {
+public class ListCartItemsOutputData {
 
     private final Set<Integer> cartItems;
 
-    public ShowCartOutputData(Set<Integer> cartItems) {
+    public ListCartItemsOutputData(Set<Integer> cartItems) {
         this.cartItems = cartItems;
     }
 

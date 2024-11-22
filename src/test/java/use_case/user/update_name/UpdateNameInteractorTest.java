@@ -1,6 +1,6 @@
 package use_case.user.update_name;
 
-import data_access.user.InMemoryUserDataAccessObject;
+import data_access.user.InMemoryItemsUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class UpdateNameInteractorTest {
     @Test
     public void successUpdateNameTest() {
         UpdateNameInputData inputData = new UpdateNameInputData("wes", "123", "WWWeSSS");
-        UpdateNameUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdateNameUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -38,7 +38,7 @@ public class UpdateNameInteractorTest {
     @Test
     public void failureNotAuthorizedTest() {
         UpdateNameInputData inputData = new UpdateNameInputData("wes", "123", "WWWeSSS");
-        UpdateNameUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdateNameUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
@@ -63,7 +63,7 @@ public class UpdateNameInteractorTest {
     @Test
     public void failureUserIsTakenTest() {
         UpdateNameInputData inputData = new UpdateNameInputData("wes", "123", "NO!!!");
-        UpdateNameUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdateNameUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user1 = userFactory.create("wes", "123");

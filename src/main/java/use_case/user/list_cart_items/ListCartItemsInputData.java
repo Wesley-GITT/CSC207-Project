@@ -1,11 +1,11 @@
-package use_case.user.show_cart;
+package use_case.user.list_cart_items;
 
-public class ShowCartInputData {
+public class ListCartItemsInputData {
 
     private final String username;
     private final String password;
 
-    public ShowCartInputData(String username, String password) {
+    public ListCartItemsInputData(String username, String password) {
         this.username = username;
         this.password = password;
     }

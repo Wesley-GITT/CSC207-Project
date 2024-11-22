@@ -1,7 +1,7 @@
 package use_case.user.update_profile;
 
 
-import data_access.user.InMemoryUserDataAccessObject;
+import data_access.user.InMemoryItemsUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class UpdateMyProfileInteractorTest {
                 "2000 Talbot Road West Windsor, ON, Canada N9A 6S4",
                 "+1 12345678910", "tom@jerry.sh");
 
-        UpdateMyProfileUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdateMyProfileUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
 
@@ -52,7 +52,7 @@ public class UpdateMyProfileInteractorTest {
                 "2000 Talbot Road West Windsor, ON, Canada N9A 6S4",
                 "+1 12345678910", "tom@jerry.sh");
 
-        UpdateMyProfileUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdateMyProfileUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
 
