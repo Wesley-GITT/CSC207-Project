@@ -1,7 +1,7 @@
 package use_case.user.update_pwd;
 
 
-import data_access.user.InMemoryUserDataAccessObject;
+import data_access.user.InMemoryItemsUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class UpdatePasswordInteractorTest {
     @Test
     public void successUpdatePasswordTest() {
         UpdatePasswordInputData inputData = new UpdatePasswordInputData("wes", "123", "321", "321");
-        UpdatePasswordUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdatePasswordUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -40,7 +40,7 @@ public class UpdatePasswordInteractorTest {
     @Test
     public void failureNotAuthorizedTest() {
         UpdatePasswordInputData inputData = new UpdatePasswordInputData("wes", "321", "123", "123");
-        UpdatePasswordUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdatePasswordUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -65,7 +65,7 @@ public class UpdatePasswordInteractorTest {
     @Test
     public void failurePasswordPairMismatchedTest() {
         UpdatePasswordInputData inputData = new UpdatePasswordInputData("wes", "123", "123", "321");
-        UpdatePasswordUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        UpdatePasswordUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");

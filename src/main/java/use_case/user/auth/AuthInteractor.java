@@ -29,14 +29,4 @@ public class AuthInteractor implements AuthInputBoundary {
             authPresenter.prepareSuccessView(authOutputData);
         }
     }
-
-    @Override
-    public void switchToOriginalView() {
-        authPresenter.switchToOriginalView();
-    }
-
-    @Override
-    public void switchToMyUserView() {
-        authPresenter.switchToMyUserView();
-    }
 }

@@ -1,6 +1,6 @@
-package use_case.user.show_cart;
+package use_case.user.list_cart_items;
 
-import data_access.user.InMemoryUserDataAccessObject;
+import data_access.user.InMemoryItemsUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -10,12 +10,12 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
-public class ShowCartInteractorTest {
+public class ListCartItemsInteractorTest {
 
     @Test
     public void successShowCartTest() {
-        ShowCartInputData inputData = new ShowCartInputData("wes", "123");
-        ShowCartUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        ListCartItemsInputData inputData = new ListCartItemsInputData("wes", "123");
+        ListCartItemsUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -27,9 +27,9 @@ public class ShowCartInteractorTest {
         user.setCartItems(cartItems);
         userRepo.save(user);
 
-        ShowCartOutputBoundary successPresenter = new ShowCartOutputBoundary() {
+        ListCartItemsOutputBoundary successPresenter = new ListCartItemsOutputBoundary() {
             @Override
-            public void prepareSuccessView(ShowCartOutputData showCartOutputData) {
+            public void prepareSuccessView(ListCartItemsOutputData showCartOutputData) {
                 assertTrue(showCartOutputData.getCartItems().contains(1));
                 assertTrue(showCartOutputData.getCartItems().contains(2));
                 assertEquals(showCartOutputData.getCartItems().size(), 2);
@@ -41,14 +41,14 @@ public class ShowCartInteractorTest {
             }
         };
 
-        ShowCartInteractor interactor = new ShowCartInteractor(userRepo, successPresenter);
+        ListCartItemsInteractor interactor = new ListCartItemsInteractor(userRepo, successPresenter);
         interactor.execute(inputData);
     }
 
     @Test
     public void failureNotAuthorizedShowCartTest() {
-        ShowCartInputData inputData = new ShowCartInputData("wes", "123");
-        ShowCartUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        ListCartItemsInputData inputData = new ListCartItemsInputData("wes", "123");
+        ListCartItemsUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
@@ -59,9 +59,9 @@ public class ShowCartInteractorTest {
         user.setCartItems(cartItems);
         userRepo.save(user);
 
-        ShowCartOutputBoundary failurePresenter = new ShowCartOutputBoundary() {
+        ListCartItemsOutputBoundary failurePresenter = new ListCartItemsOutputBoundary() {
             @Override
-            public void prepareSuccessView(ShowCartOutputData showCartOutputData) {
+            public void prepareSuccessView(ListCartItemsOutputData showCartOutputData) {
                 fail("Use case success is unexpected");
             }
 
@@ -71,7 +71,7 @@ public class ShowCartInteractorTest {
             }
         };
 
-        ShowCartInteractor interactor = new ShowCartInteractor(userRepo, failurePresenter);
+        ListCartItemsInteractor interactor = new ListCartItemsInteractor(userRepo, failurePresenter);
         interactor.execute(inputData);
     }
 }

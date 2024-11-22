@@ -1,9 +1,8 @@
 package use_case.user.show_other_profile;
 
-import data_access.user.InMemoryUserDataAccessObject;
-import entity.ContactInfo;
-import entity.OtherUser;
-import entity.OtherUserFactory;
+import data_access.user.InMemoryItemsUserDataAccessObject;
+import entity.MyUser;
+import entity.MyUserFactory;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -14,13 +13,15 @@ public class ShowOtherProfileInteractorTest {
     @Test
     public void successShowOtherProfileTest() {
         ShowOtherProfileInputData inputData = new ShowOtherProfileInputData(0);
-        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryItemsUserDataAccessObject userRepo = new InMemoryItemsUserDataAccessObject();
 
-        OtherUserFactory userFactory = new OtherUserFactory();
-        ContactInfo contactInfo = new ContactInfo("+1 12345678910", "tom@jerry.sh");
-        OtherUser user = userFactory.create(0, "wes", contactInfo);
+        MyUserFactory userFactory = new MyUserFactory();
+        MyUser user = userFactory.create("wes", null);
+        user.setId(0);
+        user.setTelephone("+1 12345678910");
+        user.setEmail("tom@jerry.sh");
 
-        userRepo.saveOther(user);
+        userRepo.save(user);
 
         ShowOtherProfileOutputBoundary successPresenter = new ShowOtherProfileOutputBoundary() {
             @Override
@@ -43,12 +44,13 @@ public class ShowOtherProfileInteractorTest {
     @Test
     public void failureUserNotExistShowOtherProfileTest() {
         ShowOtherProfileInputData inputData = new ShowOtherProfileInputData(0);
-        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryItemsUserDataAccessObject userRepo = new InMemoryItemsUserDataAccessObject();
 
-        OtherUserFactory userFactory = new OtherUserFactory();
-        OtherUser user = userFactory.create(2, "sam", new ContactInfo(null, null));
+        MyUserFactory userFactory = new MyUserFactory();
+        MyUser user = userFactory.create("sam", null);
+        user.setId(2);
 
-        userRepo.saveOther(user);
+        userRepo.save(user);
 
         ShowOtherProfileOutputBoundary failurePresenter = new ShowOtherProfileOutputBoundary() {
 
