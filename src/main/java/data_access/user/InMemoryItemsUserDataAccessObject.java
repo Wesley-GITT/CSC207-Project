@@ -1,8 +1,11 @@
 package data_access.user;
 
-import entity.MyUser;
-import entity.OtherUser;
-import entity.OtherUserFactory;
+import entity.*;
+import use_case.GetOrderDataAccessInterface;
+import use_case.GetProductIdDataAccessInterface;
+import use_case.SaveOrderDataAccessInterface;
+import use_case.SaveProductDataAccessInterface;
+import use_case.order.create.CreateOrderDataAccessInterface;
 import use_case.user.auth.AuthUserDataAccessInterface;
 import use_case.user.list_cart_items.ListCartItemsUserDataAccessInterface;
 import use_case.user.reg.RegUserDataAccessInterface;
@@ -25,8 +28,15 @@ public class InMemoryItemsUserDataAccessObject implements
         UpdateCartUserDataAccessInterface,
         UpdateMyProfileUserDataAccessInterface,
         UpdateNameUserDataAccessInterface,
-        UpdatePasswordUserDataAccessInterface {
+        UpdatePasswordUserDataAccessInterface,
+        GetProductIdDataAccessInterface,
+        SaveProductDataAccessInterface,
+        GetOrderDataAccessInterface,
+        SaveOrderDataAccessInterface,
+        CreateOrderDataAccessInterface {
 
+    private final Map<Integer, Product> products = new HashMap<>();
+    private final Map<Integer, Order> orders = new HashMap<>();
     private final Map<String, MyUser> usersByName = new HashMap<>();
     private final Map<Integer, MyUser> usersById = new HashMap<>();
 
@@ -76,5 +86,25 @@ public class InMemoryItemsUserDataAccessObject implements
     public OtherUser getOther(int id) {
         OtherUserFactory userFactory = new OtherUserFactory();
         return userFactory.create(usersById.get(id));
+    }
+
+    @Override
+    public Product getProductById(int productId) {
+        return products.get(productId);
+    }
+
+    @Override
+    public void saveProduct(Product product) {
+        products.put(product.getId(), product);
+    }
+
+    @Override
+    public Order getOrder(int orderId) {
+        return orders.get(orderId);
+    }
+
+    @Override
+    public void saveOrder(Order order) {
+        orders.put(order.getId(), order);
     }
 }
