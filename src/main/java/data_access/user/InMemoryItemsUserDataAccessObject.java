@@ -6,6 +6,7 @@ import use_case.GetProductIdDataAccessInterface;
 import use_case.SaveOrderDataAccessInterface;
 import use_case.SaveProductDataAccessInterface;
 import use_case.order.create.CreateOrderDataAccessInterface;
+import use_case.order.list_my_orders.ListMyOrdersDataAccessInterface;
 import use_case.user.auth.AuthUserDataAccessInterface;
 import use_case.user.list_cart_items.ListCartItemsUserDataAccessInterface;
 import use_case.user.reg.RegUserDataAccessInterface;
@@ -16,7 +17,9 @@ import use_case.user.update_my_profile.UpdateMyProfileUserDataAccessInterface;
 import use_case.user.update_name.UpdateNameUserDataAccessInterface;
 import use_case.user.update_pwd.UpdatePasswordUserDataAccessInterface;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InMemoryItemsUserDataAccessObject implements
@@ -33,7 +36,8 @@ public class InMemoryItemsUserDataAccessObject implements
         SaveProductDataAccessInterface,
         GetOrderDataAccessInterface,
         SaveOrderDataAccessInterface,
-        CreateOrderDataAccessInterface {
+        CreateOrderDataAccessInterface,
+        ListMyOrdersDataAccessInterface {
 
     private final Map<Integer, Product> products = new HashMap<>();
     private final Map<Integer, Order> orders = new HashMap<>();
@@ -63,6 +67,24 @@ public class InMemoryItemsUserDataAccessObject implements
     @Override
     public MyUser get(String username, String password) {
         return usersByName.get(username);
+    }
+
+    @Override
+    public int getBuyerId(String username) {
+        MyUser user = usersByName.get(username);
+        return user.getId();
+    }
+
+    @Override
+    public List<Order> getOrdersByBuyerId(int buyerId) {
+        List<Order> buyerOrders = new ArrayList<>();
+        for (Order order : orders.values()) {
+            if (order.getBuyerId() == buyerId) {
+                buyerOrders.add(order);
+            }
+        }
+        System.out.println("Orders for BuyerID " + buyerId + ": " + buyerOrders);
+        return buyerOrders;
     }
 
     @Override
@@ -105,6 +127,11 @@ public class InMemoryItemsUserDataAccessObject implements
 
     @Override
     public void saveOrder(Order order) {
+        System.out.println("Saving order: " + order);
         orders.put(order.getId(), order);
+    }
+
+    public void clearOrders() {
+        orders.clear();
     }
 }
