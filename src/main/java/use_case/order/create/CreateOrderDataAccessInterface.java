@@ -1,21 +1,19 @@
 package use_case.order.create;
 
-import entity.Order;
-import entity.Product;
 import use_case.user.BasicAuthDataAccessInterface;
 import use_case.user.UserGetDataAccessInterface;
 import use_case.user.UserSaveDataAccessInterface;
+import use_case.order.GetOrderDataAccessInterface;
+import use_case.order.SaveOrderDataAccessInterface;
+import use_case.order.GetProductIdDataAccessInterface;
+import use_case.order.SaveProductDataAccessInterface;
 
 public interface CreateOrderDataAccessInterface extends
         BasicAuthDataAccessInterface,
         UserGetDataAccessInterface,
-        UserSaveDataAccessInterface {
-
-    Order getOrder(int orderId);
-
-    void saveOrder(Order order);
-
-    Product getProductById(int productId);
-
-    void saveProduct(Product product);
+        UserSaveDataAccessInterface,
+        GetOrderDataAccessInterface,
+        SaveOrderDataAccessInterface,
+        GetProductIdDataAccessInterface,
+        SaveProductDataAccessInterface {
 }

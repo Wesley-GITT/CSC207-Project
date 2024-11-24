@@ -1,8 +1,8 @@
-package use_case;
+package use_case.order;
 
 import entity.Order;
 
 public interface GetOrderDataAccessInterface {
 
-    public Order getOrder(int orderId);
+    Order getOrder(int orderId);
 }

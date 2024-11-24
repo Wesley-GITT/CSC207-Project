@@ -1,8 +1,8 @@
-package use_case;
+package use_case.order;
 
 import entity.Product;
 
 public interface SaveProductDataAccessInterface {
 
-    public void saveProduct(Product product);
+    void saveProduct(Product product);
 }

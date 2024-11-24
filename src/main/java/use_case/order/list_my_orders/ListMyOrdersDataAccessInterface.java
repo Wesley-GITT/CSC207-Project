@@ -1,12 +1,9 @@
 package use_case.order.list_my_orders;
 
-import entity.Order;
 import use_case.user.BasicAuthDataAccessInterface;
+import use_case.order.getOrdersByBuyerIdDataAccessInterface;
 
-import java.util.List;
-
-public interface ListMyOrdersDataAccessInterface extends BasicAuthDataAccessInterface {
-
-    List<Order> getOrdersByBuyerId(int buyerId);
-    int getBuyerId(String username);
+public interface ListMyOrdersDataAccessInterface extends
+        BasicAuthDataAccessInterface,
+        getOrdersByBuyerIdDataAccessInterface {
 }
