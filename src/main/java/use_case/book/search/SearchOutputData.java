@@ -1,24 +1,29 @@
 package use_case.book.search;
 
 import entity.Book;
-
-import java.util.Set;
+import java.util.List;
 
 public class SearchOutputData {
 
-    final private Set<Book> books;
-    final private int startIndex;
+    private final List<Book> books;
+    private final String message;
 
-    public SearchOutputData(Set<Book> books, int startIndex) {
-        this.books = Set.copyOf(books);
-        this.startIndex = startIndex;
+    /**
+     * Constructor to initialize search output data.
+     *
+     * @param books The list of books retrieved from the search.
+     * @param message A message about the search operation (e.g., "Search successful").
+     */
+    public SearchOutputData(List<Book> books, String message) {
+        this.books = books;
+        this.message = message;
     }
 
-    public Set<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public int getStartIndex() {
-        return startIndex;
+    public String getMessage() {
+        return message;
     }
 }
