@@ -9,13 +9,16 @@ public class MyUser extends OtherUser {
     private String password;
     private String address;
     private Set<Integer> cartItems;
+    private Set<Integer> products;
 
-    public MyUser(int id, String username, String password, String address, ContactInfo contactInfo, Set<Integer> cartItems) {
+    public MyUser(int id, String username, String password, String address, ContactInfo contactInfo, Set<Integer> cartItems, Set<Integer> products) {
         super(id, username, contactInfo);
         this.password = password;
         this.address = address;
         this.cartItems = new HashSet<>();
         this.setCartItems(cartItems);
+        this.products = new HashSet<>();
+        this.products.addAll(products);
     }
 
     public void setUsername(String username) {
@@ -66,6 +69,28 @@ public class MyUser extends OtherUser {
             Integer cartItem = resultantCartItemsIterator.next();
             if (!this.cartItems.contains(cartItem)) {
                 this.cartItems.add(cartItem);
+            }
+        }
+    }
+
+    public Set<Integer> getProducts() {
+        return Set.copyOf(this.cartItems);
+    }
+
+    public void setProducts(Set<Integer> products) {
+        Iterator<Integer> selfProductsIterator = this.products.iterator();
+        while (selfProductsIterator.hasNext()) {
+            Integer product = selfProductsIterator.next();
+            if (!products.contains(product)) {
+                selfProductsIterator.remove();
+            }
+        }
+
+        Iterator<Integer> resultantProductsIterator = products.iterator();
+        while (resultantProductsIterator.hasNext()) {
+            Integer product = resultantProductsIterator.next();
+            if (!this.products.contains(product)) {
+                this.products.add(product);
             }
         }
     }

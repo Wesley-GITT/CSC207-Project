@@ -1,44 +1,23 @@
 package use_case.product.remove;
 
+import java.util.Set;
+
 public class RemoveProductInputData {
 
-    private int id;
-    private String bookId;
-    private String sellerId;
-    private String bookCondition;
-    private float price;
-    private boolean sold;
+    private final String username;
+    private final String password;
+    private final Set<Integer> products;
 
-    public RemoveProductInputData(int id, String bookId, String sellerId, String bookCondition, float price, boolean sold) {
-        this.id = id;
-        this.bookId = bookId;
-        this.sellerId = sellerId;
-        this.bookCondition = bookCondition;
-        this.price = price;
-        this.sold = sold;
+    public RemoveProductInputData(String username, String password, Set<Integer> products) {
+        this.username = username;
+        this.password = password;
+        this.products = products;
     }
 
-    public Integer getProductId() {
-        return id;
-    }
-    public void setProductId(Integer id) {
-        this.id = id;
-    }
+    public String getUsername() { return username;}
 
-    public String getBookId() {return bookId;}
-    public void setBookId(String bookId) {this.bookId = bookId;}
+    public String getPassword() { return password;}
 
-    public String getSellerId() {return sellerId;}
-    public void setSellerId(String sellerId) {this.sellerId = sellerId;}
-
-    public String getBookCondition() {return bookCondition;}
-    public void setBookCondition(String bookCondition) {this.bookCondition = bookCondition;}
-
-    public float getPrice() {return price;}
-    public void setPrice(float price) {this.price = price;}
-
-    public boolean isSold() {return sold;}
-    public void setSold(boolean sold) {this.sold = sold;}
-
+    public Set<Integer> getProducts() { return products;}
 
 }

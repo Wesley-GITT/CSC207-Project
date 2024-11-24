@@ -1,22 +1,36 @@
 package use_case.product.list_my_products;
 
-import use_case.book.search.SearchBookDataAccessInterface;
-import use_case.book.search.SearchInputData;
-import use_case.book.search.SearchOutputBoundary;
+import entity.MyUser;
 
-public class ListProductInteractor implements ListProductInputBoundary {
+import java.util.Set;
 
-    private final SearchBookDataAccessInterface bookDataAccessInterface;
-    private final SearchOutputBoundary searchPresenter;
+public class ListProductInteractor implements ListProductInputBoundary{
 
+    private ListProductUserDataAccessInterface userDataAccessObject;
+    private ListProductOutputBoundary listProductPresenter;
 
-    public SearchInteractor(SearchBookDataAccessInterface bookDataAccessInterface, SearchOutputBoundary searchPresenter) {
-        this.bookDataAccessInterface = bookDataAccessInterface;
-        this.searchPresenter = searchPresenter;
+    public ListProductInteractor(ListProductUserDataAccessInterface userDataAccessObject, ListProductOutputBoundary listProductPresenter) {
+        this.userDataAccessObject = userDataAccessObject;
+        this.listProductPresenter = listProductPresenter;
     }
 
     @Override
-    public void execute(SearchInputData searchInputData) {
+    public void execute(ListProductInputData listProductInputData) {
 
+        final String username = listProductInputData.getUsername();
+        final String password = listProductInputData.getPassword();
+
+        if (!userDataAccessObject.isAuthenticated(username, password)) {
+            listProductPresenter.prepareFailView("Authentication failed");
+        }
+        else {
+            final MyUser user = userDataAccessObject.get(username, password);
+            final Set<Integer> products = user.getProducts() ;
+
+            userDataAccessObject.save(user);
+
+            ListProductOutputData outputData = new ListProductOutputData(products);
+            listProductPresenter.prepareSuccessView(outputData);
+        }
     }
 }

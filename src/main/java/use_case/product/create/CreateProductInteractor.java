@@ -1,21 +1,47 @@
 package use_case.product.create;
 
-import use_case.product.create.CreateProductInputBoundary;
-import use_case.book.search.SearchInputData;
-import use_case.book.search.SearchOutputBoundary;
+import entity.MyUser;
+import entity.Product;
+import use_case.product.list_my_products.ListProductOutputData;
+
+import java.util.Set;
 
 public class CreateProductInteractor implements CreateProductInputBoundary{
 
-    private final CreateProductDataAccessInterface createProductDataAccessInterface;
-    private final CreateProductOutputBoundary createProductOutputBoundary;
+    private final CreateProductUserDataAccessInterface userDataAccessObject;
+    private final CreateProductOutputBoundary createProductPresenter;
 
-    public CreateProductInteractor(CreateProductDataAccessInterface bookDataAccessInterface, CreateProductOutputBoundary createProductOutputBoundary) {
-        this.createProductDataAccessInterface = bookDataAccessInterface;
-        this.createProductOutputBoundary = createProductOutputBoundary;
+    public CreateProductInteractor(CreateProductUserDataAccessInterface bookDataAccessInterface, CreateProductOutputBoundary createProductOutputBoundary) {
+        this.userDataAccessObject = bookDataAccessInterface;
+        this.createProductPresenter = createProductOutputBoundary;
     }
 
     @Override
-    public void execute(SearchInputData searchInputData) {
+    public void execute(CreateProductInputData createProductInputData) {
+        final String username = createProductInputData.getUsername();
+        final String password = createProductInputData.getPassword();
 
+        if (!userDataAccessObject.isAuthenticated(username, password)) {
+            createProductPresenter.prepareFailView("Authentication failed");
+        }
+        else {
+            final MyUser user = userDataAccessObject.get(username, password);
+            final Product product = new Product(createProductInputData.getProductId(),
+                    createProductInputData.getBookId(),
+                    createProductInputData.getSellerId(),
+                    createProductInputData.getBookCondition(),
+                    createProductInputData.getPrice(),
+                    createProductInputData.isSold());
+
+            if (product.isSold()) {
+                createProductPresenter.prepareFailView("Why do post a sold product?.");
+            }
+
+            userDataAccessObject.save(user);
+            userDataAccessObject.saveProduct(product);
+
+            CreateProductOutputData outputData = new CreateProductOutputData(product.getId());
+            createProductPresenter.prepareSuccessView(outputData);
+        }
     }
 }
