@@ -55,4 +55,14 @@ public class InMemoryOrderDataAccessObject implements
     public void clearOrders() {
         orders.clear();
     }
+
+    public List<Order> getOrdersBySellerId(int sellerId) {
+        List<Order> sellerOrders = new ArrayList<>();
+        for (Order order : orders.values()) {
+            if (order.getSellerId() == sellerId) {
+                sellerOrders.add(order);
+            }
+        }
+        return sellerOrders;
+    }
 }

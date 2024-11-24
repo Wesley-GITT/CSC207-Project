@@ -8,12 +8,14 @@ import entity.Order;
 import entity.Product;
 import use_case.order.create.CreateOrderDataAccessInterface;
 import use_case.order.list_my_orders.ListMyOrdersDataAccessInterface;
+import use_case.order.getOrdersBySellerIdDataAccessInterface;
 
 import java.util.List;
 
 public class CompositeDataAccessObject implements
         CreateOrderDataAccessInterface,
-        ListMyOrdersDataAccessInterface {
+        ListMyOrdersDataAccessInterface,
+        getOrdersBySellerIdDataAccessInterface {
 
     private final InMemoryItemsUserDataAccessObject userDataAccess;
     private final InMemoryProductDataAccessObject productDataAccess;
@@ -74,5 +76,10 @@ public class CompositeDataAccessObject implements
     @Override
     public List<Order> getOrdersByBuyerId(int buyerId) {
         return orderDataAccess.getOrdersByBuyerId(buyerId);
+    }
+
+    @Override
+    public List<Order> getOrdersBySellerId(int sellerId) {
+        return orderDataAccess.getOrdersBySellerId(sellerId);
     }
 }
