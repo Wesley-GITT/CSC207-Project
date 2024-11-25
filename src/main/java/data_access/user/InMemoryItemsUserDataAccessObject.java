@@ -3,7 +3,6 @@ package data_access.user;
 import entity.MyUser;
 import entity.OtherUser;
 import entity.OtherUserFactory;
-import entity.Product;
 import use_case.user.auth.AuthUserDataAccessInterface;
 import use_case.user.list_cart_items.ListCartItemsUserDataAccessInterface;
 import use_case.user.reg.RegUserDataAccessInterface;
@@ -26,7 +25,7 @@ public class InMemoryItemsUserDataAccessObject implements
         UpdateCartUserDataAccessInterface,
         UpdateMyProfileUserDataAccessInterface,
         UpdateNameUserDataAccessInterface,
-        UpdatePasswordUserDataAccessInterface{
+        UpdatePasswordUserDataAccessInterface {
 
     private final Map<String, MyUser> usersByName = new HashMap<>();
     private final Map<Integer, MyUser> usersById = new HashMap<>();
@@ -78,5 +77,4 @@ public class InMemoryItemsUserDataAccessObject implements
         OtherUserFactory userFactory = new OtherUserFactory();
         return userFactory.create(usersById.get(id));
     }
-
 }

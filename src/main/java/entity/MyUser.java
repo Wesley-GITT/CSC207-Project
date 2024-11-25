@@ -69,5 +69,4 @@ public class MyUser extends OtherUser {
             }
         }
     }
-
 }
