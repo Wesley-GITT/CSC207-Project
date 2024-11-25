@@ -16,7 +16,7 @@ import use_case.user.update_pwd.UpdatePasswordUserDataAccessInterface;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryItemsUserDataAccessObject implements
+public class InMemoryUserDataAccessObject implements
         AuthUserDataAccessInterface,
         RegUserDataAccessInterface,
         ListCartItemsUserDataAccessInterface,
@@ -31,13 +31,13 @@ public class InMemoryItemsUserDataAccessObject implements
     private final Map<Integer, MyUser> usersById = new HashMap<>();
 
     @Override
-    public boolean doesUserExist(String username) {
+    public boolean exist(String username) {
         return usersByName.containsKey(username);
     }
 
     @Override
     public boolean isAuthenticated(String username, String password) {
-        if (!doesUserExist(username)) {
+        if (!exist(username)) {
             return false;
         }
 
@@ -68,7 +68,7 @@ public class InMemoryItemsUserDataAccessObject implements
     }
 
     @Override
-    public boolean doesUserExistById(int id) {
+    public boolean existById(int id) {
         return usersById.containsKey(id);
     }
 
