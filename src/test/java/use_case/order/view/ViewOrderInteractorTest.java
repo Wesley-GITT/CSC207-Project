@@ -1,6 +1,6 @@
 package use_case.order.view;
 
-import data_access.order.InMemoryOrderOrdersOrdersDataAccessObject;
+import data_access.order.InMemoryOrderDataAccessObject;
 import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
@@ -17,7 +17,7 @@ public class ViewOrderInteractorTest {
     public void successBuyerViewOrderTest() {
         ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -48,7 +48,7 @@ public class ViewOrderInteractorTest {
     public void successSellerViewOrderTest() {
         ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -79,7 +79,7 @@ public class ViewOrderInteractorTest {
     public void failureOrderNotExistTest() {
         ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -105,7 +105,7 @@ public class ViewOrderInteractorTest {
     public void failureIncorrectUsernamePasswordPairTest () {
         ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
@@ -134,7 +134,7 @@ public class ViewOrderInteractorTest {
     public void failureUserNotAuthorizedTest() {
         ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         userRepo.add(userFactory.create("wes", "123"));

@@ -1,7 +1,7 @@
 package use_case.order.cancel;
 
-import data_access.order.InMemoryOrderOrdersOrdersDataAccessObject;
-import data_access.product.InMemoryProductUserDataAccessObject;
+import data_access.order.InMemoryOrderDataAccessObject;
+import data_access.product.InMemoryProductDataAccessObject;
 import data_access.user.InMemoryUserDataAccessObject;
 import entity.*;
 import org.junit.Test;
@@ -16,9 +16,9 @@ public class CancelOrderInteractorTest {
     @Test
     public void successListCustomerOrdersTest() {
         CancelOrderInputData inputData = new CancelOrderInputData("wes", "123", 0);
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -51,9 +51,9 @@ public class CancelOrderInteractorTest {
     @Test
     public void failureIncorrectUsernamePasswordPairTest() {
         CancelOrderInputData inputData = new CancelOrderInputData("wes", "321", 0);
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -84,9 +84,9 @@ public class CancelOrderInteractorTest {
     @Test
     public void failureNotBuyerTest() {
         CancelOrderInputData inputData = new CancelOrderInputData("wes", "123", 0);
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -117,9 +117,9 @@ public class CancelOrderInteractorTest {
     @Test
     public void failureOrderNotExistTest() {
         CancelOrderInputData inputData = new CancelOrderInputData("wes", "123", 10);
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");

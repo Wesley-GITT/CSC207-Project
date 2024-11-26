@@ -7,7 +7,7 @@ import use_case.product.update.UpdateProductDataAccessInterface;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryProductUserDataAccessObject implements
+public class InMemoryProductDataAccessObject implements
         UpdateProductDataAccessInterface {
 
     private final HashMap<Integer, Product> productsById = new HashMap<>();
