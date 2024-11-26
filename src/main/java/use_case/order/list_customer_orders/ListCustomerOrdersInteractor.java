@@ -7,11 +7,11 @@ import java.util.Set;
 
 public class ListCustomerOrdersInteractor {
     private final AuthUserDataAccessInterface userDataAccessObject;
-    private final ListCustomerOrderDataAccessInterface orderDataAccessInterface;
+    private final ListCustomerOrdersDataAccessInterface orderDataAccessInterface;
     private final ListCustomerOrdersOutputBoundary listCustomerOrdersPresenter;
 
     public ListCustomerOrdersInteractor(AuthUserDataAccessInterface userDataAccessObject,
-                                        ListCustomerOrderDataAccessInterface orderDataAccessInterface,
+                                        ListCustomerOrdersDataAccessInterface orderDataAccessInterface,
                                         ListCustomerOrdersOutputBoundary listCustomerOrdersPresenter) {
 
         this.userDataAccessObject = userDataAccessObject;
@@ -25,6 +25,7 @@ public class ListCustomerOrdersInteractor {
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             listCustomerOrdersPresenter.prepareFailView("Authentication failed");
+            return;
         }
 
         // Retrieve the seller's ID

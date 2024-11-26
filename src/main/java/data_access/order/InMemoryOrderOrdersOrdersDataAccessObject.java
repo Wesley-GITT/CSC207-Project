@@ -1,19 +1,19 @@
 package data_access.order;
 
 import entity.*;
-import use_case.order.cancel_order.CancelOrderDataAccessInterface;
+import use_case.order.cancel.CancelOrderDataAccessInterface;
 import use_case.order.create.CreateOrderDataAccessInterface;
-import use_case.order.list_customer_orders.ListCustomerOrderDataAccessInterface;
-import use_case.order.list_my_orders.ListMyOrderDataAccessInterface;
+import use_case.order.list_customer_orders.ListCustomerOrdersDataAccessInterface;
+import use_case.order.list_my_orders.ListMyOrdersDataAccessInterface;
 import use_case.order.view.ViewOrderDataAccessInterface;
 
 import java.util.*;
 
-public class InMemoryOrderDataAccessObject implements
+public class InMemoryOrderOrdersOrdersDataAccessObject implements
         CancelOrderDataAccessInterface,
         CreateOrderDataAccessInterface,
-        ListCustomerOrderDataAccessInterface,
-        ListMyOrderDataAccessInterface,
+        ListCustomerOrdersDataAccessInterface,
+        ListMyOrdersDataAccessInterface,
         ViewOrderDataAccessInterface {
 
     private final Map<Integer, Order> orders = new HashMap<>();
@@ -40,6 +40,7 @@ public class InMemoryOrderDataAccessObject implements
 
     @Override
     public void add(Order order) {
+        order.setId(orders.size());
         save(order);
     }
 

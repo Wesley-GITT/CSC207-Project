@@ -1,4 +1,4 @@
-package use_case.order.cancel_order;
+package use_case.order.cancel;
 
 import entity.MyUser;
 import entity.Order;
@@ -45,7 +45,7 @@ public class CancelOrderInteractor {
         }
 
         if (user.getId() != order.getBuyerId()) {
-            cancelOrderPresenter.prepareFailView("Authentication Fail");
+            cancelOrderPresenter.prepareFailView("Authentication failed");
             return;
         }
 

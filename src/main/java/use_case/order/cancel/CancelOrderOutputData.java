@@ -1,6 +1,7 @@
-package use_case.order.cancel_order;
+package use_case.order.cancel;
 
 public class CancelOrderOutputData {
+
     private final int orderId;
 
     public CancelOrderOutputData(int orderId) {

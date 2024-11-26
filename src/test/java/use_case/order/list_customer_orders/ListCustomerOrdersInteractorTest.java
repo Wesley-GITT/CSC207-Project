@@ -1,4 +1,4 @@
-package use_case.order.list_my_orders;
+package use_case.order.list_customer_orders;
 
 import data_access.order.InMemoryOrderOrdersOrdersDataAccessObject;
 import data_access.user.InMemoryUserDataAccessObject;
@@ -13,11 +13,11 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-public class ListMyOrdersInteractorTest {
+public class ListCustomerOrdersInteractorTest {
 
     @Test
-    public void successListMyOrdersTest() {
-        ListMyOrdersInputData inputData = new ListMyOrdersInputData("wes", "123");
+    public void successListCustomerOrdersTest() {
+        ListCustomerOrdersInputData inputData = new ListCustomerOrdersInputData("wes", "123");
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
         InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
 
@@ -26,18 +26,18 @@ public class ListMyOrdersInteractorTest {
         userRepo.add(user);
 
         OrderFactory orderFactory = new OrderFactory();
-        orderRepo.add(orderFactory.create(user.getId(), OrderFactory.BUYER));
-        orderRepo.add(orderFactory.create(user.getId(), OrderFactory.BUYER));
         orderRepo.add(orderFactory.create(user.getId(), OrderFactory.SELLER));
-        orderRepo.add(orderFactory.create(100, OrderFactory.BUYER));
+        orderRepo.add(orderFactory.create(user.getId(), OrderFactory.SELLER));
+        orderRepo.add(orderFactory.create(user.getId(), OrderFactory.BUYER));
+        orderRepo.add(orderFactory.create(100, OrderFactory.SELLER));
 
         Set<Integer> orderIds = new HashSet<>();
         orderIds.add(0);
         orderIds.add(1);
 
-        ListMyOrdersOutputBoundary successPresenter = new ListMyOrdersOutputBoundary() {
+        ListCustomerOrdersOutputBoundary successPresenter = new ListCustomerOrdersOutputBoundary() {
             @Override
-            public void prepareSuccessView(ListMyOrdersOutputData outputData) {
+            public void prepareSuccessView(ListCustomerOrdersOutputData outputData) {
                 assertEquals(outputData.getOrderIds(), orderIds);
             }
 
@@ -47,13 +47,13 @@ public class ListMyOrdersInteractorTest {
             }
         };
 
-        ListMyOrdersInteractor interactor = new ListMyOrdersInteractor(userRepo, orderRepo, successPresenter);
+        ListCustomerOrdersInteractor interactor = new ListCustomerOrdersInteractor(userRepo, orderRepo, successPresenter);
         interactor.execute(inputData);
     }
 
     @Test
     public void failureUserNotAuthorizedTest() {
-        ListMyOrdersInputData inputData = new ListMyOrdersInputData("wes", "321");
+        ListCustomerOrdersInputData inputData = new ListCustomerOrdersInputData("wes", "321");
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
         InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
 
@@ -61,9 +61,9 @@ public class ListMyOrdersInteractorTest {
         MyUser user = userFactory.create("wes", "123");
         userRepo.add(user);
 
-        ListMyOrdersOutputBoundary failurePresenter = new ListMyOrdersOutputBoundary() {
+        ListCustomerOrdersOutputBoundary failurePresenter = new ListCustomerOrdersOutputBoundary() {
             @Override
-            public void prepareSuccessView(ListMyOrdersOutputData outputData) {
+            public void prepareSuccessView(ListCustomerOrdersOutputData outputData) {
                 fail("Use case success is unexpected");
             }
 
@@ -73,7 +73,7 @@ public class ListMyOrdersInteractorTest {
             }
         };
 
-        ListMyOrdersInteractor interactor = new ListMyOrdersInteractor(userRepo, orderRepo, failurePresenter);
+        ListCustomerOrdersInteractor interactor = new ListCustomerOrdersInteractor(userRepo, orderRepo, failurePresenter);
         interactor.execute(inputData);
     }
 }

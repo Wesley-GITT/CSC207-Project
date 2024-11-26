@@ -8,16 +8,16 @@ import java.util.Set;
 public class ListMyOrdersInteractor implements ListMyOrdersInputBoundary {
 
     private final AuthUserDataAccessInterface userDataAccessObject;
-    private final ListMyOrderDataAccessInterface orderDataAccessObject;
-    private final ListMyOrdersOutputBoundary presenter;
+    private final ListMyOrdersDataAccessInterface orderDataAccessObject;
+    private final ListMyOrdersOutputBoundary listMyOrdersPresenter;
 
     public ListMyOrdersInteractor(AuthUserDataAccessInterface userDataAccessObject,
-                                  ListMyOrderDataAccessInterface orderDataAccessObject,
-                                  ListMyOrdersOutputBoundary presenter) {
+                                  ListMyOrdersDataAccessInterface orderDataAccessObject,
+                                  ListMyOrdersOutputBoundary listMyOrdersPresenter) {
 
         this.userDataAccessObject = userDataAccessObject;
         this.orderDataAccessObject = orderDataAccessObject;
-        this.presenter = presenter;
+        this.listMyOrdersPresenter = listMyOrdersPresenter;
     }
 
     @Override
@@ -27,7 +27,8 @@ public class ListMyOrdersInteractor implements ListMyOrdersInputBoundary {
 
         // Check authentication
         if (!userDataAccessObject.isAuthenticated(username, password)) {
-            presenter.prepareFailView("Authentication failed");
+            listMyOrdersPresenter.prepareFailView("Authentication failed");
+            return;
         }
 
         // Retrieve buyer ID and orders
@@ -38,6 +39,6 @@ public class ListMyOrdersInteractor implements ListMyOrdersInputBoundary {
 
         // Prepare output data
         ListMyOrdersOutputData outputData = new ListMyOrdersOutputData(orderIds);
-        presenter.prepareSuccessView(outputData);
+        listMyOrdersPresenter.prepareSuccessView(outputData);
     }
 }

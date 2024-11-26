@@ -61,6 +61,7 @@ public class InMemoryUserDataAccessObject implements
 
     @Override
     public void add(MyUser user) {
+        user.setId(usersByName.size());
         save(user);
     }
 

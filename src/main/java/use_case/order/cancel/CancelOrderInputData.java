@@ -1,4 +1,4 @@
-package use_case.order.cancel_order;
+package use_case.order.cancel;
 
 public class CancelOrderInputData {
     private final String username;

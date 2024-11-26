@@ -1,4 +1,4 @@
-package use_case.order.cancel_order;
+package use_case.order.cancel;
 
 import use_case.order.OrderExistDataAccessInterface;
 import use_case.order.OrderGetDataAccessInterface;

@@ -2,6 +2,7 @@ package use_case.order.view;
 
 import entity.MyUser;
 import entity.Order;
+import entity.OrderFactory;
 import use_case.user.auth.AuthUserDataAccessInterface;
 
 public class ViewOrderInteractor implements ViewOrderInputBoundary {
@@ -26,12 +27,14 @@ public class ViewOrderInteractor implements ViewOrderInputBoundary {
         final String password = inputData.getPassword();
         final int orderId = inputData.getOrderId();
 
-        if (orderDataAccessObject.exist(orderId)) {
-            viewOrderPresenter.prepareFailView("Order not found");
+        if (!orderDataAccessObject.exist(orderId)) {
+            viewOrderPresenter.prepareFailView("Order with ID `" + orderId + "` doesn't exist");
+            return;
         }
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             viewOrderPresenter.prepareFailView("Authentication failed");
+            return;
         }
 
         final MyUser user = userDataAccessObject.get(username, password);
@@ -39,16 +42,18 @@ public class ViewOrderInteractor implements ViewOrderInputBoundary {
 
         if (order.getBuyerId() == user.getId()) {
             ViewOrderOutputData outputData = new ViewOrderOutputData(
-                    order.getBuyerId(), order.getSellerId(), order.getProductId(), order.getOrderTime(),
-                    order.getOrderStatus(), order.getDeliveryAddress(), ViewOrderOutputData.BUYER);
+                    order.getBuyerId(), order.getSellerId(), order.getProductId(),
+                    order.getOrderTime(), order.getDeliveryAddress(), OrderFactory.BUYER);
 
             viewOrderPresenter.prepareSuccessView(outputData);
-        } else if (order.getBuyerId() == user.getId()) {
+        } else if (order.getSellerId() == user.getId()) {
             ViewOrderOutputData outputData = new ViewOrderOutputData(
-                    order.getBuyerId(), order.getSellerId(), order.getProductId(), order.getOrderTime(),
-                    order.getOrderStatus(), order.getDeliveryAddress(), ViewOrderOutputData.SELLER);
+                    order.getBuyerId(), order.getSellerId(), order.getProductId(),
+                    order.getOrderTime(), order.getDeliveryAddress(), OrderFactory.SELLER);
 
             viewOrderPresenter.prepareSuccessView(outputData);
+        } else {
+            viewOrderPresenter.prepareFailView("Authentication failed");
         }
 
 

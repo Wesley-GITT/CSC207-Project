@@ -1,134 +1,163 @@
 package use_case.order.view;
 
-import data_access.order.InMemoryOrderDataAccessObject;
+import data_access.order.InMemoryOrderOrdersOrdersDataAccessObject;
 import data_access.user.InMemoryUserDataAccessObject;
-import entity.Order;
 import entity.MyUser;
 import entity.MyUserFactory;
-import org.junit.Before;
+import entity.Order;
+import entity.OrderFactory;
 import org.junit.Test;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ViewOrderInteractorTest {
 
-    private CompositeDataAccessObject compositeDataAccess;
-    private InMemoryUserDataAccessObject itemUserDataAccess;
-    private InMemoryProductSaveGetDataAccessObject productDataAccess;
-    private InMemoryOrderDataAccessObject orderDataAccess;
-    private MyUserFactory userFactory;
-    private MyUser testUser;
-    private Order testOrder;
-
-    @Before
-    public void setup() {
-        // Shared map for user data
-        Map<String, MyUser> sharedUsersByName = new HashMap<>();
-
-        // Initialize individual data access objects
-        itemUserDataAccess = new InMemoryUserDataAccessObject();
-        productDataAccess = new InMemoryProductSaveGetDataAccessObject();
-        orderDataAccess = new InMemoryOrderDataAccessObject(sharedUsersByName);
-
-        // Synchronize user data between itemUserDataAccess and orderDataAccess
-        compositeDataAccess = new CompositeDataAccessObject(
-                itemUserDataAccess, productDataAccess, orderDataAccess
-        );
-
-        // Create and save a test user
-        userFactory = new MyUserFactory();
-        testUser = userFactory.create("Ao", "password123");
-        testUser.setId(1);
-        testUser.setAddress("123 Test Street");
-
-        // Save user in itemUserDataAccess and shared map
-        itemUserDataAccess.save(testUser);
-        sharedUsersByName.put(testUser.getUsername(), testUser);
-
-        // Create and save a test order
-        testOrder = new Order(1, testUser.getId(), 2, 100, new Date(), 0, testUser.getAddress());
-        orderDataAccess.save(testOrder);
-    }
-
     @Test
-    public void testViewOrderSuccess() {
-        ViewOrderInputData inputData = new ViewOrderInputData(1);
+    public void successBuyerViewOrderTest() {
+        ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
 
-        ViewOrderOutputBoundary presenter = new ViewOrderOutputBoundary() {
+        MyUserFactory userFactory = new MyUserFactory();
+        MyUser user = userFactory.create("wes", "123");
+        userRepo.add(user);
+
+        OrderFactory orderFactory = new OrderFactory();
+        Order order = orderFactory.create(0, OrderFactory.BUYER);
+        orderRepo.add(order);
+
+        ViewOrderOutputBoundary successPresenter = new ViewOrderOutputBoundary() {
             @Override
             public void prepareSuccessView(ViewOrderOutputData outputData) {
-                assertNotNull(outputData);
-                assertEquals(1, outputData.getBuyerId());
-                assertEquals(2, outputData.getSellerId());
-                assertEquals(100, outputData.getProductId());
-                assertEquals("123 Test Street", outputData.getDeliveryAddress());
-                assertEquals(0, outputData.getOrderStatus());
-                assertNotNull(outputData.getOrderTime());
+                assertEquals(outputData.getBuyerId(), user.getId());
+                assertEquals(outputData.getWho(), OrderFactory.BUYER);
             }
 
             @Override
             public void prepareFailView(String errorMessage) {
-                fail("Unexpected failure: " + errorMessage);
+                fail("Use case success is unexpected");
             }
         };
 
-        ViewOrderInteractor interactor = new ViewOrderInteractor(compositeDataAccess, presenter);
+        ViewOrderInteractor interactor = new ViewOrderInteractor(userRepo, orderRepo, successPresenter);
         interactor.execute(inputData);
     }
 
     @Test
-    public void testViewOrderWithInvalidOrderId() {
-        ViewOrderInputData inputData = new ViewOrderInputData(-1);
+    public void successSellerViewOrderTest() {
+        ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
 
-        ViewOrderOutputBoundary presenter = new ViewOrderOutputBoundary() {
+        MyUserFactory userFactory = new MyUserFactory();
+        MyUser user = userFactory.create("wes", "123");
+        userRepo.add(user);
+
+        OrderFactory orderFactory = new OrderFactory();
+        Order order = orderFactory.create(0, OrderFactory.SELLER);
+        orderRepo.add(order);
+
+        ViewOrderOutputBoundary successPresenter = new ViewOrderOutputBoundary() {
             @Override
             public void prepareSuccessView(ViewOrderOutputData outputData) {
-                fail("Use case succeeded unexpectedly for an invalid order ID.");
+                assertEquals(outputData.getSellerId(), user.getId());
+                assertEquals(outputData.getWho(), OrderFactory.SELLER);
             }
 
             @Override
             public void prepareFailView(String errorMessage) {
-                assertEquals("Order not found.", errorMessage);
+                fail("Use case failure is unexpected");
             }
         };
 
-        ViewOrderInteractor interactor = new ViewOrderInteractor(compositeDataAccess, presenter);
+        ViewOrderInteractor interactor = new ViewOrderInteractor(userRepo, orderRepo, successPresenter);
         interactor.execute(inputData);
     }
 
     @Test
-    public void testViewOrderWithoutSaving() {
-        // Shared map for user data
-        Map<String, MyUser> sharedUsersByName = new HashMap<>();
+    public void failureOrderNotExistTest() {
+        ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
 
-        // Reinitialize empty data access objects
-        itemUserDataAccess = new InMemoryUserDataAccessObject();
-        orderDataAccess = new InMemoryOrderDataAccessObject(sharedUsersByName);
+        MyUserFactory userFactory = new MyUserFactory();
+        MyUser user = userFactory.create("wes", "123");
+        userRepo.add(user);
 
-        // Reinitialize the composite data access object
-        compositeDataAccess = new CompositeDataAccessObject(
-                itemUserDataAccess, productDataAccess, orderDataAccess
-        );
-
-        ViewOrderInputData inputData = new ViewOrderInputData(1);
-
-        ViewOrderOutputBoundary presenter = new ViewOrderOutputBoundary() {
+        ViewOrderOutputBoundary successPresenter = new ViewOrderOutputBoundary() {
             @Override
             public void prepareSuccessView(ViewOrderOutputData outputData) {
-                fail("Use case succeeded unexpectedly when no orders were saved.");
+                fail("Use case success is unexpected");
             }
 
             @Override
             public void prepareFailView(String errorMessage) {
-                assertEquals("Order not found.", errorMessage);
+                assertEquals("Order with ID `0` doesn't exist", errorMessage);
             }
         };
 
-        ViewOrderInteractor interactor = new ViewOrderInteractor(compositeDataAccess, presenter);
+        ViewOrderInteractor interactor = new ViewOrderInteractor(userRepo, orderRepo, successPresenter);
+        interactor.execute(inputData);
+    }
+
+    @Test
+    public void failureIncorrectUsernamePasswordPairTest () {
+        ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+
+        MyUserFactory userFactory = new MyUserFactory();
+        MyUser user = userFactory.create("wes", "321");
+        userRepo.add(user);
+
+        OrderFactory orderFactory = new OrderFactory();
+        orderRepo.add(orderFactory.create(user.getId(), OrderFactory.BUYER));
+
+        ViewOrderOutputBoundary successPresenter = new ViewOrderOutputBoundary() {
+            @Override
+            public void prepareSuccessView(ViewOrderOutputData outputData) {
+                fail("Use case success is unexpected");
+            }
+
+            @Override
+            public void prepareFailView(String errorMessage) {
+                assertEquals("Authentication failed", errorMessage);
+            }
+        };
+
+        ViewOrderInteractor interactor = new ViewOrderInteractor(userRepo, orderRepo, successPresenter);
+        interactor.execute(inputData);
+    }
+
+    @Test
+    public void failureUserNotAuthorizedTest() {
+        ViewOrderInputData inputData = new ViewOrderInputData("wes", "123", 0);
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+
+        MyUserFactory userFactory = new MyUserFactory();
+        userRepo.add(userFactory.create("wes", "123"));
+        userRepo.add(userFactory.create("sam", "321"));
+        userRepo.add(userFactory.create("kesla", "000"));
+
+        OrderFactory orderFactory = new OrderFactory();
+        Order order = orderFactory.create(1, OrderFactory.SELLER);
+        orderRepo.add(order);
+
+        ViewOrderOutputBoundary successPresenter = new ViewOrderOutputBoundary() {
+            @Override
+            public void prepareSuccessView(ViewOrderOutputData outputData) {
+                fail("Use case success is unexpected");
+            }
+
+            @Override
+            public void prepareFailView(String errorMessage) {
+                assertEquals("Authentication failed", errorMessage);
+            }
+        };
+
+        ViewOrderInteractor interactor = new ViewOrderInteractor(userRepo, orderRepo, successPresenter);
         interactor.execute(inputData);
     }
 }

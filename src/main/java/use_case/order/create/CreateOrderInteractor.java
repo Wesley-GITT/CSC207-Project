@@ -36,10 +36,12 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             createOrderPresenter.prepareFailView("Authentication failed");
+            return;
         }
 
         if (!productDataAccessInterface.exist(productId)) {
             createOrderPresenter.prepareFailView("Product with ID `" + productId + "` doesn't exist");
+            return;
         }
 
         final Product product = productDataAccessInterface.get(productId);
@@ -47,17 +49,22 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
 
         if (user.getId() == product.getSellerId()) {
             createOrderPresenter.prepareFailView("You can't by your own product");
+            return;
         }
 
         if (product.getIsSold()) {
-            createOrderPresenter.prepareFailView("Product with ID `" + productId + " is already sold`");
+            createOrderPresenter.prepareFailView("Product with ID `" + productId + "` is already sold");
+            return;
         }
 
         Order order = new Order(-1, user.getId(), product.getSellerId(),
-                productId,Calendar.getInstance(TimeZone.getTimeZone("UTC")), 0, user.getAddress());
+                productId,Calendar.getInstance(TimeZone.getTimeZone("UTC")), user.getAddress());
         orderDataAccessObject.add(order);
 
-        final CreateOrderOutputData outputData = new CreateOrderOutputData(order.getId());
+        product.setIsSold(true);
+        productDataAccessInterface.save(product);
+
+        final CreateOrderOutputData outputData = new CreateOrderOutputData(order.getId(), productId);
         createOrderPresenter.prepareSuccessView(outputData);
     }
 }

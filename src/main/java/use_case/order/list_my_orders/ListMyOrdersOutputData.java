@@ -10,7 +10,7 @@ public class ListMyOrdersOutputData {
         this.orderIds = orderIds;
     }
 
-    public Set<Integer> getProductIds() {
+    public Set<Integer> getOrderIds() {
         return orderIds;
     }
 }
