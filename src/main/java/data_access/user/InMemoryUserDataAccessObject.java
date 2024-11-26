@@ -1,8 +1,6 @@
 package data_access.user;
 
-import entity.MyUser;
-import entity.OtherUser;
-import entity.OtherUserFactory;
+import entity.*;
 import use_case.user.auth.AuthUserDataAccessInterface;
 import use_case.user.list_cart_items.ListCartItemsUserDataAccessInterface;
 import use_case.user.reg.RegUserDataAccessInterface;
@@ -16,7 +14,7 @@ import use_case.user.update_pwd.UpdatePasswordUserDataAccessInterface;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryItemsUserDataAccessObject implements
+public class InMemoryUserDataAccessObject implements
         AuthUserDataAccessInterface,
         RegUserDataAccessInterface,
         ListCartItemsUserDataAccessInterface,
@@ -63,8 +61,8 @@ public class InMemoryItemsUserDataAccessObject implements
 
     @Override
     public void add(MyUser user) {
-        usersByName.put(user.getUsername(), user);
-        usersById.put(user.getId(), user);
+        user.setId(usersByName.size());
+        save(user);
     }
 
     @Override
