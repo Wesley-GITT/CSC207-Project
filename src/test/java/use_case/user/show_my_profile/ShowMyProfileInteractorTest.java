@@ -1,6 +1,6 @@
 package use_case.user.show_my_profile;
 
-import data_access.user.InMemoryItemsUserDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class ShowMyProfileInteractorTest {
     @Test
     public void successShowMyProfileTest() {
         ShowMyProfileInputData inputData = new ShowMyProfileInputData("wes", "123");
-        ShowMyProfileUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        ShowMyProfileUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -44,7 +44,7 @@ public class ShowMyProfileInteractorTest {
     @Test
     public void failureNotAuthorizedShowMyProfileTest() {
         ShowMyProfileInputData inputData = new ShowMyProfileInputData("wes", "123");
-        ShowMyProfileUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        ShowMyProfileUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
