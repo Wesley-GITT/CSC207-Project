@@ -1,23 +1,23 @@
-package entity;
+package use_case.book.view;
 
 import java.util.Set;
 
-public class Book {
+public class ViewBookOutputData {
 
-    // Fields from both classes
-    private String id; // Unified ID field (can be treated as a string for flexibility)
-    private String imageUrl;
-    private String title;
-    private Set<String> authors; // From the second class
-    private String publisher;
-    private String publishedDate;
-    private String description;
-    private String sampleUrl;
-    private String language;
-    private Set<String> categories;
+    private final String id; // Unified ID field (can be treated as a string for flexibility)
+    private final String imageUrl;
+    private final String title;
+    private final Set<String> authors; // From the second class
+    private final String publisher;
+    private final String publishedDate;
+    private final String description;
+    private final String sampleUrl;
+    private final String language;
+    private final Set<String> categories;
 
-    public Book(String id, String imageUrl, String title, Set<String> authors, String publisher, String publishedDate,
-                String description, String sampleUrl, String language, Set<String> categories) {
+    public ViewBookOutputData(String id, String imageUrl, String title, Set<String> authors, String publisher,
+                              String publishedDate, String description, String sampleUrl, String language,
+                              Set<String> categories) {
 
         this.id = id;
         this.imageUrl = imageUrl;

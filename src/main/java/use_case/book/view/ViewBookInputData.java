@@ -1,4 +1,4 @@
-package use_case.book.viewsearchbook;
+package use_case.book.view;
 
 public class ViewBookInputData {
 

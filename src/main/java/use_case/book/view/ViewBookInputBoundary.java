@@ -1,6 +1,4 @@
-package use_case.book.viewsearchbook;
-
-import use_case.book.viewsearchbook.ViewBookInputData;
+package use_case.book.view;
 
 public interface ViewBookInputBoundary {
 
