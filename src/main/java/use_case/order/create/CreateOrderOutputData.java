@@ -2,11 +2,11 @@ package use_case.order.create;
 
 public class CreateOrderOutputData {
 
-    private final int productId;
+    private final int orderId;
 
-    public CreateOrderOutputData(int productId) {
-        this.productId = productId;
+    public CreateOrderOutputData(int orderId) {
+        this.orderId = orderId;
     }
 
-    public int getProductId() { return productId; }
+    public int getOrderId() { return orderId; }
 }

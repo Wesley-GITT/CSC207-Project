@@ -1,6 +1,6 @@
 package use_case.user.show_other_profile;
 
-import data_access.user.InMemoryItemsUserDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class ShowOtherProfileInteractorTest {
     @Test
     public void successShowOtherProfileTest() {
         ShowOtherProfileInputData inputData = new ShowOtherProfileInputData(0);
-        InMemoryItemsUserDataAccessObject userRepo = new InMemoryItemsUserDataAccessObject();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", null);
@@ -44,7 +44,7 @@ public class ShowOtherProfileInteractorTest {
     @Test
     public void failureUserNotExistShowOtherProfileTest() {
         ShowOtherProfileInputData inputData = new ShowOtherProfileInputData(0);
-        InMemoryItemsUserDataAccessObject userRepo = new InMemoryItemsUserDataAccessObject();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("sam", null);

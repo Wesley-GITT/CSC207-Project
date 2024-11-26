@@ -1,43 +1,39 @@
 package use_case.order.list_customer_orders;
 
-import data_access.CompositeDataAccessObject;
 import entity.MyUser;
-import entity.Order;
+import use_case.user.auth.AuthUserDataAccessInterface;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class ListCustomerOrdersInteractor {
-    private final CompositeDataAccessObject dataAccess;
-    private final ListCustomerOrdersOutputBoundary presenter;
+    private final AuthUserDataAccessInterface userDataAccessObject;
+    private final ListCustomerOrderDataAccessInterface orderDataAccessInterface;
+    private final ListCustomerOrdersOutputBoundary listCustomerOrdersPresenter;
 
-    public ListCustomerOrdersInteractor(CompositeDataAccessObject dataAccess, ListCustomerOrdersOutputBoundary presenter) {
-        this.dataAccess = dataAccess;
-        this.presenter = presenter;
+    public ListCustomerOrdersInteractor(AuthUserDataAccessInterface userDataAccessObject,
+                                        ListCustomerOrderDataAccessInterface orderDataAccessInterface,
+                                        ListCustomerOrdersOutputBoundary listCustomerOrdersPresenter) {
+
+        this.userDataAccessObject = userDataAccessObject;
+        this.orderDataAccessInterface = orderDataAccessInterface;
+        this.listCustomerOrdersPresenter = listCustomerOrdersPresenter;
     }
 
     public void execute(ListCustomerOrdersInputData inputData) {
-        String username = inputData.getUsername();
-        String password = inputData.getPassword();
+        final String username = inputData.getUsername();
+        final String password = inputData.getPassword();
 
-        if (!dataAccess.isAuthenticated(username, password)) {
-            presenter.prepareFailView("Authentication failed.");
-            return;
+        if (!userDataAccessObject.isAuthenticated(username, password)) {
+            listCustomerOrdersPresenter.prepareFailView("Authentication failed");
         }
 
         // Retrieve the seller's ID
-        MyUser seller = dataAccess.get(username, password);
-        int sellerId = seller.getId();
+        final MyUser user = userDataAccessObject.get(username, password);
 
         // Retrieve orders where the seller is the logged-in user
-        List<Order> orders = dataAccess.getOrdersBySellerId(sellerId);
+        Set<Integer> orderIds = orderDataAccessInterface.listCustomOrders(user.getId());
 
-        // Extract product IDs
-        List<Integer> productIds = new ArrayList<>();
-        for (Order order : orders) {
-            productIds.add(order.getProductId());
-        }
-
-        presenter.prepareSuccessView(new ListCustomerOrdersOutputData(productIds));
+        final ListCustomerOrdersOutputData outputData = new ListCustomerOrdersOutputData(orderIds);
+        listCustomerOrdersPresenter.prepareSuccessView(outputData);
     }
 }

@@ -1,17 +1,22 @@
 package use_case.order.list_my_orders;
 
-import entity.Order;
+import entity.MyUser;
+import use_case.user.auth.AuthUserDataAccessInterface;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 public class ListMyOrdersInteractor implements ListMyOrdersInputBoundary {
 
-    private final ListMyOrdersDataAccessInterface dataAccess;
+    private final AuthUserDataAccessInterface userDataAccessObject;
+    private final ListMyOrderDataAccessInterface orderDataAccessObject;
     private final ListMyOrdersOutputBoundary presenter;
 
-    public ListMyOrdersInteractor(ListMyOrdersDataAccessInterface dataAccess, ListMyOrdersOutputBoundary presenter) {
-        this.dataAccess = dataAccess;
+    public ListMyOrdersInteractor(AuthUserDataAccessInterface userDataAccessObject,
+                                  ListMyOrderDataAccessInterface orderDataAccessObject,
+                                  ListMyOrdersOutputBoundary presenter) {
+
+        this.userDataAccessObject = userDataAccessObject;
+        this.orderDataAccessObject = orderDataAccessObject;
         this.presenter = presenter;
     }
 
@@ -21,23 +26,18 @@ public class ListMyOrdersInteractor implements ListMyOrdersInputBoundary {
         String password = inputData.getPassword();
 
         // Check authentication
-        if (!dataAccess.isAuthenticated(username, password)) {
-            presenter.prepareFailView("Authentication failed.");
-            return;
+        if (!userDataAccessObject.isAuthenticated(username, password)) {
+            presenter.prepareFailView("Authentication failed");
         }
 
         // Retrieve buyer ID and orders
-        int buyerId = dataAccess.getBuyerId(username);
-        List<Order> orders = dataAccess.getOrdersByBuyerId(buyerId);
+        final MyUser user = userDataAccessObject.get(username, password);
 
         // Extract product IDs from orders
-        List<Integer> productIds = new ArrayList<>();
-        for (Order order : orders) {
-            productIds.add(order.getProductId());
-        }
+        Set<Integer> orderIds = orderDataAccessObject.listMyOrders(user.getId());
 
         // Prepare output data
-        ListMyOrdersOutputData outputData = new ListMyOrdersOutputData(productIds);
+        ListMyOrdersOutputData outputData = new ListMyOrdersOutputData(orderIds);
         presenter.prepareSuccessView(outputData);
     }
 }

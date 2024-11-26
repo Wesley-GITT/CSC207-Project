@@ -3,16 +3,27 @@ package use_case.order.create;
 import entity.MyUser;
 import entity.Order;
 import entity.Product;
+import use_case.product.update.UpdateProductDataAccessInterface;
+import use_case.user.auth.AuthUserDataAccessInterface;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class CreateOrderInteractor implements CreateOrderInputBoundary {
 
-    private final CreateOrderDataAccessInterface userDataAccessObject;
+    private final AuthUserDataAccessInterface userDataAccessObject;
+    private final UpdateProductDataAccessInterface productDataAccessInterface;
+    private final CreateOrderDataAccessInterface orderDataAccessObject;
     private final CreateOrderOutputBoundary createOrderPresenter;
 
-    public CreateOrderInteractor(CreateOrderDataAccessInterface userDataAccessObject, CreateOrderOutputBoundary createOrderPresenter) {
+    public CreateOrderInteractor(AuthUserDataAccessInterface userDataAccessObject,
+                                 UpdateProductDataAccessInterface productDataAccessInterface,
+                                 CreateOrderDataAccessInterface orderDataAccessObject,
+                                 CreateOrderOutputBoundary createOrderPresenter) {
+
         this.userDataAccessObject = userDataAccessObject;
+        this.productDataAccessInterface = productDataAccessInterface;
+        this.orderDataAccessObject = orderDataAccessObject;
         this.createOrderPresenter = createOrderPresenter;
     }
 
@@ -24,32 +35,29 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
         final int productId = createOrderInputData.getProductId();
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
-            createOrderPresenter.prepareFailView("Authentication failed.");
-            return;
+            createOrderPresenter.prepareFailView("Authentication failed");
         }
 
+        if (!productDataAccessInterface.exist(productId)) {
+            createOrderPresenter.prepareFailView("Product with ID `" + productId + "` doesn't exist");
+        }
+
+        final Product product = productDataAccessInterface.get(productId);
         final MyUser user = userDataAccessObject.get(username, password);
-        final Product product = userDataAccessObject.getProductById(productId);
 
-        if (product == null) {
-            createOrderPresenter.prepareFailView("Product not found.");
-            return;
+        if (user.getId() == product.getSellerId()) {
+            createOrderPresenter.prepareFailView("You can't by your own product");
         }
 
-        if (product.isSold()) {
-            createOrderPresenter.prepareFailView("Product is already sold.");
-            return;
+        if (product.getIsSold()) {
+            createOrderPresenter.prepareFailView("Product with ID `" + productId + " is already sold`");
         }
 
-        product.setSold(true);
-        userDataAccessObject.saveProduct(product);
+        Order order = new Order(-1, user.getId(), product.getSellerId(),
+                productId,Calendar.getInstance(TimeZone.getTimeZone("UTC")), 0, user.getAddress());
+        orderDataAccessObject.add(order);
 
-        Order order = new Order(1, user.getId(), Integer.parseInt(product.getSellerId()),
-                productId, new Date(),0, user.getAddress());
-
-        userDataAccessObject.saveOrder(order);
-
-        CreateOrderOutputData outputData = new CreateOrderOutputData(order.getId());
+        final CreateOrderOutputData outputData = new CreateOrderOutputData(order.getId());
         createOrderPresenter.prepareSuccessView(outputData);
     }
 }

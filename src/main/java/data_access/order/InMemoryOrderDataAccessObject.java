@@ -1,68 +1,67 @@
 package data_access.order;
 
 import entity.*;
-import use_case.order.GetOrderDataAccessInterface;
-import use_case.order.SaveOrderDataAccessInterface;
-import use_case.order.getOrdersByBuyerIdDataAccessInterface;
+import use_case.order.cancel_order.CancelOrderDataAccessInterface;
+import use_case.order.create.CreateOrderDataAccessInterface;
+import use_case.order.list_customer_orders.ListCustomerOrderDataAccessInterface;
+import use_case.order.list_my_orders.ListMyOrderDataAccessInterface;
+import use_case.order.view.ViewOrderDataAccessInterface;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class InMemoryOrderDataAccessObject implements
-        GetOrderDataAccessInterface,
-        SaveOrderDataAccessInterface,
-        getOrdersByBuyerIdDataAccessInterface {
+        CancelOrderDataAccessInterface,
+        CreateOrderDataAccessInterface,
+        ListCustomerOrderDataAccessInterface,
+        ListMyOrderDataAccessInterface,
+        ViewOrderDataAccessInterface {
 
     private final Map<Integer, Order> orders = new HashMap<>();
-    private final Map<String, MyUser> usersByName;
 
-    public InMemoryOrderDataAccessObject(Map<String, MyUser> sharedUsersByName) {
-        this.usersByName = sharedUsersByName;
+    @Override
+    public Order get(int id) {
+        return orders.get(id);
     }
 
     @Override
-    public int getBuyerId(String username) {
-        MyUser user = usersByName.get(username);
-        if (user == null) {
-            throw new IllegalStateException("User not found: " + username);
-        }
-        return user.getId();
-    }
-
-    @Override
-    public List<Order> getOrdersByBuyerId(int buyerId) {
-        List<Order> buyerOrders = new ArrayList<>();
-        for (Order order : orders.values()) {
-            if (order.getBuyerId() == buyerId) {
-                buyerOrders.add(order);
-            }
-        }
-        return buyerOrders;
-    }
-
-    @Override
-    public Order getOrder(int orderId) {
-        return orders.get(orderId);
-    }
-
-    @Override
-    public void saveOrder(Order order) {
+    public void save(Order order) {
         orders.put(order.getId(), order);
     }
 
-    public void clearOrders() {
-        orders.clear();
+    @Override
+    public void remove(int id) {
+        orders.remove(id);
     }
 
-    public List<Order> getOrdersBySellerId(int sellerId) {
-        List<Order> sellerOrders = new ArrayList<>();
-        for (Order order : orders.values()) {
+    @Override
+    public boolean exist(int id) {
+        return orders.containsKey(id);
+    }
+
+    @Override
+    public void add(Order order) {
+        save(order);
+    }
+
+    @Override
+    public Set<Integer> listCustomOrders(int sellerId) {
+        Set<Integer> orderIds = new HashSet<>();
+        for (Order order: orders.values()) {
             if (order.getSellerId() == sellerId) {
-                sellerOrders.add(order);
+                orderIds.add(order.getId());
             }
         }
-        return sellerOrders;
+        return orderIds;
+    }
+
+    @Override
+    public Set<Integer> listMyOrders(int buyerId) {
+        Set<Integer> orderIds = new HashSet<>();
+        for (Order order: orders.values()) {
+            if (order.getBuyerId() == buyerId) {
+                orderIds.add(order.getId());
+            }
+        }
+        return orderIds;
     }
 }

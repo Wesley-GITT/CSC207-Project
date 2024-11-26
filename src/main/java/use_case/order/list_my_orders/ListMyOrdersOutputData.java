@@ -1,16 +1,16 @@
 package use_case.order.list_my_orders;
 
-import java.util.List;
+import java.util.Set;
 
 public class ListMyOrdersOutputData {
 
-    private final List<Integer> productIds;
+    private final Set<Integer> orderIds;
 
-    public ListMyOrdersOutputData(List<Integer> productIds) {
-        this.productIds = productIds;
+    public ListMyOrdersOutputData(Set<Integer> orderIds) {
+        this.orderIds = orderIds;
     }
 
-    public List<Integer> getProductIds() {
-        return productIds;
+    public Set<Integer> getProductIds() {
+        return orderIds;
     }
 }

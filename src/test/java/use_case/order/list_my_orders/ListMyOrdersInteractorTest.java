@@ -1,9 +1,7 @@
 package use_case.order.list_my_orders;
 
-import data_access.CompositeDataAccessObject;
 import data_access.order.InMemoryOrderDataAccessObject;
-import data_access.product.InMemoryProductDataAccessObject;
-import data_access.user.InMemoryItemsUserDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Order;
@@ -19,8 +17,8 @@ import static org.junit.Assert.*;
 public class ListMyOrdersInteractorTest {
 
     private CompositeDataAccessObject compositeDataAccess;
-    private InMemoryItemsUserDataAccessObject itemUserDataAccess;
-    private InMemoryProductDataAccessObject productDataAccess;
+    private InMemoryUserDataAccessObject itemUserDataAccess;
+    private InMemoryProductSaveGetDataAccessObject productDataAccess;
     private InMemoryOrderDataAccessObject orderDataAccess;
     private MyUserFactory userFactory;
     private MyUser testUser;
@@ -32,8 +30,8 @@ public class ListMyOrdersInteractorTest {
         sharedUsersByName = new HashMap<>();
 
         // Initialize individual data access objects
-        itemUserDataAccess = new InMemoryItemsUserDataAccessObject();
-        productDataAccess = new InMemoryProductDataAccessObject();
+        itemUserDataAccess = new InMemoryUserDataAccessObject();
+        productDataAccess = new InMemoryProductSaveGetDataAccessObject();
         orderDataAccess = new InMemoryOrderDataAccessObject(sharedUsersByName);
 
         // Synchronize user data between itemUserDataAccess and orderDataAccess
@@ -51,9 +49,9 @@ public class ListMyOrdersInteractorTest {
         sharedUsersByName.put(testUser.getUsername(), testUser);
 
         // Save some orders for the test user
-        orderDataAccess.saveOrder(new Order(1, 1, 2, 101, null, 0, "123 Test Street"));
-        orderDataAccess.saveOrder(new Order(2, 1, 3, 102, null, 0, "123 Test Street"));
-        orderDataAccess.saveOrder(new Order(3, 2, 1, 103, null, 0, "456 Another Street")); // Different buyer
+        orderDataAccess.save(new Order(1, 1, 2, 101, null, 0, "123 Test Street"));
+        orderDataAccess.save(new Order(2, 1, 3, 102, null, 0, "123 Test Street"));
+        orderDataAccess.save(new Order(3, 2, 1, 103, null, 0, "456 Another Street")); // Different buyer
     }
 
     @Test
@@ -91,7 +89,7 @@ public class ListMyOrdersInteractorTest {
 
             @Override
             public void prepareFailView(String errorMessage) {
-                assertEquals("Authentication failed.", errorMessage);
+                assertEquals("Authentication failed", errorMessage);
             }
         };
 

@@ -1,9 +1,7 @@
 package use_case.order.view;
 
-import data_access.CompositeDataAccessObject;
 import data_access.order.InMemoryOrderDataAccessObject;
-import data_access.product.InMemoryProductDataAccessObject;
-import data_access.user.InMemoryItemsUserDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.Order;
 import entity.MyUser;
 import entity.MyUserFactory;
@@ -19,8 +17,8 @@ import static org.junit.Assert.*;
 public class ViewOrderInteractorTest {
 
     private CompositeDataAccessObject compositeDataAccess;
-    private InMemoryItemsUserDataAccessObject itemUserDataAccess;
-    private InMemoryProductDataAccessObject productDataAccess;
+    private InMemoryUserDataAccessObject itemUserDataAccess;
+    private InMemoryProductSaveGetDataAccessObject productDataAccess;
     private InMemoryOrderDataAccessObject orderDataAccess;
     private MyUserFactory userFactory;
     private MyUser testUser;
@@ -32,8 +30,8 @@ public class ViewOrderInteractorTest {
         Map<String, MyUser> sharedUsersByName = new HashMap<>();
 
         // Initialize individual data access objects
-        itemUserDataAccess = new InMemoryItemsUserDataAccessObject();
-        productDataAccess = new InMemoryProductDataAccessObject();
+        itemUserDataAccess = new InMemoryUserDataAccessObject();
+        productDataAccess = new InMemoryProductSaveGetDataAccessObject();
         orderDataAccess = new InMemoryOrderDataAccessObject(sharedUsersByName);
 
         // Synchronize user data between itemUserDataAccess and orderDataAccess
@@ -53,7 +51,7 @@ public class ViewOrderInteractorTest {
 
         // Create and save a test order
         testOrder = new Order(1, testUser.getId(), 2, 100, new Date(), 0, testUser.getAddress());
-        orderDataAccess.saveOrder(testOrder);
+        orderDataAccess.save(testOrder);
     }
 
     @Test
@@ -108,7 +106,7 @@ public class ViewOrderInteractorTest {
         Map<String, MyUser> sharedUsersByName = new HashMap<>();
 
         // Reinitialize empty data access objects
-        itemUserDataAccess = new InMemoryItemsUserDataAccessObject();
+        itemUserDataAccess = new InMemoryUserDataAccessObject();
         orderDataAccess = new InMemoryOrderDataAccessObject(sharedUsersByName);
 
         // Reinitialize the composite data access object

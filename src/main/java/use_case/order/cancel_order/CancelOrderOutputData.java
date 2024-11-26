@@ -1,13 +1,13 @@
 package use_case.order.cancel_order;
 
 public class CancelOrderOutputData {
-    private final String message;
+    private final int orderId;
 
-    public CancelOrderOutputData(String message) {
-        this.message = message;
+    public CancelOrderOutputData(int orderId) {
+        this.orderId = orderId;
     }
 
-    public String getMessage() {
-        return message;
+    public int getOrderId() {
+        return orderId;
     }
 }

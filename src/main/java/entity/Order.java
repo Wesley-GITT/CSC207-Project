@@ -1,6 +1,6 @@
 package entity;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Order {
 
@@ -8,11 +8,11 @@ public class Order {
     private int buyerId;
     private int sellerId;
     private int productId;
-    private Date orderTime;
+    private Calendar orderTime;
     private int orderStatus;
     private String deliveryAddress;
 
-    public Order(int id, int buyerId, int sellerId, int productId, Date orderTime, int orderStatus, String deliveryAddress) {
+    public Order(int id, int buyerId, int sellerId, int productId, Calendar orderTime, int orderStatus, String deliveryAddress) {
         this.id = id;
         this.buyerId = buyerId;
         this.sellerId = sellerId;
@@ -38,7 +38,7 @@ public class Order {
         return productId;
     }
 
-    public Date getOrderTime() {
+    public Calendar getOrderTime() {
         return orderTime;
     }
 
