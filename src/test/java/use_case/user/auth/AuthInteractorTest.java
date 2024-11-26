@@ -47,9 +47,7 @@ public class AuthInteractorTest {
 
         AuthOutputBoundary failurePresenter = new AuthOutputBoundary() {
             @Override
-            public void prepareSuccessView(AuthOutputData outputData) {
-                fail("Use case success is unexpected");
-            }
+            public void prepareSuccessView(AuthOutputData outputData) { fail("Use case success is unexpected"); }
 
             @Override
             public void prepareFailView(String errorMessage) {

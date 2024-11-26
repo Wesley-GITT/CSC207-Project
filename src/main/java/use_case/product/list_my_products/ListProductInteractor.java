@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class ListProductInteractor implements ListProductInputBoundary{
 
-    private final AuthUserDataAccessInterface userDataAccessObject;
+    private AuthUserDataAccessInterface userDataAccessObject;
     private ListProductUserDataAccessInterface productDataAccessObject;
     private ListProductOutputBoundary listProductPresenter;
 

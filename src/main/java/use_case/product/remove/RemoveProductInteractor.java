@@ -28,9 +28,11 @@ public class RemoveProductInteractor implements RemoveProductInputBoundary {
             return;
         }
         final MyUser user = userDataAccessObject.get(username, password);
-        if (productDataAccessObject.exist(id)) {
-            productDataAccessObject.remove(id);
+        if (!productDataAccessObject.exist(id)) {
+            removeProductPresenter.prepareFailView("Product does not exist");
+            return;
         }
+        productDataAccessObject.remove(id);
 
         RemoveProductOutputData outputData = new RemoveProductOutputData(id);
         removeProductPresenter.prepareSuccessView(outputData);

@@ -8,6 +8,6 @@ public class RemoveProductOutputData {
         this.productId = id;
     }
 
-    public int getMessage() {return this.productId;}
+    public int getProductId() {return this.productId;}
 
 }
