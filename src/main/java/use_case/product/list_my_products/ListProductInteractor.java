@@ -1,16 +1,19 @@
 package use_case.product.list_my_products;
 
 import entity.MyUser;
+import use_case.user.auth.AuthUserDataAccessInterface;
 
 import java.util.Set;
 
 public class ListProductInteractor implements ListProductInputBoundary{
 
-    private ListProductUserDataAccessInterface userDataAccessObject;
+    private final AuthUserDataAccessInterface userDataAccessObject;
+    private ListProductUserDataAccessInterface productDataAccessObject;
     private ListProductOutputBoundary listProductPresenter;
 
-    public ListProductInteractor(ListProductUserDataAccessInterface userDataAccessObject, ListProductOutputBoundary listProductPresenter) {
+    public ListProductInteractor(AuthUserDataAccessInterface userDataAccessObject,ListProductUserDataAccessInterface productDataAccessObject,  ListProductOutputBoundary listProductPresenter) {
         this.userDataAccessObject = userDataAccessObject;
+        this.productDataAccessObject = productDataAccessObject;
         this.listProductPresenter = listProductPresenter;
     }
 
@@ -22,15 +25,14 @@ public class ListProductInteractor implements ListProductInputBoundary{
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             listProductPresenter.prepareFailView("Authentication failed");
+            return;
         }
-        else {
-            final MyUser user = userDataAccessObject.get(username, password);
-            final Set<Integer> products = user.getCartItems();
 
-            userDataAccessObject.save(user);
+        final MyUser user = userDataAccessObject.get(username, password);
+        final Set<Integer> output = productDataAccessObject.list(user.getId());
 
-            ListProductOutputData outputData = new ListProductOutputData(products);
-            listProductPresenter.prepareSuccessView(outputData);
-        }
+        ListProductOutputData outputData = new ListProductOutputData(output);
+        listProductPresenter.prepareSuccessView(outputData);
+
     }
 }

@@ -1,15 +1,18 @@
 package use_case.product.remove;
 
 import entity.MyUser;
-import java.util.Set;
+import use_case.user.auth.AuthUserDataAccessInterface;
+
 
 public class RemoveProductInteractor implements RemoveProductInputBoundary {
 
-    private RemoveProductUserDataAccessInterface userDataAccessObject;
-    private RemoveProductOutputBoundary removeProductPresenter;
+    private final AuthUserDataAccessInterface userDataAccessObject;
+    private final RemoveProductUserDataAccessInterface productDataAccessObject;
+    private final RemoveProductOutputBoundary removeProductPresenter;
 
-    public RemoveProductInteractor(RemoveProductUserDataAccessInterface userDataAccessObject, RemoveProductOutputBoundary removeProductPresenter) {
+    public RemoveProductInteractor(AuthUserDataAccessInterface userDataAccessObject, RemoveProductUserDataAccessInterface productDataAccessObject, RemoveProductOutputBoundary removeProductPresenter) {
         this.userDataAccessObject = userDataAccessObject;
+        this.productDataAccessObject = productDataAccessObject;
         this.removeProductPresenter = removeProductPresenter;
     }
 
@@ -18,17 +21,19 @@ public class RemoveProductInteractor implements RemoveProductInputBoundary {
 
         final String username = removeProductInputData.getUsername();
         final String password = removeProductInputData.getPassword();
+        final int id = removeProductInputData.getProductId();
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             removeProductPresenter.prepareFailView("Authentication failed");
-        } else {
-            final Set<Integer> products = removeProductInputData.getProducts();
-            final MyUser user = userDataAccessObject.get(username, password);
-
-            userDataAccessObject.save(user);
-
-            RemoveProductOutputData outputData = new RemoveProductOutputData("Successfully removed");
-            removeProductPresenter.prepareSuccessView(outputData);
+            return;
         }
+        final MyUser user = userDataAccessObject.get(username, password);
+        if (productDataAccessObject.exist(id)) {
+            productDataAccessObject.remove(id);
+        }
+
+        RemoveProductOutputData outputData = new RemoveProductOutputData(id);
+        removeProductPresenter.prepareSuccessView(outputData);
+
     }
 }

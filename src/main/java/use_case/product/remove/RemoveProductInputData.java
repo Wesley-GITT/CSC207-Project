@@ -1,23 +1,21 @@
 package use_case.product.remove;
 
-import java.util.Set;
-
 public class RemoveProductInputData {
 
     private final String username;
     private final String password;
-    private final Set<Integer> products;
+    private final int productId;
 
-    public RemoveProductInputData(String username, String password, Set<Integer> products) {
+    public RemoveProductInputData(String username, String password, int productId) {
         this.username = username;
         this.password = password;
-        this.products = products;
+        this.productId = productId;
     }
 
     public String getUsername() { return username;}
 
     public String getPassword() { return password;}
 
-    public Set<Integer> getProducts() { return products;}
+    public int getProductId() { return productId;}
 
 }

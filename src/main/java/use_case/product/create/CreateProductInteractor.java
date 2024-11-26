@@ -2,16 +2,19 @@ package use_case.product.create;
 
 import entity.MyUser;
 import entity.Product;
+import use_case.user.auth.AuthUserDataAccessInterface;
 
 
 public class CreateProductInteractor implements CreateProductInputBoundary{
 
-    private final CreateProductUserDataAccessInterface userDataAccessObject;
+    private final AuthUserDataAccessInterface userDataAccessObject;
+    private final CreateProductUserDataAccessInterface productDataAccessObject;
     private final CreateProductOutputBoundary createProductPresenter;
 
-    public CreateProductInteractor(CreateProductUserDataAccessInterface bookDataAccessInterface, CreateProductOutputBoundary createProductOutputBoundary) {
-        this.userDataAccessObject = bookDataAccessInterface;
-        this.createProductPresenter = createProductOutputBoundary;
+    public CreateProductInteractor(AuthUserDataAccessInterface userDataAccessObject,CreateProductUserDataAccessInterface productDataAccessObject,CreateProductOutputBoundary createProductPresenter) {
+        this.userDataAccessObject = userDataAccessObject;
+        this.productDataAccessObject = productDataAccessObject;
+        this.createProductPresenter = createProductPresenter;
     }
 
     @Override
@@ -24,19 +27,14 @@ public class CreateProductInteractor implements CreateProductInputBoundary{
         }
         else {
             final MyUser user = userDataAccessObject.get(username, password);
-            final Product product = new Product(createProductInputData.getProductId(),
+            final Product product = new Product(-1,//need data access
                     createProductInputData.getBookId(),
-                    createProductInputData.getSellerId(),
+                    user.getId(),
                     createProductInputData.getBookCondition(),
                     createProductInputData.getPrice(),
-                    createProductInputData.isSold());
+                    false);
 
-            if (product.isSold()) {
-                createProductPresenter.prepareFailView("Why do post a sold product?.");
-            }
-
-            userDataAccessObject.save(user);
-            userDataAccessObject.saveProduct(product);
+            productDataAccessObject.add(product);
 
             CreateProductOutputData outputData = new CreateProductOutputData(product.getId());
             createProductPresenter.prepareSuccessView(outputData);

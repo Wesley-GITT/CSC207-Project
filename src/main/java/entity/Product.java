@@ -4,12 +4,12 @@ public class Product {
 
     private int id;
     private String bookId;
-    private String sellerId;
+    private int sellerId;
     private String bookCondition;
     private float price;
     private boolean sold;
 
-    public Product(int id, String bookId, String sellerId, String bookCondition, float price, boolean sold) {
+    public Product(int id, String bookId, int sellerId, String bookCondition, float price, boolean sold) {
         this.id = id;
         this.bookId = bookId;
         this.sellerId = sellerId;
@@ -30,7 +30,7 @@ public class Product {
         this.bookId = bookId;
     }
 
-    public String getSellerId() {
+    public int getSellerId() {
         return sellerId;
     }
 

@@ -1,11 +1,8 @@
 package use_case.product.list_my_products;
 
-import use_case.user.*;
+import java.util.Set;
 
-public interface ListProductUserDataAccessInterface extends
-        BasicAuthDataAccessInterface,
-        UserGetDataAccessInterface,
-        UserSaveDataAccessInterface,
-        SaveProductDataAccessInterface,
-        UserExistDataAccessInterface {
+public interface ListProductUserDataAccessInterface {
+
+    Set<Integer> list(int userId);
 }

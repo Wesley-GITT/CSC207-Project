@@ -1,11 +1,7 @@
 package use_case.product.create;
 
-import use_case.user.*;
+import entity.Product;
 
-public interface CreateProductUserDataAccessInterface extends
-        BasicAuthDataAccessInterface,
-        UserGetDataAccessInterface,
-        UserSaveDataAccessInterface,
-        UserExistDataAccessInterface,
-        SaveProductDataAccessInterface {
+public interface CreateProductUserDataAccessInterface {
+    void add(Product product);
 }

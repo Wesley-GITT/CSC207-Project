@@ -2,12 +2,12 @@ package use_case.product.remove;
 
 public class RemoveProductOutputData {
 
-    private String message;
+    private int productId;
 
-    public RemoveProductOutputData(String message) {
-        this.message = message;
+    public RemoveProductOutputData(int id) {
+        this.productId = id;
     }
 
-    public String getMessage() {return this.message;}
+    public int getMessage() {return this.productId;}
 
 }
