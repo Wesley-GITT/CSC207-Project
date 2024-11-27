@@ -1,6 +1,6 @@
 package use_case.user.list_cart_items;
 
-import data_access.user.InMemoryItemsUserDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import org.junit.Test;
@@ -15,7 +15,7 @@ public class ListCartItemsInteractorTest {
     @Test
     public void successShowCartTest() {
         ListCartItemsInputData inputData = new ListCartItemsInputData("wes", "123");
-        ListCartItemsUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        ListCartItemsUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -48,7 +48,7 @@ public class ListCartItemsInteractorTest {
     @Test
     public void failureNotAuthorizedShowCartTest() {
         ListCartItemsInputData inputData = new ListCartItemsInputData("wes", "123");
-        ListCartItemsUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        ListCartItemsUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
