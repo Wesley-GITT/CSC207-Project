@@ -1,6 +1,6 @@
 package use_case.product.list_my_products;
 
-public interface ListProductInputBoundary {
+public interface ListMyProductInputBoundary {
 
-    void execute(ListProductInputData listProductInputData);
+    void execute(ListMyProductInputData listMyProductInputData);
 }

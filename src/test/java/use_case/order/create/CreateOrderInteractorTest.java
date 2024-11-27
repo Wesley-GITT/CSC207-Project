@@ -1,7 +1,7 @@
 package use_case.order.create;
 
-import data_access.order.InMemoryOrderOrdersOrdersDataAccessObject;
-import data_access.product.InMemoryProductUserDataAccessObject;
+import data_access.order.InMemoryOrderDataAccessObject;
+import data_access.product.InMemoryProductDataAccessObject;
 import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
@@ -18,8 +18,8 @@ public class CreateOrderInteractorTest {
 
         CreateOrderInputData inputData = new CreateOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -50,8 +50,8 @@ public class CreateOrderInteractorTest {
     public void failureProductNotExistTest() {
         CreateOrderInputData inputData = new CreateOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -77,8 +77,8 @@ public class CreateOrderInteractorTest {
     public void failureIncorrectUsernamePasswordPairTest() {
         CreateOrderInputData inputData = new CreateOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "321");
@@ -107,8 +107,8 @@ public class CreateOrderInteractorTest {
     public void failureUserBuyingOwnProductTest() {
         CreateOrderInputData inputData = new CreateOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -137,8 +137,8 @@ public class CreateOrderInteractorTest {
     public void failureProductIsAlreadySoldTest() {
         CreateOrderInputData inputData = new CreateOrderInputData("wes", "123", 0);
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryProductUserDataAccessObject productRepo = new InMemoryProductUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         userRepo.add(userFactory.create("wes", "123"));

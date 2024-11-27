@@ -4,7 +4,7 @@ import use_case.product.create.CreateProductDataAccessInterface;
 
 import java.util.Set;
 
-public interface ListProductDataAccessInterface extends CreateProductDataAccessInterface {
+public interface ListMyProductDataAccessInterface extends CreateProductDataAccessInterface {
 
     Set<Integer> list(int userId);
 }

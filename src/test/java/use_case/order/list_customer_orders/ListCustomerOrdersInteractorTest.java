@@ -1,6 +1,6 @@
 package use_case.order.list_customer_orders;
 
-import data_access.order.InMemoryOrderOrdersOrdersDataAccessObject;
+import data_access.order.InMemoryOrderDataAccessObject;
 import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
@@ -19,7 +19,7 @@ public class ListCustomerOrdersInteractorTest {
     public void successListCustomerOrdersTest() {
         ListCustomerOrdersInputData inputData = new ListCustomerOrdersInputData("wes", "123");
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
@@ -55,7 +55,7 @@ public class ListCustomerOrdersInteractorTest {
     public void failureUserNotAuthorizedTest() {
         ListCustomerOrdersInputData inputData = new ListCustomerOrdersInputData("wes", "321");
         InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
-        InMemoryOrderOrdersOrdersDataAccessObject orderRepo = new InMemoryOrderOrdersOrdersDataAccessObject();
+        InMemoryOrderDataAccessObject orderRepo = new InMemoryOrderDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");

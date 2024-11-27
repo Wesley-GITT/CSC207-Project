@@ -1,12 +1,11 @@
-package use_case.user.product.create;
+package use_case.product.create;
 
-import data_access.user.InMemoryItemsUserDataAccessObject;
-import data_access.product.InMemoryProductsDataAccessObject;
+import data_access.product.InMemoryProductDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Product;
 import org.junit.Test;
-import use_case.product.create.*;
 import use_case.user.auth.AuthUserDataAccessInterface;
 
 import static org.junit.Assert.assertEquals;
@@ -18,8 +17,8 @@ public class CreateInteractorTest {
     @Test
     public void successCreateProductTest() {
         CreateProductInputData inputData = new CreateProductInputData("eric", "123", "1", "good", price);
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        CreateProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        CreateProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");
@@ -46,8 +45,8 @@ public class CreateInteractorTest {
     @Test
     public void failureNotAuthorizedCreateProductTest() {
         CreateProductInputData inputData = new CreateProductInputData("eric", "123", "1", "good", price);
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        CreateProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        CreateProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("erica", "123");

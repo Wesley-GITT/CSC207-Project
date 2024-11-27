@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class InMemoryMyProductDataAccessObject implements
+public class InMemoryProductDataAccessObject implements
         CreateProductDataAccessInterface,
         UpdateProductDataAccessInterface,
         ListMyProductDataAccessInterface,
