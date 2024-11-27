@@ -1,12 +1,12 @@
-package use_case.product.list_my_products;
+package use_case.product.list_book_products;
 
 import java.util.Set;
 
-public class ListMyProductOutputData {
+public class ListBookProductOutputData {
 
     private final Set<Integer> productIds;
 
-    public ListMyProductOutputData(Set<Integer> productIds) {
+    public ListBookProductOutputData(Set<Integer> productIds) {
         this.productIds = productIds;
     }
 

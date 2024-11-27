@@ -29,13 +29,13 @@ public class InMemoryUserDataAccessObject implements
     private final Map<Integer, MyUser> usersById = new HashMap<>();
 
     @Override
-    public boolean doesUserExist(String username) {
+    public boolean existByUsername(String username) {
         return usersByName.containsKey(username);
     }
 
     @Override
     public boolean isAuthenticated(String username, String password) {
-        if (!doesUserExist(username)) {
+        if (!existByUsername(username)) {
             return false;
         }
 
@@ -61,12 +61,12 @@ public class InMemoryUserDataAccessObject implements
 
     @Override
     public void add(MyUser user) {
-        user.setId(usersByName.size());
+        user.setId(usersById.size());
         save(user);
     }
 
     @Override
-    public boolean doesUserExistById(int id) {
+    public boolean existById(int id) {
         return usersById.containsKey(id);
     }
 

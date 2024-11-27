@@ -1,12 +1,10 @@
-package use_case.product.remove;
+package use_case.product.view;
 
 import use_case.product.ProductExistDataAccessInterface;
 import use_case.product.ProductGetDataAccessInterface;
 
-public interface RemoveProductDataAccessInterface extends
+public interface ViewProductDataAccessInterface extends
         ProductExistDataAccessInterface,
         ProductGetDataAccessInterface {
-
-    void remove(int id);
 }
 

@@ -10,7 +10,7 @@ public interface ShowOtherProfileUserDataAccessInterface extends
         UserGetDataAccessInterface,
         UserSaveDataAccessInterface {
 
-    boolean doesUserExistById(int id);
+    boolean existById(int id);
 
     OtherUser getOther(int id);
 }

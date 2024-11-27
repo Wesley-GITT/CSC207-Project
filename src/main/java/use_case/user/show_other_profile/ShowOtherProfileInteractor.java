@@ -17,7 +17,7 @@ public class ShowOtherProfileInteractor implements ShowOtherProfileInputBoundary
 
         final int id = showOtherProfileInputData.getId();
 
-        if (!userDataAccessObject.doesUserExistById(id)) {
+        if (!userDataAccessObject.existById(id)) {
             showMyProfilePresenter.prepareFailView("User with ID `" + id +"` doesn't exist");
         } else {
             final OtherUser user = userDataAccessObject.getOther(id);
