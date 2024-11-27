@@ -1,8 +1,8 @@
 package use_case.product.list_my_products;
 
-public interface ListProductOutputBoundary {
+public interface ListMyProductOutputBoundary {
 
-    void prepareSuccessView(ListProductOutputData listProductOutputData);
+    void prepareSuccessView(ListMyProductOutputData listMyProductOutputData);
 
     void prepareFailView(String errorMessage);
 }

@@ -1,12 +1,11 @@
 package use_case.product.remove;
 
 import use_case.product.ProductExistDataAccessInterface;
-import use_case.product.create.CreateProductUserDataAccessInterface;
-import use_case.user.*;
+import use_case.product.create.CreateProductDataAccessInterface;
 
-public interface RemoveProductUserDataAccessInterface extends
+public interface RemoveProductDataAccessInterface extends
         ProductExistDataAccessInterface,
-        CreateProductUserDataAccessInterface {
+        CreateProductDataAccessInterface {
 
     void remove(int id);
 }

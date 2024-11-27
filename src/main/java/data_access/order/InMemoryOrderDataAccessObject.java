@@ -9,7 +9,7 @@ import use_case.order.view.ViewOrderDataAccessInterface;
 
 import java.util.*;
 
-public class InMemoryOrderOrdersOrdersDataAccessObject implements
+public class InMemoryOrderDataAccessObject implements
         CancelOrderDataAccessInterface,
         CreateOrderDataAccessInterface,
         ListCustomerOrdersDataAccessInterface,

@@ -1,10 +1,10 @@
 package use_case.product.list_my_products;
 
-public class ListProductInputData {
+public class ListMyProductInputData {
     private final String username;
     private final String password;
 
-    public ListProductInputData(String username, String password) {
+    public ListMyProductInputData(String username, String password) {
         this.username = username;
         this.password = password;
     }

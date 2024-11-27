@@ -8,10 +8,10 @@ import use_case.user.auth.AuthUserDataAccessInterface;
 public class CreateProductInteractor implements CreateProductInputBoundary{
 
     private final AuthUserDataAccessInterface userDataAccessObject;
-    private final CreateProductUserDataAccessInterface productDataAccessObject;
+    private final CreateProductDataAccessInterface productDataAccessObject;
     private final CreateProductOutputBoundary createProductPresenter;
 
-    public CreateProductInteractor(AuthUserDataAccessInterface userDataAccessObject,CreateProductUserDataAccessInterface productDataAccessObject,CreateProductOutputBoundary createProductPresenter) {
+    public CreateProductInteractor(AuthUserDataAccessInterface userDataAccessObject, CreateProductDataAccessInterface productDataAccessObject, CreateProductOutputBoundary createProductPresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.productDataAccessObject = productDataAccessObject;
         this.createProductPresenter = createProductPresenter;

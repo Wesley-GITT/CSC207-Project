@@ -1,12 +1,11 @@
-package use_case.user.product.remove;
+package use_case.product.remove;
 
-import data_access.user.InMemoryItemsUserDataAccessObject;
-import data_access.product.InMemoryProductsDataAccessObject;
+import data_access.product.InMemoryProductDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Product;
 import org.junit.Test;
-import use_case.product.remove.*;
 import use_case.user.auth.AuthUserDataAccessInterface;
 
 import static org.junit.Assert.assertEquals;
@@ -18,8 +17,8 @@ public class RemoveInteractorTest {
     @Test
     public void successRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -1);
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        RemoveProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        RemoveProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");
@@ -46,8 +45,8 @@ public class RemoveInteractorTest {
     @Test
     public void failureNotAuthorizedRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -1);
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        RemoveProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        RemoveProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("erica", "123");
@@ -76,8 +75,8 @@ public class RemoveInteractorTest {
     @Test
     public void failureProductNotExistRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -2);
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        RemoveProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        RemoveProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");

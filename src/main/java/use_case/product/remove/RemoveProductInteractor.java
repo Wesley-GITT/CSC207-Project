@@ -7,10 +7,10 @@ import use_case.user.auth.AuthUserDataAccessInterface;
 public class RemoveProductInteractor implements RemoveProductInputBoundary {
 
     private final AuthUserDataAccessInterface userDataAccessObject;
-    private final RemoveProductUserDataAccessInterface productDataAccessObject;
+    private final RemoveProductDataAccessInterface productDataAccessObject;
     private final RemoveProductOutputBoundary removeProductPresenter;
 
-    public RemoveProductInteractor(AuthUserDataAccessInterface userDataAccessObject, RemoveProductUserDataAccessInterface productDataAccessObject, RemoveProductOutputBoundary removeProductPresenter) {
+    public RemoveProductInteractor(AuthUserDataAccessInterface userDataAccessObject, RemoveProductDataAccessInterface productDataAccessObject, RemoveProductOutputBoundary removeProductPresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.productDataAccessObject = productDataAccessObject;
         this.removeProductPresenter = removeProductPresenter;
