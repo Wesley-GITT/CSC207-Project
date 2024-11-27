@@ -57,6 +57,10 @@ public class CreateOrderInteractor implements CreateOrderInputBoundary {
             return;
         }
 
+        if (user.getAddress() == "" || user.getEmail() == "" || user.getTelephone() == "") {
+            createOrderPresenter.prepareFailView("Contact info and/or delivery address is missing");
+        }
+
         Order order = new Order(-1, user.getId(), product.getSellerId(),
                 productId,Calendar.getInstance(TimeZone.getTimeZone("UTC")), user.getAddress());
         orderDataAccessObject.add(order);

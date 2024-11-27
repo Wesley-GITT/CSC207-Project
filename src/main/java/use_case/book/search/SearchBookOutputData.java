@@ -1,31 +1,23 @@
 package use_case.book.search;
 
-import java.util.Set;
+import java.util.List;
 
 public class SearchBookOutputData {
 
-    private final Set<String> bookIds;
+    private final List<String> bookIds;
     private final int startIndex;
-    private final int maxResults;
-    private final String orderBy;
-    private final String langRestrict;
+    private final int endIndex;
+    private final int resNumEachOutput;
 
-    /**
-     * Constructor to initialize search output data.
-     *
-     * @param bookIds The list of bookIds retrieved from the search.
-     */
-    public SearchBookOutputData(Set<String> bookIds, int startIndex, int maxResults,
-                                String orderBy, String langRestrict) {
+    public SearchBookOutputData(List<String> bookIds, int startIndex, int endIndex, int resNumEachOutput) {
 
         this.bookIds = bookIds;
         this.startIndex = startIndex;
-        this.maxResults = maxResults;
-        this.orderBy = orderBy;
-        this.langRestrict = langRestrict;
+        this.endIndex = endIndex;
+        this.resNumEachOutput = resNumEachOutput;
     }
 
-    public Set<String> getBookIds() {
+    public List<String> getBookIds() {
         return bookIds;
     }
 
@@ -33,15 +25,11 @@ public class SearchBookOutputData {
         return startIndex;
     }
 
-    public int getMaxResults() {
-        return maxResults;
+    public int getEndIndex() {
+        return endIndex;
     }
 
-    public String getOrderBy() {
-        return orderBy;
-    }
-
-    public String getLangRestrict() {
-        return langRestrict;
+    public int getResNumEachOutput() {
+        return resNumEachOutput;
     }
 }

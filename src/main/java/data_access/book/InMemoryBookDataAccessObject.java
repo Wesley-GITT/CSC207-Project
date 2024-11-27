@@ -1,35 +1,19 @@
 package data_access.book;
 
 import entity.Book;
-import entity.BookQuery;
 import use_case.book.search.SearchBookDataAccessInterface;
 import use_case.book.view.ViewBookDataAccessInterface;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
-public class InMemoryBookDataAccessObject implements ViewBookDataAccessInterface, SearchBookDataAccessInterface {
+public class InMemoryBookDataAccessObject implements
+        ViewBookDataAccessInterface,
+        SearchBookDataAccessInterface {
 
     private Map<String, Book> books = new HashMap<>();
-
-    @Override
-    public Set<String> search(BookQuery query) {
-        // for the purpose of testing, the search method here
-        // will only return a set of bookId where the book title
-        // contains the keyword of the query.
-        final Set<String> queryResult = new HashSet<>();
-        final String keyword = query.getQueryKeyword().toLowerCase();
-        for (Book book: books.values()) {
-            final String title = book.getTitle().toLowerCase();
-            if (title.contains(keyword)) {
-                queryResult.add(book.getId());
-            }
-        }
-        return queryResult;
-    }
+    private List<Book> bookList = new ArrayList<>();
+    private final int maxResults = 10;
 
     @Override
     public Book get(String bookId) {
@@ -41,7 +25,18 @@ public class InMemoryBookDataAccessObject implements ViewBookDataAccessInterface
         return books.containsKey(bookId);
     }
 
+    @Override
+    public List<String> search(String keyword, int startIndex, int maxListSize) {
+        List<String> result = new ArrayList<>();
+        for (int i = startIndex; i < bookList.size() && i - startIndex < maxResults; i++) {
+            Book book = bookList.get(i);
+            result.add(book.getId());
+        }
+        return result;
+    }
+
     public void save(Book book) {
         books.put(book.getId(), book);
+        bookList.add(book);
     }
 }

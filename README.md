@@ -11,19 +11,19 @@ The domain of this project is second hand book transaction. This software should
   - Product posting: allow any registered user to post a product, edit product details and delete product details.
   - Order management: allow user buy a product which generates an order. The order can be completed or cancelled.
 + More Features
-  - Search a product by titles, authors, subjects, genres, etc
-  - View details of a product including book condition, summary, table of contents, and first few pages.
+  - Search a product by titles, authors, subject, etc
+  - View details of a product including book condition, summary and description.
   - Add a book to shopping cart
 + Bonus Features
   - Notify buyers when there's a price decrease
   - Recommend a book to buyer (Exp: Mario asks for futuristic scientific fiction that must contains aliens. Gpt will return 10 books related to this topic and write few sentences recommending each book)
 
 ### User stories:
-- User story #1: Tom wants to sell some books he has read but no longer wishes to read in the future. (**assigned to Jing**)
-- User story #2: Lucas wants to buy some entertaining books but have no idea which book fits her need. She wants to search for book  based on genre and would like to read a book's table of contents and first few pages to decide if she really wants it. (**assigned to Bosco**)
-- User story #3: Louis wants to buy some text books at lower price because he doesn't afford new ones. He doesn't mind if the book contains notes and drawings. He would also like to receive a price drop notification on books he added to shopping cart. (**assigned to Tianao**)
-- User story #4: Britney wants to buy some books for her kids but she doesn't know which one her kids really like. So she want to pick a few and store them in the cart for later use. (**assigned to Eric**)
-- Team user story: Jack would like to sell some textbooks to other students because he bought extras and can't return the book and request for refund. (**assigned to Team**)
+- User story #1: Tom have a few course book to sell, so he wants an account that enables him to post and sell books. (**assigned to Jing**)
+- User story #2: Lucas wants to buy some entertaining books but have no idea which book fits her need. She wants to search for book based on genre. (**assigned to Bosco**)
+- User story #3: Louis wants to buy some text books at lower price because he doesn't afford new ones. He doesn't mind if the book contains notes and drawings. He wants to be able to add the books to shopping cart. (**assigned to Tianao**)
+- User story #4: Britney wants to buy some books for her kids, but she doesn't know which one her kids really like. So she want to pick a few and store them in the cart for later use. (**assigned to Eric**)
+- Team user story: Jack would like to buy some books from a cheaper source after selling some unused one at his home. He wants an account that enables him to do so. (**assigned to Team**)
 ### Entities:
 - User: id, username, password, address, contact_information, cart_items (list of productId)
 - Book: id, image_url, title, authors, language, translators, subject, description, samples (table of contents and first few pages)

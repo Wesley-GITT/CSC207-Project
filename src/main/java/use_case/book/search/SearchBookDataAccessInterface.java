@@ -1,10 +1,8 @@
 package use_case.book.search;
 
-import entity.BookQuery;
-
-import java.util.Set;
+import java.util.List;
 
 public interface SearchBookDataAccessInterface {
-    
-    Set<String> search(BookQuery query);
+
+    List<String> search(String keyword, int startIndex, int maxItemNum);
 }
