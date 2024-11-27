@@ -6,31 +6,29 @@ import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Product;
 import org.junit.Test;
-import use_case.user.auth.AuthUserDataAccessInterface;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class CreateInteractorTest {
 
-    private final float price = 9.9F;
+    private final double price = 9.9;
+
     @Test
     public void successCreateProductTest() {
         CreateProductInputData inputData = new CreateProductInputData("eric", "123", "1", "good", price);
-        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
-        CreateProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");
-
-        Product product = new Product(-1, "1", user.getId(), "good", price, false);
-
-        userRepo.save(user);
-        productRepo.add(product);
+        userRepo.add(user);
 
         CreateProductOutputBoundary successPresenter = new CreateProductOutputBoundary() {
             @Override
             public void prepareSuccessView(CreateProductOutputData createProductOutputData) {
+                Product product = productRepo.get(0);
+                assertEquals(user.getId(), product.getSellerId());
                 assertEquals(createProductOutputData.getProductId(), product.getId());
             }
 
@@ -45,7 +43,7 @@ public class CreateInteractorTest {
     @Test
     public void failureNotAuthorizedCreateProductTest() {
         CreateProductInputData inputData = new CreateProductInputData("eric", "123", "1", "good", price);
-        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
         CreateProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
@@ -53,7 +51,7 @@ public class CreateInteractorTest {
 
         Product product = new Product(-1, "1", user.getId(), "good", price, false);
 
-        userRepo.save(user);
+        userRepo.add(user);
         productRepo.add(product);
 
         CreateProductOutputBoundary failurePresenter = new CreateProductOutputBoundary() {

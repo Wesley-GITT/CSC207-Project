@@ -6,9 +6,9 @@ public class CreateProductInputData {
     private final String password;
     private final String bookId;
     private final String bookCondition;
-    private final float price;
+    private final double price;
 
-    public CreateProductInputData(String username, String password, String bookId, String bookCondition, float price) {
+    public CreateProductInputData(String username, String password, String bookId, String bookCondition, double price) {
         this.username = username;
         this.password = password;
         this.bookId = bookId;
@@ -24,6 +24,6 @@ public class CreateProductInputData {
 
     public String getBookCondition() {return bookCondition;}
 
-    public float getPrice() {return price;}
+    public double getPrice() {return price;}
 
 }

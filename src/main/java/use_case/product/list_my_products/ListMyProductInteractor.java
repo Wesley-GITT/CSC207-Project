@@ -29,10 +29,9 @@ public class ListMyProductInteractor implements ListMyProductInputBoundary {
         }
 
         final MyUser user = userDataAccessObject.get(username, password);
-        final Set<Integer> output = productDataAccessObject.list(user.getId());
+        final Set<Integer> output = productDataAccessObject.listByUserId(user.getId());
 
         ListMyProductOutputData outputData = new ListMyProductOutputData(output);
         listProductPresenter.prepareSuccessView(outputData);
-
     }
 }

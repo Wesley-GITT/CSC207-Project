@@ -6,24 +6,22 @@ import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Product;
 import org.junit.Test;
-import use_case.user.auth.AuthUserDataAccessInterface;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-public class RemoveInteractorTest {
+public class RemoveProductInteractorTest {
 
-    private final float price = 9.9F;
     @Test
     public void successRemoveProductTest() {
-        RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -1);
-        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
-        RemoveProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
+        RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", 0);
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");
 
-        Product product = new Product(-1, "1", user.getId(), "good", price, false);
+        Product product = new Product(-1, "1", user.getId(), "good", 10, false);
 
         userRepo.save(user);
         productRepo.add(product);
@@ -44,14 +42,14 @@ public class RemoveInteractorTest {
 
     @Test
     public void failureNotAuthorizedRemoveProductTest() {
-        RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -1);
-        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
-        RemoveProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
+        RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", 0);
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("erica", "123");
 
-        Product product = new Product(-1, "1", user.getId(), "good", price, false);
+        Product product = new Product(-1, "1", user.getId(), "good", 10, false);
 
         userRepo.save(user);
         productRepo.add(product);
@@ -74,14 +72,14 @@ public class RemoveInteractorTest {
 
     @Test
     public void failureProductNotExistRemoveProductTest() {
-        RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -2);
-        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
-        RemoveProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
+        RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", 2);
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");
 
-        Product product = new Product(-1, "1", user.getId(), "good", price, false);
+        Product product = new Product(-1, "1", user.getId(), "good", 10, false);
 
         userRepo.save(user);
         productRepo.add(product);
@@ -94,7 +92,7 @@ public class RemoveInteractorTest {
 
             @Override
             public void prepareFailView(String errorMessage) {
-                assertEquals("Product does not exist", errorMessage);
+                assertEquals("Product with ID `2` does not exist", errorMessage);
             }
         };
 

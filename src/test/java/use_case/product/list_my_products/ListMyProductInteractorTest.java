@@ -1,24 +1,23 @@
 package use_case.product.list_my_products;
 
-import data_access.user.InMemoryUserDataAccessObject;
 import data_access.product.InMemoryProductDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Product;
 import org.junit.Test;
-import use_case.user.auth.AuthUserDataAccessInterface;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class ListMyProductInteractorTest {
 
-    private final float price = 9.9F;
+    private final double price = 9.9F;
     @Test
     public void successListProductsTest() {
         ListMyProductInputData inputData = new ListMyProductInputData("eric", "123");
-        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
-        ListMyProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");
@@ -31,7 +30,7 @@ public class ListMyProductInteractorTest {
         ListMyProductOutputBoundary successPresenter = new ListMyProductOutputBoundary() {
             @Override
             public void prepareSuccessView(ListMyProductOutputData listProductOutputData) {
-                assertEquals(listProductOutputData.getProducts().size(), 1);
+                assertEquals(listProductOutputData.getProductIds().size(), 1);
             }
 
             @Override
@@ -45,8 +44,8 @@ public class ListMyProductInteractorTest {
     @Test
     public void failureNotAuthorizedListProductTest() {
         ListMyProductInputData inputData = new ListMyProductInputData("eric", "123");
-        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
-        ListMyProductDataAccessInterface productRepo = new InMemoryProductDataAccessObject();
+        InMemoryUserDataAccessObject userRepo = new InMemoryUserDataAccessObject();
+        InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("erica", "123");

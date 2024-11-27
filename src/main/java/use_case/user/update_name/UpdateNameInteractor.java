@@ -21,7 +21,11 @@ public class UpdateNameInteractor implements UpdateNameInputBoundary {
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             updateNamePresenter.prepareFailView("Authentication failed");
+<<<<<<< Updated upstream
         } else if (userDataAccessObject.exist(newUsername)) {
+=======
+        } else if (userDataAccessObject.existByUsername(newUsername)) {
+>>>>>>> Stashed changes
             updateNamePresenter.prepareFailView("Username `" + newUsername + "` is taken");
         } else {
             final String address = updateNameInputData.getNewUsername();

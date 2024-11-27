@@ -6,10 +6,10 @@ public class Product {
     private String bookId;
     private int sellerId;
     private String bookCondition;
-    private float price;
+    private double price;
     private boolean isSold;
 
-    public Product(int id, String bookId, int sellerId, String bookCondition, float price, boolean isSold) {
+    public Product(int id, String bookId, int sellerId, String bookCondition, double price, boolean isSold) {
         this.id = id;
         this.bookId = bookId;
         this.sellerId = sellerId;
@@ -46,11 +46,11 @@ public class Product {
         this.bookCondition = bookCondition;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class BookFactory {
@@ -10,5 +11,10 @@ public class BookFactory {
 
         return new Book(id, imageUrl, title, authors, publisher, publishedDate, description, sampleUrl,
                 language, categories);
+    }
+
+    public Book create(String id, String title) {
+        return new Book(id, "", title, new HashSet<>(), "", "", "",
+                "", "", new HashSet<>());
     }
 }

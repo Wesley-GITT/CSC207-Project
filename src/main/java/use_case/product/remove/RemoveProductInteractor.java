@@ -1,6 +1,7 @@
 package use_case.product.remove;
 
 import entity.MyUser;
+import entity.Product;
 import use_case.user.auth.AuthUserDataAccessInterface;
 
 
@@ -21,20 +22,28 @@ public class RemoveProductInteractor implements RemoveProductInputBoundary {
 
         final String username = removeProductInputData.getUsername();
         final String password = removeProductInputData.getPassword();
-        final int id = removeProductInputData.getProductId();
+        final int productId = removeProductInputData.getProductId();
+
+        if (!productDataAccessObject.exist(productId)) {
+            removeProductPresenter.prepareFailView("Product with ID `" + productId + "` does not exist");
+            return;
+        }
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             removeProductPresenter.prepareFailView("Authentication failed");
             return;
         }
+
         final MyUser user = userDataAccessObject.get(username, password);
-        if (!productDataAccessObject.exist(id)) {
-            removeProductPresenter.prepareFailView("Product does not exist");
+        final Product product = productDataAccessObject.get(productId);
+
+        if (user.getId() != product.getSellerId()) {
+            removeProductPresenter.prepareFailView("Authentication failed");
             return;
         }
-        productDataAccessObject.remove(id);
 
-        RemoveProductOutputData outputData = new RemoveProductOutputData(id);
+        productDataAccessObject.remove(productId);
+        RemoveProductOutputData outputData = new RemoveProductOutputData(productId);
         removeProductPresenter.prepareSuccessView(outputData);
 
     }
