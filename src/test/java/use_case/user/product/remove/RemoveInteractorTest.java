@@ -1,6 +1,6 @@
 package use_case.user.product.remove;
 
-import data_access.user.InMemoryItemsUserDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import data_access.user.InMemoryProductsUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
@@ -18,7 +18,7 @@ public class RemoveInteractorTest {
     @Test
     public void successRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -1);
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
         RemoveProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
@@ -46,7 +46,7 @@ public class RemoveInteractorTest {
     @Test
     public void failureNotAuthorizedRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -1);
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
         RemoveProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
@@ -76,7 +76,7 @@ public class RemoveInteractorTest {
     @Test
     public void failureProductNotExistRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -2);
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
         RemoveProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();

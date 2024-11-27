@@ -20,8 +20,6 @@ public class InMemoryProductsUserDataAccessObject implements
         ProductSaveDataAccessInterface {
 
     private final HashMap<Integer, Product> productsById = new HashMap<>();
-    private final Map<String, MyUser> usersByName = new HashMap<>();
-    private final Map<Integer, MyUser> usersById = new HashMap<>();
 
 
     @Override

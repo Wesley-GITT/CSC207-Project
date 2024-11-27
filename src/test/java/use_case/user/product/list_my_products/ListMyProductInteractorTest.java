@@ -1,12 +1,11 @@
 package use_case.user.product.list_my_products;
 
-import data_access.user.InMemoryItemsUserDataAccessObject;
+import data_access.user.InMemoryUserDataAccessObject;
 import data_access.user.InMemoryProductsUserDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Product;
 import org.junit.Test;
-import use_case.product.create.*;
 import use_case.product.list_my_products.*;
 import use_case.user.auth.AuthUserDataAccessInterface;
 
@@ -19,7 +18,7 @@ public class ListMyProductInteractorTest {
     @Test
     public void successListProductsTest() {
         ListProductInputData inputData = new ListProductInputData("eric", "123");
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
         ListProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
@@ -47,7 +46,7 @@ public class ListMyProductInteractorTest {
     @Test
     public void failureNotAuthorizedListProductTest() {
         ListProductInputData inputData = new ListProductInputData("eric", "123");
-        AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
+        AuthUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
         ListProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
