@@ -1,8 +1,6 @@
 package data_access.user;
 
-import entity.MyUser;
-import entity.OtherUser;
-import entity.OtherUserFactory;
+import entity.*;
 import use_case.user.auth.AuthUserDataAccessInterface;
 import use_case.user.list_cart_items.ListCartItemsUserDataAccessInterface;
 import use_case.user.reg.RegUserDataAccessInterface;
@@ -63,8 +61,8 @@ public class InMemoryUserDataAccessObject implements
 
     @Override
     public void add(MyUser user) {
-        usersByName.put(user.getUsername(), user);
-        usersById.put(user.getId(), user);
+        user.setId(usersByName.size());
+        save(user);
     }
 
     @Override
