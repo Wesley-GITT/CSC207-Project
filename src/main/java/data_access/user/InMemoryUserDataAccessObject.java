@@ -29,21 +29,13 @@ public class InMemoryUserDataAccessObject implements
     private final Map<Integer, MyUser> usersById = new HashMap<>();
 
     @Override
-<<<<<<< Updated upstream
-    public boolean exist(String username) {
-=======
     public boolean existByUsername(String username) {
->>>>>>> Stashed changes
         return usersByName.containsKey(username);
     }
 
     @Override
     public boolean isAuthenticated(String username, String password) {
-<<<<<<< Updated upstream
-        if (!exist(username)) {
-=======
         if (!existByUsername(username)) {
->>>>>>> Stashed changes
             return false;
         }
 
