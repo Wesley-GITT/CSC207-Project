@@ -4,20 +4,17 @@ import java.util.Set;
 
 public class Book {
 
-    // Fields from both classes
-    private String id; // Unified ID field (can be treated as a string for flexibility)
+    private String id;
     private String imageUrl;
     private String title;
-    private Set<String> authors; // From the second class
+    private Set<String> authors;
     private String publisher;
     private String publishedDate;
     private String description;
-    private String sampleUrl;
     private String language;
-    private Set<String> categories;
 
-    public Book(String id, String imageUrl, String title, Set<String> authors, String publisher, String publishedDate,
-                String description, String sampleUrl, String language, Set<String> categories) {
+    public Book(String id, String imageUrl, String title, Set<String> authors, String publisher,
+                String publishedDate, String description, String language) {
 
         this.id = id;
         this.imageUrl = imageUrl;
@@ -26,9 +23,7 @@ public class Book {
         this.publisher = publisher;
         this.publishedDate = publishedDate;
         this.description = description;
-        this.sampleUrl = sampleUrl;
         this.language = language;
-        this.categories = categories;
     }
 
     public String getId() {
@@ -59,15 +54,8 @@ public class Book {
         return description;
     }
 
-    public String getSampleUrl() {
-        return sampleUrl;
-    }
-
     public String getLanguage() {
         return language;
     }
 
-    public Set<String> getCategories() {
-        return categories;
-    }
 }

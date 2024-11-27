@@ -34,7 +34,7 @@ public class ViewBookInteractor implements ViewBookInputBoundary {
         ViewBookOutputData outputData = new ViewBookOutputData(
                 book.getId(), book.getImageUrl(), book.getTitle(), book.getAuthors(),
                 book.getPublisher(), book.getPublishedDate(), book.getDescription(),
-                book.getSampleUrl(), book.getLanguage(), book.getCategories()
+                book.getLanguage()
         );
 
         viewBookPresenter.prepareSuccessView(outputData);
