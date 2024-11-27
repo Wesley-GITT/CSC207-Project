@@ -1,7 +1,7 @@
 package use_case.user.product.remove;
 
 import data_access.user.InMemoryItemsUserDataAccessObject;
-import data_access.user.InMemoryProductsUserDataAccessObject;
+import data_access.product.InMemoryProductsDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Product;
@@ -19,7 +19,7 @@ public class RemoveInteractorTest {
     public void successRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -1);
         AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        RemoveProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
+        RemoveProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");
@@ -47,7 +47,7 @@ public class RemoveInteractorTest {
     public void failureNotAuthorizedRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -1);
         AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        RemoveProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
+        RemoveProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("erica", "123");
@@ -77,7 +77,7 @@ public class RemoveInteractorTest {
     public void failureProductNotExistRemoveProductTest() {
         RemoveProductInputData inputData = new RemoveProductInputData("eric", "123", -2);
         AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        RemoveProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
+        RemoveProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");

@@ -8,10 +8,10 @@ import java.util.Set;
 public class ListProductInteractor implements ListProductInputBoundary{
 
     private AuthUserDataAccessInterface userDataAccessObject;
-    private ListProductUserDataAccessInterface productDataAccessObject;
+    private ListProductDataAccessInterface productDataAccessObject;
     private ListProductOutputBoundary listProductPresenter;
 
-    public ListProductInteractor(AuthUserDataAccessInterface userDataAccessObject,ListProductUserDataAccessInterface productDataAccessObject,  ListProductOutputBoundary listProductPresenter) {
+    public ListProductInteractor(AuthUserDataAccessInterface userDataAccessObject, ListProductDataAccessInterface productDataAccessObject, ListProductOutputBoundary listProductPresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.productDataAccessObject = productDataAccessObject;
         this.listProductPresenter = listProductPresenter;

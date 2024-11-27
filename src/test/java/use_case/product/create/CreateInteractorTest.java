@@ -1,7 +1,7 @@
 package use_case.user.product.create;
 
 import data_access.user.InMemoryItemsUserDataAccessObject;
-import data_access.user.InMemoryProductsUserDataAccessObject;
+import data_access.product.InMemoryProductsDataAccessObject;
 import entity.MyUser;
 import entity.MyUserFactory;
 import entity.Product;
@@ -19,7 +19,7 @@ public class CreateInteractorTest {
     public void successCreateProductTest() {
         CreateProductInputData inputData = new CreateProductInputData("eric", "123", "1", "good", price);
         AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        CreateProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
+        CreateProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("eric", "123");
@@ -47,7 +47,7 @@ public class CreateInteractorTest {
     public void failureNotAuthorizedCreateProductTest() {
         CreateProductInputData inputData = new CreateProductInputData("eric", "123", "1", "good", price);
         AuthUserDataAccessInterface userRepo = new InMemoryItemsUserDataAccessObject();
-        CreateProductUserDataAccessInterface productRepo = new InMemoryProductsUserDataAccessObject();
+        CreateProductDataAccessInterface productRepo = new InMemoryProductsDataAccessObject();
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("erica", "123");
