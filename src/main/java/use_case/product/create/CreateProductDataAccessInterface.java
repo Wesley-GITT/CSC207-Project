@@ -2,6 +2,6 @@ package use_case.product.create;
 
 import entity.Product;
 
-public interface CreateProductUserDataAccessInterface {
+public interface CreateProductDataAccessInterface {
     void add(Product product);
 }

@@ -5,23 +5,23 @@ import use_case.user.auth.AuthUserDataAccessInterface;
 
 import java.util.Set;
 
-public class ListProductInteractor implements ListProductInputBoundary{
+public class ListMyProductInteractor implements ListMyProductInputBoundary {
 
     private AuthUserDataAccessInterface userDataAccessObject;
-    private ListProductUserDataAccessInterface productDataAccessObject;
-    private ListProductOutputBoundary listProductPresenter;
+    private ListMyProductDataAccessInterface productDataAccessObject;
+    private ListMyProductOutputBoundary listProductPresenter;
 
-    public ListProductInteractor(AuthUserDataAccessInterface userDataAccessObject,ListProductUserDataAccessInterface productDataAccessObject,  ListProductOutputBoundary listProductPresenter) {
+    public ListMyProductInteractor(AuthUserDataAccessInterface userDataAccessObject, ListMyProductDataAccessInterface productDataAccessObject, ListMyProductOutputBoundary listProductPresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.productDataAccessObject = productDataAccessObject;
         this.listProductPresenter = listProductPresenter;
     }
 
     @Override
-    public void execute(ListProductInputData listProductInputData) {
+    public void execute(ListMyProductInputData listMyProductInputData) {
 
-        final String username = listProductInputData.getUsername();
-        final String password = listProductInputData.getPassword();
+        final String username = listMyProductInputData.getUsername();
+        final String password = listMyProductInputData.getPassword();
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             listProductPresenter.prepareFailView("Authentication failed");
@@ -31,7 +31,7 @@ public class ListProductInteractor implements ListProductInputBoundary{
         final MyUser user = userDataAccessObject.get(username, password);
         final Set<Integer> output = productDataAccessObject.list(user.getId());
 
-        ListProductOutputData outputData = new ListProductOutputData(output);
+        ListMyProductOutputData outputData = new ListMyProductOutputData(output);
         listProductPresenter.prepareSuccessView(outputData);
 
     }
