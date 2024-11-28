@@ -14,9 +14,7 @@ public class UpdateMyProfileInteractorTest {
     @Test
     public void successUpdateMyProfileTest() {
         UpdateMyProfileInputData inputData = new UpdateMyProfileInputData(
-                "wes", "123",
-                "2000 Talbot Road West Windsor, ON, Canada N9A 6S4",
-                "+1 12345678910", "tom@jerry.sh");
+                "wes", "123", "+1 12345678910", "tom@jerry.sh");
 
         UpdateMyProfileUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();
         MyUserFactory userFactory = new MyUserFactory();
@@ -27,7 +25,6 @@ public class UpdateMyProfileInteractorTest {
         UpdateMyProfileOutputBoundary successPresenter = new UpdateMyProfileOutputBoundary() {
             @Override
             public void prepareSuccessView(UpdateMyProfileOutputData updateMyProfileOutputData) {
-                assertEquals("2000 Talbot Road West Windsor, ON, Canada N9A 6S4", updateMyProfileOutputData.getAddress());
                 assertEquals("+1 12345678910", updateMyProfileOutputData.getTelephone());
                 assertEquals("tom@jerry.sh", updateMyProfileOutputData.getEmail());
             }
@@ -38,9 +35,8 @@ public class UpdateMyProfileInteractorTest {
             }
         };
 
-        assertEquals(userRepo.get("wes", "123").getAddress(), null);
-        assertEquals(userRepo.get("wes", "123").getTelephone(), null);
-        assertEquals(userRepo.get("wes", "123").getEmail(), null);
+        assertEquals("", userRepo.get("wes", "123").getTelephone());
+        assertEquals("", userRepo.get("wes", "123").getEmail());
         UpdateMyProfileInteractor interactor = new UpdateMyProfileInteractor(userRepo, successPresenter);
         interactor.execute(inputData);
     }
@@ -49,7 +45,6 @@ public class UpdateMyProfileInteractorTest {
     public void failureNotAuthorizedUpdateMyProfileTest() {
         UpdateMyProfileInputData inputData = new UpdateMyProfileInputData(
                 "wes", "123",
-                "2000 Talbot Road West Windsor, ON, Canada N9A 6S4",
                 "+1 12345678910", "tom@jerry.sh");
 
         UpdateMyProfileUserDataAccessInterface userRepo = new InMemoryUserDataAccessObject();

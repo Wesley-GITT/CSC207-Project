@@ -2,18 +2,12 @@ package use_case.user.show_my_profile;
 
 public class ShowMyProfileOutputData {
 
-    private final String address;
     private final String telephone;
     private final String email;
 
-    public ShowMyProfileOutputData(String address, String telephone, String email) {
-        this.address = address;
+    public ShowMyProfileOutputData(String telephone, String email) {
         this.telephone = telephone;
         this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public String getTelephone() {

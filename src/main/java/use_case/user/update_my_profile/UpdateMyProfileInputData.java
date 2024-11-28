@@ -4,14 +4,12 @@ public class UpdateMyProfileInputData {
 
     private final String username;
     private final String password;
-    private final String address;
     private final String telephone;
     private final String email;
 
-    public UpdateMyProfileInputData(String username, String password, String address, String telephone, String email) {
+    public UpdateMyProfileInputData(String username, String password, String telephone, String email) {
         this.username = username;
         this.password = password;
-        this.address = address;
         this.telephone = telephone;
         this.email = email;
     }
@@ -22,10 +20,6 @@ public class UpdateMyProfileInputData {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public String getTelephone() { return telephone; }
