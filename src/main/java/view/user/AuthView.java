@@ -11,7 +11,7 @@ import java.awt.*;
 /**
  * @author Jing Wei
  */
-public class AuthView extends JFrame {
+public class AuthView extends JDialog {
     public AuthView() {
         initComponents();
     }
@@ -33,19 +33,21 @@ public class AuthView extends JFrame {
         button1 = new JButton();
 
         //======== this ========
+        setResizable(false);
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax
-            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-            .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans.
-            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .
-            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+            new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion"
+            , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+            , new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 )
+            , java. awt. Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (
+            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -91,7 +93,7 @@ public class AuthView extends JFrame {
                     contentPanelLayout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, contentPanelLayout.createSequentialGroup()
                             .addGap(8, 8, 8)
-                            .addComponent(label3, GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addComponent(label3, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(label4)
                             .addGap(8, 8, 8)
@@ -126,7 +128,7 @@ public class AuthView extends JFrame {
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createSequentialGroup()
                             .addComponent(button1)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                             .addComponent(cancelButton)
                             .addGap(5, 5, 5)
                             .addComponent(okButton)
@@ -143,7 +145,7 @@ public class AuthView extends JFrame {
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        pack();
+        setSize(450, 225);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }

@@ -1,19 +1,21 @@
 /*
- * Created by JFormDesigner on Wed Nov 27 19:06:40 EST 2024
+ * Created by JFormDesigner on Sun Dec 01 18:54:29 EST 2024
  */
 
-package view.user;
+package view.product;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle;
+import javax.swing.border.*;
 
 /**
- * @author Jing Wei
+ * @author webster
  */
-public class RegView extends JDialog {
-
-    public RegView() {
+public class Edit extends JDialog {
+    public Edit(Window owner) {
+        super(owner);
         initComponents();
     }
 
@@ -28,12 +30,13 @@ public class RegView extends JDialog {
         passwordField1 = new JPasswordField();
         label3 = new JLabel();
         label4 = new JLabel();
-        passwordField2 = new JPasswordField();
         label5 = new JLabel();
+        scrollPane1 = new JScrollPane();
+        textPane1 = new JTextPane();
         buttonBar = new JPanel();
         cancelButton = new JButton();
         okButton = new JButton();
-        button1 = new JButton();
+        checkBox1 = new JCheckBox();
 
         //======== this ========
         setResizable(false);
@@ -43,26 +46,28 @@ public class RegView extends JDialog {
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing
-            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-            Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-            ) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName (
-            ) )) throw new RuntimeException( ); }} );
+            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border
+            . EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax
+            . swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,
+            12 ), java. awt. Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans
+            . PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .
+            getPropertyName () )) throw new RuntimeException( ); }} );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
             {
 
+                //---- textField1 ----
+                textField1.setEditable(false);
+
                 //---- label1 ----
-                label1.setText("Username:");
+                label1.setText("Book:");
 
                 //---- label2 ----
-                label2.setText("Password:");
+                label2.setText("Price:");
 
                 //---- label3 ----
-                label3.setText("Create an account.");
+                label3.setText("Create / Edit a product");
                 label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + 4f));
 
                 //---- label4 ----
@@ -70,7 +75,12 @@ public class RegView extends JDialog {
                 label4.setForeground(new Color(0xb3261e));
 
                 //---- label5 ----
-                label5.setText("Confirm Password:");
+                label5.setText("Describe your book condition");
+
+                //======== scrollPane1 ========
+                {
+                    scrollPane1.setViewportView(textPane1);
+                }
 
                 GroupLayout contentPanelLayout = new GroupLayout(contentPanel);
                 contentPanel.setLayout(contentPanelLayout);
@@ -79,20 +89,20 @@ public class RegView extends JDialog {
                         .addGroup(contentPanelLayout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(contentPanelLayout.createParallelGroup()
+                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                                 .addGroup(contentPanelLayout.createSequentialGroup()
-                                    .addGroup(contentPanelLayout.createParallelGroup()
-                                        .addComponent(label5)
-                                        .addGroup(GroupLayout.Alignment.TRAILING, contentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(label2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(label1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(label1)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(passwordField1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                                        .addComponent(textField1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                                        .addComponent(passwordField2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)))
-                                .addComponent(label3)
-                                .addComponent(label4))
-                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(textField1, GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
+                                .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(label5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(contentPanelLayout.createSequentialGroup()
+                                        .addComponent(label2, GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(passwordField1, GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)))
+                                .addComponent(label4)
+                                .addComponent(label3))
+                            .addContainerGap())
                 );
                 contentPanelLayout.setVerticalGroup(
                     contentPanelLayout.createParallelGroup()
@@ -110,9 +120,10 @@ public class RegView extends JDialog {
                                 .addComponent(label2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(contentPanelLayout.createParallelGroup()
-                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(passwordField2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
                 );
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
@@ -127,16 +138,17 @@ public class RegView extends JDialog {
                 //---- okButton ----
                 okButton.setText("Continue");
 
-                //---- button1 ----
-                button1.setText("Sign Up");
+                //---- checkBox1 ----
+                checkBox1.setText("Sold");
 
                 GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
                 buttonBar.setLayout(buttonBarLayout);
                 buttonBarLayout.setHorizontalGroup(
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createSequentialGroup()
-                            .addComponent(button1)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                            .addContainerGap()
+                            .addComponent(checkBox1)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                             .addComponent(cancelButton)
                             .addGap(5, 5, 5)
                             .addComponent(okButton)
@@ -146,19 +158,19 @@ public class RegView extends JDialog {
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(cancelButton)
-                            .addComponent(button1)
-                            .addComponent(okButton))
+                            .addComponent(okButton)
+                            .addComponent(checkBox1))
                 );
             }
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(450, 250);
+        setSize(450, 335);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY // GEN-BEGIN:variables  @formatter:off
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - Jing Wei
     private JPanel dialogPane;
     private JPanel contentPanel;
@@ -168,11 +180,12 @@ public class RegView extends JDialog {
     private JPasswordField passwordField1;
     private JLabel label3;
     private JLabel label4;
-    private JPasswordField passwordField2;
     private JLabel label5;
+    private JScrollPane scrollPane1;
+    private JTextPane textPane1;
     private JPanel buttonBar;
     private JButton cancelButton;
     private JButton okButton;
-    private JButton button1;
+    private JCheckBox checkBox1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

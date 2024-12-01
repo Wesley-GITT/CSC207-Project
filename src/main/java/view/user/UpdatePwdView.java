@@ -11,7 +11,7 @@ import java.awt.*;
 /**
  * @author webster
  */
-public class UpdatePwdView extends JFrame {
+public class UpdatePwdView extends JDialog {
     public UpdatePwdView() {
         initComponents();
     }
@@ -34,19 +34,20 @@ public class UpdatePwdView extends JFrame {
         okButton = new JButton();
 
         //======== this ========
+        setResizable(false);
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing
-            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-            ) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName (
-            ) )) throw new RuntimeException( ); }} );
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+            .border.EmptyBorder(0,0,0,0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",javax.swing.border.TitledBorder
+            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dia\u006cog",java.
+            awt.Font.BOLD,12),java.awt.Color.red),dialogPane. getBorder()))
+            ;dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+            ){if("bord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}})
+            ;
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -67,7 +68,7 @@ public class UpdatePwdView extends JFrame {
                 label4.setForeground(new Color(0xb3261e));
 
                 //---- label5 ----
-                label5.setText("Enter Again:");
+                label5.setText("Confirm Password:");
 
                 GroupLayout contentPanelLayout = new GroupLayout(contentPanel);
                 contentPanel.setLayout(contentPanelLayout);
@@ -82,15 +83,15 @@ public class UpdatePwdView extends JFrame {
                                         .addComponent(label3))
                                     .addGap(0, 223, Short.MAX_VALUE))
                                 .addGroup(contentPanelLayout.createSequentialGroup()
-                                    .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(label2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(label1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(label5, GroupLayout.Alignment.TRAILING))
+                                    .addGroup(contentPanelLayout.createParallelGroup()
+                                        .addComponent(label5, GroupLayout.Alignment.TRAILING)
+                                        .addComponent(label2, GroupLayout.Alignment.TRAILING)
+                                        .addComponent(label1, GroupLayout.Alignment.TRAILING))
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addComponent(passwordField1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                                        .addComponent(passwordField2, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                                        .addComponent(textField1, GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))))
+                                        .addComponent(passwordField1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                                        .addComponent(passwordField2, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                                        .addComponent(textField1, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))))
                             .addContainerGap())
                 );
                 contentPanelLayout.setVerticalGroup(
@@ -102,12 +103,12 @@ public class UpdatePwdView extends JFrame {
                             .addComponent(label4)
                             .addGap(7, 7, 7)
                             .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
@@ -131,7 +132,7 @@ public class UpdatePwdView extends JFrame {
                 buttonBarLayout.setHorizontalGroup(
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createSequentialGroup()
-                            .addContainerGap(247, Short.MAX_VALUE)
+                            .addContainerGap(251, Short.MAX_VALUE)
                             .addComponent(cancelButton)
                             .addGap(5, 5, 5)
                             .addComponent(okButton)
@@ -147,7 +148,7 @@ public class UpdatePwdView extends JFrame {
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        pack();
+        setSize(450, 250);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }

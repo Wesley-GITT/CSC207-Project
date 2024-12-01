@@ -1,12 +1,16 @@
 package entity;
 
+import java.util.Set;
+
 public class MyUser extends OtherUser {
 
     private String password;
+    private Set<Integer> wishlist;
 
-    public MyUser(int id, String username, String password, ContactInfo contactInfo) {
+    public MyUser(int id, String username, String password, ContactInfo contactInfo, Set<Integer> wishlist) {
         super(id, username, contactInfo);
         this.password = password;
+        this.wishlist = wishlist;
     }
 
     public void setUsername(String username) {
@@ -27,5 +31,13 @@ public class MyUser extends OtherUser {
 
     public void setTelephone(String telephone) {
         this.contactInfo.setTelephone(telephone);
+    }
+
+    public Set<Integer> getWishlist() {
+        return Set.copyOf(wishlist);
+    }
+
+    public void setWishlist(Set<Integer> wishlist) {
+        this.wishlist = Set.copyOf(wishlist);
     }
 }

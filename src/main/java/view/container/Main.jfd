@@ -1,0 +1,78 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.4" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.CardLayout ) ) {
+			name: "this"
+			"minimumSize": new java.awt.Dimension( 600, 450 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
+				name: "panel2"
+				"minimumSize": new java.awt.Dimension( 600, 360 )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "card1"
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu2"
+					"text": "Navigation"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem7"
+						"text": "Home"
+						"margin": new java.awt.Insets( 3, -6, 3, 0 )
+						"iconTextGap": 0
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": "Search"
+						"alignmentX": 0.0f
+						"margin": new java.awt.Insets( 3, -6, 3, 0 )
+						"iconTextGap": 0
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "Account"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": "Sign in/up"
+						"alignmentX": 0.0f
+						"margin": new java.awt.Insets( 3, -6, 3, 0 )
+						"iconTextGap": 0
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem5"
+						"text": "Sign out"
+						"alignmentX": 0.0f
+						"margin": new java.awt.Insets( 3, -6, 3, 0 )
+						"iconTextGap": 0
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem3"
+						"text": "Change password"
+						"iconTextGap": 0
+						"margin": new java.awt.Insets( 3, -6, 3, 0 )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem6"
+						"text": "Wishlist"
+						"alignmentX": 0.0f
+						"margin": new java.awt.Insets( 3, -6, 3, 0 )
+						"iconTextGap": 0
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem4"
+						"text": "Profile"
+						"alignmentX": 0.0f
+						"margin": new java.awt.Insets( 3, -6, 3, 0 )
+						"iconTextGap": 0
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 425, 375 )
+		} )
+	}
+}

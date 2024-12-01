@@ -3,14 +3,16 @@ JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.4" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
+			"$sizePolicy": 1
+			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {comp label4::l:p::p, comp label3::l:p::p}, space :0:223:x}, seq {par l:::p {comp label2::t:::x, comp label1::t:::x, comp label5::t:p::p}, space :::p, par t {comp passwordField1::l::311:x, comp passwordField2::::311:x, comp textField1::::311:x}}}, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp label3:::p:25:p, space :::p, comp label4:::p::p, space :p:7:p, par t {comp label1:::p:27:p, comp textField1:::p:27:p}, space :::p, par b {comp label2::b:p:27:p, comp passwordField1::b:p:27:p}, space :::p, par b {comp label5::b:p:27:p, comp passwordField2::b:p:27:p}}}"
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq {par l {comp label4::l:p::p, comp label3::l:p::p}, space :0:223:x}, seq {par l {comp label5::t:p::p, comp label2::t:p::p, comp label1::t:p::p}, space :::p, par t {comp passwordField1::l::289:x, comp passwordField2::::289:x, comp textField1::::289:x}}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp label3:::p:25:p, space :::p, comp label4:::p::p, space :p:7:p, par t {comp textField1:::p:27:p, comp label1:::p:27:p}, space :::p, par b {comp passwordField1::b:p:27:p, comp label2::b:p:27:p}, space :::p, par b {comp label5::b:p:27:p, comp passwordField2::b:p:27:p}}}"
 				} ) {
 					name: "contentPanel"
 					add( new FormComponent( "javax.swing.JTextField" ) {
@@ -42,13 +44,13 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
-						"text": "Enter Again:"
+						"text": "Confirm Password:"
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "Center"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space ::247:x, comp cancelButton:::p::p, space :p:5:p, comp okButton:::p::p, space :::p}}"
+					"$horizontalGroup": "par l {seq l {space ::251:x, comp cancelButton:::p::p, space :p:5:p, comp okButton:::p::p, space :::p}}"
 					"$verticalGroup": "par l {par b:l {comp cancelButton::b:p::p, comp okButton::b:p::p}}"
 				} ) {
 					name: "buttonBar"

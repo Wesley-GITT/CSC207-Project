@@ -3,8 +3,10 @@ JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.4" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
+			"$sizePolicy": 1
+			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
@@ -34,7 +36,7 @@ new FormModel {
 					"value": "Center"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space ::247:x, comp cancelButton:::p::p, space :p:5:p, comp okButton:::p::p, space :::p}}"
+					"$horizontalGroup": "par l {seq l {space ::251:x, comp cancelButton:::p::p, space :p:5:p, comp okButton:::p::p, space :::p}}"
 					"$verticalGroup": "par l {par b:l {comp cancelButton::b:p::p, comp okButton::b:p::p}}"
 				} ) {
 					name: "buttonBar"

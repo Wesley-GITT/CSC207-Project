@@ -4,16 +4,14 @@
 
 package view.user;
 
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle;
-import javax.swing.border.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 /**
  * @author webster
  */
-public class UpdateProfile extends JFrame {
+public class UpdateProfile extends JDialog {
     public UpdateProfile() {
         initComponents();
     }
@@ -36,17 +34,19 @@ public class UpdateProfile extends JFrame {
         okButton = new JButton();
 
         //======== this ========
+        setResizable(false);
         var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0
-            ,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM
-            ,new java.awt.Font("D\u0069al\u006fg",java.awt.Font.BOLD,12),java.awt.Color.red),
-            dialogPane. getBorder()));dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}});
+            dialogPane.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+            border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder. CENTER
+            ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font
+            . BOLD ,12 ) ,java . awt. Color .red ) ,dialogPane. getBorder () ) ); dialogPane. addPropertyChangeListener(
+            new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order"
+            .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -80,7 +80,7 @@ public class UpdateProfile extends JFrame {
                                     .addGroup(contentPanelLayout.createParallelGroup()
                                         .addComponent(label4)
                                         .addComponent(label3))
-                                    .addGap(0, 252, Short.MAX_VALUE))
+                                    .addGap(0, 293, Short.MAX_VALUE))
                                 .addGroup(contentPanelLayout.createSequentialGroup()
                                     .addGroup(contentPanelLayout.createParallelGroup()
                                         .addComponent(label1, GroupLayout.Alignment.TRAILING)
@@ -131,7 +131,7 @@ public class UpdateProfile extends JFrame {
                 buttonBarLayout.setHorizontalGroup(
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createSequentialGroup()
-                            .addContainerGap(247, Short.MAX_VALUE)
+                            .addContainerGap(251, Short.MAX_VALUE)
                             .addComponent(cancelButton)
                             .addGap(5, 5, 5)
                             .addComponent(okButton)
@@ -147,7 +147,7 @@ public class UpdateProfile extends JFrame {
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        pack();
+        setSize(450, 250);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
