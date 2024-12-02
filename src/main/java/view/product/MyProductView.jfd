@@ -1,0 +1,101 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.4" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "dialogPane"
+				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+					name: "contentPanel"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table1"
+							"autoCreateRowSorter": true
+							"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+								add( new java.util.Vector {
+									add( "Harry Potter and the Pilosopher's Stone" )
+									add( "J.K. Rowling" )
+									add( "" )
+									add( "Excellent" )
+									add( 30.0 )
+									add( true )
+								} )
+							}, new java.util.Vector {
+								add( "Title" )
+								add( "Authors" )
+								add( "Description" )
+								add( "Book Condition" )
+								add( "Price" )
+								add( "Sold out" )
+							}, new java.util.Vector {
+								add( class java.lang.String )
+								add( class java.lang.String )
+								add( class java.lang.String )
+								add( class java.lang.String )
+								add( class java.lang.Double )
+								add( class java.lang.Boolean )
+							}, new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( false )
+							}, new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+							} )
+							"rowSelectionAllowed": true
+							auxiliary() {
+								"rowSelectionAllowed.forceValue": true
+							}
+						} )
+					}, new FormLayoutConstraints( class java.lang.String ) {
+						"value": "Center"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {comp button1:::p:60:p, space :::p, comp button2:::p::p, space :::p, comp button3:::p::p, space ::64:x, comp okButton:::p:80:p}}"
+					"$verticalGroup": "par l {par b {comp okButton::b:p::p, comp button1::b:p::p, comp button2::b:p::p, comp button3::b:p::p}}"
+				} ) {
+					name: "buttonBar"
+					"border": new javax.swing.border.EmptyBorder( 12, 0, 0, 0 )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "okButton"
+						"text": "OK"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button1"
+						"text": "Add"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button2"
+						"text": "Remove"
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button3"
+						"text": "Edit"
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "South"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 270 )
+		} )
+	}
+}
