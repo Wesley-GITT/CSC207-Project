@@ -3,7 +3,7 @@
 ## Project Specification for Group #66
 
 ### Table of Contents
-1. Project Overview [Section `Porject Overview`] (#Project Overview)
+1. [Project Overview](#Project-Overview-(Domain))
 2. Features
 3. User Stories
 4. Entities and Data Model
