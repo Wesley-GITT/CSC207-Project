@@ -4,6 +4,8 @@
 
 package view.user;
 
+import interface_adapter.LogIn.LoginState;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;

@@ -8,30 +8,25 @@ import use_case.user.reg.RegInputData;
  */
 public class SignupController {
 
-    private final RegInputBoundary userSignupUseCaseInteractor;
+    private final RegInputBoundary signupInteractor;
 
-    public SignupController(RegInputBoundary userSignupUseCaseInteractor) {
-        this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
+    public SignupController(RegInputBoundary signupInteractor) {
+        this.signupInteractor = signupInteractor;
     }
 
     /**
      * Executes the Signup Use Case.
-     * @param username the username to sign up
-     * @param password1 the password
-     * @param password2 the password repeated
+     *
+     * @param username         the username
+     * @param password         the password
+     * @param repeatPassword   the repeated password
      */
-    public void execute(String username, String password1, String password2) {
-        final RegInputData signupInputData = new RegInputData(
-                username, password1, password2);
-
-        userSignupUseCaseInteractor.execute(signupInputData);
+    public void execute(String username, String password, String repeatPassword) {
+        RegInputData inputData = new RegInputData(username, password, repeatPassword);
+        signupInteractor.execute(inputData);
     }
 
-    /**
-     * Executes the "switch to LoginView" Use Case.
-     */
     public void switchToLoginView() {
-        // modification expected
-        // userSignupUseCaseInteractor.switchToLoginView();
+        signupInteractor.switchToOriginalView();
     }
 }
