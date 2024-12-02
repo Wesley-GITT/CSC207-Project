@@ -22,11 +22,10 @@ public class ShowMyProfileInteractor implements ShowMyProfileInputBoundary {
             showMyProfilePresenter.prepareFailView("Authentication failed");
         } else {
             final MyUser user = userDataAccessObject.get(username, password);
-            final String address = user.getAddress();
             final String telephone = user.getTelephone();
             final String email = user.getEmail();
 
-            ShowMyProfileOutputData outputData = new ShowMyProfileOutputData(address, telephone, email);
+            ShowMyProfileOutputData outputData = new ShowMyProfileOutputData(telephone, email);
             showMyProfilePresenter.prepareSuccessView(outputData);
         }
     }

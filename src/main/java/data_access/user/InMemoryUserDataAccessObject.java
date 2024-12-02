@@ -1,15 +1,17 @@
 package data_access.user;
 
-import entity.*;
+import entity.MyUser;
+import entity.OtherUser;
+import entity.OtherUserFactory;
 import use_case.user.auth.AuthUserDataAccessInterface;
-import use_case.user.list_cart_items.ListCartItemsUserDataAccessInterface;
 import use_case.user.reg.RegUserDataAccessInterface;
 import use_case.user.show_my_profile.ShowMyProfileUserDataAccessInterface;
 import use_case.user.show_other_profile.ShowOtherProfileUserDataAccessInterface;
-import use_case.user.update_cart.UpdateCartUserDataAccessInterface;
+import use_case.user.show_wishlist.ShowWishlistDataAccessInterface;
 import use_case.user.update_my_profile.UpdateMyProfileUserDataAccessInterface;
 import use_case.user.update_name.UpdateNameUserDataAccessInterface;
 import use_case.user.update_pwd.UpdatePasswordUserDataAccessInterface;
+import use_case.user.update_wishlist.UpdateWishlistDataAccessInterface;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +19,13 @@ import java.util.Map;
 public class InMemoryUserDataAccessObject implements
         AuthUserDataAccessInterface,
         RegUserDataAccessInterface,
-        ListCartItemsUserDataAccessInterface,
         ShowMyProfileUserDataAccessInterface,
         ShowOtherProfileUserDataAccessInterface,
-        UpdateCartUserDataAccessInterface,
         UpdateMyProfileUserDataAccessInterface,
         UpdateNameUserDataAccessInterface,
-        UpdatePasswordUserDataAccessInterface {
+        UpdatePasswordUserDataAccessInterface,
+        ShowWishlistDataAccessInterface,
+        UpdateWishlistDataAccessInterface {
 
     private final Map<String, MyUser> usersByName = new HashMap<>();
     private final Map<Integer, MyUser> usersById = new HashMap<>();

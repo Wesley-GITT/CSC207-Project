@@ -8,9 +8,10 @@ public class UpdateProductInputData {
     private final String bookId;
     private final String bookCondition;
     private final double price;
+    private final boolean isSold;
 
-    public UpdateProductInputData(String username, String password, int productId,
-                                  String bookId, String bookCondition, double price) {
+    public UpdateProductInputData(String username, String password, int productId, String bookId,
+                                  String bookCondition, double price, boolean isSold) {
 
         this.username = username;
         this.password = password;
@@ -18,6 +19,7 @@ public class UpdateProductInputData {
         this.bookId = bookId;
         this.bookCondition = bookCondition;
         this.price = price;
+        this.isSold = isSold;
     }
 
     public String getUsername() {
@@ -42,5 +44,9 @@ public class UpdateProductInputData {
 
     public double getPrice() {
         return price;
+    }
+
+    public boolean getIsSold() {
+        return isSold;
     }
 }

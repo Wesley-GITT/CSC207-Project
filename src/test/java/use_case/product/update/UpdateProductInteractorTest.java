@@ -16,7 +16,8 @@ public class UpdateProductInteractorTest {
     @Test
     public void successListBookProductTest() {
         final UpdateProductInputData inputData = new UpdateProductInputData(
-                "wes", "123", 0, "same", "Excellent", 12.0);
+                "wes", "123", 0, "same",
+                "Excellent", 12.0, false);
 
         final InMemoryUserDataAccessObject userDAO = new InMemoryUserDataAccessObject();
         final InMemoryBookDataAccessObject bookDAO = new InMemoryBookDataAccessObject();
@@ -54,7 +55,7 @@ public class UpdateProductInteractorTest {
     @Test
     public void failureIncorrectUsernamePasswordPairTest() {
         final UpdateProductInputData inputData = new UpdateProductInputData(
-                "wes", "321", 0, "same", "Excellent", 12.0);
+                "wes", "321", 0, "same", "Excellent", 12.0, false);
 
         final InMemoryUserDataAccessObject userDAO = new InMemoryUserDataAccessObject();
         final InMemoryBookDataAccessObject bookDAO = new InMemoryBookDataAccessObject();
@@ -89,7 +90,7 @@ public class UpdateProductInteractorTest {
     @Test
     public void failureUserNotAuthorizedTest() {
         final UpdateProductInputData inputData = new UpdateProductInputData(
-                "wes", "123", 0, "same", "Excellent", 12.0);
+                "wes", "123", 0, "same", "Excellent", 12.0, true);
 
         final InMemoryUserDataAccessObject userDAO = new InMemoryUserDataAccessObject();
         final InMemoryBookDataAccessObject bookDAO = new InMemoryBookDataAccessObject();
@@ -124,7 +125,7 @@ public class UpdateProductInteractorTest {
     @Test
     public void failureBookNotExistTest() {
         final UpdateProductInputData inputData = new UpdateProductInputData(
-                "wes", "123", 0, "different", "Excellent", 12.0);
+                "wes", "123", 0, "different", "Excellent", 12.0, true);
 
         final InMemoryUserDataAccessObject userDAO = new InMemoryUserDataAccessObject();
         final InMemoryBookDataAccessObject bookDAO = new InMemoryBookDataAccessObject();
@@ -159,7 +160,7 @@ public class UpdateProductInteractorTest {
     @Test
     public void failureProductNotExistTest() {
         final UpdateProductInputData inputData = new UpdateProductInputData(
-                "wes", "123", 1, "same", "Excellent", 12.0);
+                "wes", "123", 1, "same", "Excellent", 12.0, true);
 
         final InMemoryUserDataAccessObject userDAO = new InMemoryUserDataAccessObject();
         final InMemoryBookDataAccessObject bookDAO = new InMemoryBookDataAccessObject();

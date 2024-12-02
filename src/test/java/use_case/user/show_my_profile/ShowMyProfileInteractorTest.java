@@ -17,7 +17,6 @@ public class ShowMyProfileInteractorTest {
 
         MyUserFactory userFactory = new MyUserFactory();
         MyUser user = userFactory.create("wes", "123");
-        user.setAddress("2000 Talbot Road West Windsor, ON, Canada N9A 6S4");
         user.setTelephone("+1 12345678910");
         user.setEmail("tom@jerry.sh");
 
@@ -26,7 +25,6 @@ public class ShowMyProfileInteractorTest {
         ShowMyProfileOutputBoundary successPresenter = new ShowMyProfileOutputBoundary() {
             @Override
             public void prepareSuccessView(ShowMyProfileOutputData showMyProfileOutputData) {
-                assertEquals("2000 Talbot Road West Windsor, ON, Canada N9A 6S4", showMyProfileOutputData.getAddress());
                 assertEquals("+1 12345678910", showMyProfileOutputData.getTelephone());
                 assertEquals("tom@jerry.sh", showMyProfileOutputData.getEmail());
             }

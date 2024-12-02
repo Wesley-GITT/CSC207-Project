@@ -2,6 +2,7 @@ out/
 target/
 resources/
 example/
+lib/
 
 ### IntelliJ IDEA ###
 .idea

@@ -39,35 +39,39 @@ public class SearchBookInteractor implements SearchBookInputBoundary {
             return;
         }
 
-        List<String> result = new ArrayList<>();
-        while (result.size() < resMaxNumEachSearch) {
-            List<String> bookIds = bookDataAccessObject.search(keyword, endIndex, 40);
-            if (bookIds.size() == 0) {
-                break;
-            }
-
-            for (String bookId: bookIds) {
-                Set<Integer> productIds = productDataAccessObject.listByBookId(bookId);
-                if (withProduct) {
-                    if (!productIds.isEmpty()) {
-                        result.add(bookId);
-                    }
-                } else {
-                    result.add(bookId);
+        try {
+            List<String> result = new ArrayList<>();
+            while (result.size() < resMaxNumEachSearch) {
+                List<String> bookIds = bookDataAccessObject.search(keyword, endIndex, 40);
+                if (bookIds.size() == 0) {
+                    break;
                 }
 
-                endIndex++;
+                for (String bookId : bookIds) {
+                    Set<Integer> productIds = productDataAccessObject.listByBookId(bookId);
+                    if (withProduct) {
+                        if (!productIds.isEmpty()) {
+                            result.add(bookId);
+                        }
+                    } else {
+                        result.add(bookId);
+                    }
+
+                    endIndex++;
+                    if (result.size() >= resMaxNumEachSearch) {
+                        break;
+                    }
+                }
                 if (result.size() >= resMaxNumEachSearch) {
                     break;
                 }
             }
-            if (result.size() >= resMaxNumEachSearch) {
-                break;
-            }
-        }
 
-        SearchBookOutputData outputData = new SearchBookOutputData(
-                result, startIndex, endIndex, resMaxNumEachSearch);
-        searchBookPresenter.prepareSuccessView(outputData);
+            SearchBookOutputData outputData = new SearchBookOutputData(
+                    result, startIndex, endIndex, resMaxNumEachSearch);
+            searchBookPresenter.prepareSuccessView(outputData);
+        } catch (RuntimeException e) {
+            searchBookPresenter.prepareFailView("API Connection Error");
+        }
     }
 }

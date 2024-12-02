@@ -21,17 +21,15 @@ public class UpdateMyProfileInteractor implements UpdateMyProfileInputBoundary {
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             updateMyProfilePresenter.prepareFailView("Authentication failed");
         } else {
-            final String address = updateMyProfileInputData.getAddress();
             final String telephone = updateMyProfileInputData.getTelephone();
             final String email = updateMyProfileInputData.getEmail();
 
             final MyUser user = userDataAccessObject.get(username, password);
-            user.setAddress(address);
             user.setTelephone(telephone);
             user.setEmail(email);
             userDataAccessObject.save(user);
 
-            UpdateMyProfileOutputData outputData = new UpdateMyProfileOutputData(address, telephone, email);
+            UpdateMyProfileOutputData outputData = new UpdateMyProfileOutputData(telephone, email);
             updateMyProfilePresenter.prepareSuccessView(outputData);
         }
     }

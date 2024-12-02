@@ -31,6 +31,7 @@ public class UpdateProductInteractor implements UpdateProductInputBoundary {
         final String bookId = updateProductInputData.getBookId();
         final String bookCondition = updateProductInputData.getBookCondition();
         final double price = updateProductInputData.getPrice();
+        final boolean isSold = updateProductInputData.getIsSold();
 
         if (!productDataAccessObject.exist(productId)) {
             updateProductPresenter.prepareFailView("Product with ID `" + productId + "` doesn't exist");
@@ -58,9 +59,9 @@ public class UpdateProductInteractor implements UpdateProductInputBoundary {
         product.setBookId(bookId);
         product.setBookCondition(bookCondition);
         product.setPrice(price);
+        product.setIsSold(isSold);
 
         productDataAccessObject.save(product);
-        final boolean isSold = product.getIsSold();
 
         UpdateProductOutputData outputData = new UpdateProductOutputData(productId, bookId, bookCondition, price, isSold);
         updateProductPresenter.prepareSuccessView(outputData);
