@@ -50,10 +50,9 @@
 
 ### Entities and Data Model:
 Entities:
-- User: id, username, password, address, contact_information, cart_items (list of productId)
-- Book: id, image_url, title, authors, language, translators, subject, description, samples (table of contents and first few pages)
+- User: id, username, password, address, contact_information, wishlist (list of productId)
+- Book: id, image_url, title, authors, language, translators, subject, description
 - Product: id, book_id, seller_id, book_condition, price, sold
-- Order: id, buyer_id, seller_id, product_id, order_time, order_status, delivery_address
 Data Model:
 ﻿
 The data model is designed to capture the relationships between users, books, and products. Each entity is interconnected to facilitate the platform's functionalities:
@@ -74,26 +73,23 @@ The platform integrates with the Google Books API to fetch book details like tit
 ### Installing Instruction:
 Requirements:
 - Programming Language: Java
-- Database: SQLite
 - API Integration: Google Books API
-- Development Environment: IntelliJ IDEA
+- Integrated Development Environment: IntelliJ IDEA
 - 
 Steps to Install:
 Clone the repository: git clone https://github.com/CSC207-Project.git
 
 Install required dependencies:
 Insure the Java Development Kit (JDK) is installed (version 11 or higher).
-Install SQLite for database management.
 
 Run the application:
 Compile the code in IntelliJ IDEA or another IDE.
-Set up Google Books API integration by acquiring an API key.
-
 
 
 ### Usage Guide
 Register an Account:
-- Fill out a form with name, contact info, and address to create an account.
+- Fill out a form with username and password
+- Change your contact information after logging in
 
 Post a Book for Sale:
 - Navigate to the “Post Product” section, add details, and submit.
@@ -101,9 +97,11 @@ Post a Book for Sale:
 Search for Books:
 - Use filters (e.g., genre or author) to browse the catalog.
 
-Add to Cart and Checkout:
-- Select books, add to cart, and proceed to contact the seller or save for later.
+View a Book:
+- View the details of a book and see who is selling the book.
 
+Add to Wishlist:
+- Select books, add to wishlist and contact the seller later.
 
 
 ### License
@@ -182,17 +180,6 @@ Post-Merge Protocols:
 
 Notify contributors about the successful merge and next steps.
 Ensure any related documentation, issue tracking, or release notes are updated accordingly.
-
-
-
-### Database:
-Here are how the database is designed to record the data, entities should rely on them but shouldn't be identical to their database conterparts.
-
-
-|                                                        |                                                              |
-|--------------------------------------------------------|--------------------------------------------------------------|
-| <strong>user</strong> <br/> ![user](image/user.png)    | <strong>product</strong> <br/> ![product](image/product.png) |
-| <strong>order</strong> <br/> ![order](image/order.png) |                                                              |
 
 
 ### Meeting Schedules:
