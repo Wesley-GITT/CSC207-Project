@@ -20,6 +20,7 @@ public class ViewItem extends JPanel {
         // Generated using JFormDesigner Evaluation license - Jing Wei
         label1 = new JLabel();
         label2 = new JLabel();
+        button2 = new JButton();
         textField1 = new JTextField();
         comboBox1 = new JComboBox<>();
         button1 = new JButton();
@@ -33,12 +34,13 @@ public class ViewItem extends JPanel {
 
         //======== this ========
         setMinimumSize(new Dimension(457, 450));
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
-        ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
-        .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
-        propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-        ;} } );
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+        .border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border.TitledBorder
+        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067",java.
+        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
+        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+        ){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException();}})
+        ;
         setLayout(new GridBagLayout());
         ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0, 0};
         ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
@@ -53,7 +55,13 @@ public class ViewItem extends JPanel {
 
         //---- label2 ----
         label2.setText("<title> - <author>");
-        add(label2, new GridBagConstraints(1, 0, 2, 1, 0.0, 0.0,
+        add(label2, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+            GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
+            new Insets(0, 0, 12, 16), 0, 0));
+
+        //---- button2 ----
+        button2.setText("I want to sell");
+        add(button2, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
             GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
             new Insets(0, 0, 12, 0), 0, 0));
 
@@ -135,6 +143,7 @@ public class ViewItem extends JPanel {
     // Generated using JFormDesigner Evaluation license - Jing Wei
     private JLabel label1;
     private JLabel label2;
+    private JButton button2;
     private JTextField textField1;
     private JComboBox<String> comboBox1;
     private JButton button1;

@@ -27,7 +27,12 @@ new FormModel {
 				"gridx": 1
 				"vAlign": 1
 				"hAlign": 5
-				"gridwidth": 2
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "I want to sell"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 2
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField1"
