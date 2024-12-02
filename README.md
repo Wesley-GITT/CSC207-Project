@@ -3,7 +3,7 @@
 ## Project Specification for Group #66
 
 ### Table of Contents
-1. Project Overview
+1. Project Overview [Section `Porject Overview`] (#Project Overview)
 2. Features
 3. User Stories
 4. Entities and Data Model
@@ -18,6 +18,8 @@
 ### Project Overview (Domain):
 ﻿Purpose: The domain of this project is second hand book transaction. This software should allow user to buy or sell second hand books by providing transaction functionalities including account (for both buyers and sellers) registration and management, product (book) posting and order management. Additionally the software could allow user to look for, main.java.view details of, comment on books and add books to shopping carts. An extension to the software functionality could be price drop notification and book recommendation. This platform promotes affordability, accessibility, and sustainability by enabling users to reuse books efficiently. This project was developed to provide a cost-effective solution for accessing books and encourage the reuse of valuable resources. It solves the problem of high costs for new books by creating an efficient second-hand marketplace.
 
+
+
 ### Features (Software specification):
 + Major Features
   - Account registration and management: allow user to register an account to buy and/or sell books after completing their profiles including but not limited to their name, address and contact information.
@@ -31,12 +33,16 @@
   - Notify buyers when there's a price decrease
   - Recommend a book to buyer (Exp: Mario asks for futuristic scientific fiction that must contains aliens. Gpt will return 10 books related to this topic and write few sentences recommending each book)
 
+
+
 ### User stories:
 - User story #1: Tom have a few course book to sell, so he wants an account that enables him to post and sell books. (**assigned to Jing**)
 - User story #2: Lucas wants to buy some entertaining books but have no idea which book fits her need. She wants to search for book based on genre. (**assigned to Bosco**)
 - User story #3: Louis wants to buy some text books at lower price because he doesn't afford new ones. He doesn't mind if the book contains notes and drawings. He wants to be able to add the books to shopping cart. (**assigned to Tianao**)
 - User story #4: Britney wants to buy some books for her kids, but she doesn't know which one her kids really like. So she want to pick a few and store them in the cart for later use. (**assigned to Eric**)
 - Team user story: Jack would like to buy some books from a cheaper source after selling some unused one at his home. He wants an account that enables him to do so. (**assigned to Team**)
+
+
 
 ### Entities and Data Model:
 Entities:
@@ -53,9 +59,13 @@ Product: Represents an individual book listed for sale, linked to a specific boo
 
 **\* Note that a product must corresponds a book instance. A book instance is created by accessing Google Books API**
 
+
+
 ### Proposed API
 The platform integrates with the Google Books API to fetch book details like title, author, and descriptions.
 **\* Note that a product must corresponds a book instance. A book instance is created by accessing Google Books API**
+
+
 
 ### Installing Instruction:
 Requirements:
@@ -75,6 +85,8 @@ Run the application:
 Compile the code in IntelliJ IDEA or another IDE.
 Set up Google Books API integration by acquiring an API key.
 
+
+
 ### Usage Guide
 Register an Account:
 - Fill out a form with name, contact info, and address to create an account.
@@ -88,12 +100,19 @@ Search for Books:
 Add to Cart and Checkout:
 - Select books, add to cart, and proceed to contact the seller or save for later.
 
+
+
 ### License
+Included in Files
 This project is licensed under the MIT License, allowing users to modify, distribute, and use the code freely.
+
+
 
 ### Feedback
 We welcome feedback from users to improve the platform! Submit your feedback through this Google Form. Please ensure feedback is constructive and follows our guidelines for respectful communication.
 https://docs.google.com/forms/d/e/1FAIpQLSe7nTZ12C8e2WsJINz6YT_ZbgUe92TbUcXaSRyD2Ww2ASvdUA/viewform?usp=sf_link
+
+
 
 ### Contributions:
 Contributions are welcome! To contribute:
@@ -102,7 +121,9 @@ Fork the repository on GitHub.
 Make changes and submit a pull request with a description of your contribution.
 Follow bloew protocals and merge request guidelines to ensure smooth integration
 
-# Guidelines for Creating a Good Merge Request:
+
+
+### Guidelines for Creating a Good Merge Request:
 Write a Clear Title and Description:
 Use a descriptive and concise title that summarizes the purpose of the merge request.
 Provide a detailed description in the body, including:
@@ -127,7 +148,9 @@ Review and Resolve Conflicts:
 Regularly pull changes from the main branch to minimize conflicts.
 Resolve any merge conflicts locally before submitting the request.
 
-# Protocols for Reviewing Contributions and Merging Them:
+
+
+### Protocols for Reviewing Contributions and Merging Them:
 Initial Review:
 Ensure the merge request adheres to the contribution guidelines (e.g., clean architecture, tests included).
 Verify that the changes align with the project's goals and roadmap.
@@ -155,6 +178,7 @@ Post-Merge Protocols:
 
 Notify contributors about the successful merge and next steps.
 Ensure any related documentation, issue tracking, or release notes are updated accordingly.
+
 
 
 ### Database:
