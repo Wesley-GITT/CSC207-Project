@@ -1,5 +1,9 @@
 # CSC207 - Second-Hand Book Transaction Platform
 
+<div>
+<img src="https://readme-typing-svg.demolab.com/?pause=1&size=50&color=f75c7e&center=True&width=1200&height=120&vCenter=True&lines=Click+the+⭐+Star+please .;Any+questions+can+be+asked+in+Issue." />
+</div>
+
 ## Project Specification for Group #66
 
 ### Table of Contents
