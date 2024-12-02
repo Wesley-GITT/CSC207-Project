@@ -1,11 +1,30 @@
-# CSC207-Project
+# CSC207 - Second-Hand Book Transaction Platform
+
+<div>
+<img src="https://readme-typing-svg.demolab.com/?pause=1&size=50&color=f75c7e&center=True&width=1200&height=120&vCenter=True&lines=Click+the+Project+Overview+please .;Any+questions+can+be+submit+in+Feedback" />
+</div>
 
 ## Project Specification for Group #66
 
-### Domain:
-The domain of this project is second hand book transaction. This software should allow user to buy or sell second hand books by providing transaction functionalities including account (for both buyers and sellers) registration and management, product (book) posting and order management. Additionally the software could allow user to look for, main.java.view details of, comment on books and add books to shopping carts. An extension to the software functionality could be price drop notification and book recommendation.
+### Table of Contents
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [User Stories](#user-stories)
+4. [Entities and Data Model](#entities-and-data-model)
+5. [Proposed API](#proposed-api)
+6. [Installation Instructions](#installation-instructions)
+7. [Usage Guide](#usage-guide)
+8. [License](#license)
+9. [Feedback](#feedback)
+10. [Contributions](#contributions)
+11. [Team Members](#team-members)
 
-### Software specification:
+### Project Overview:
+﻿Purpose: The domain of this project is second hand book transaction. This software should allow user to buy or sell second hand books by providing transaction functionalities including account (for both buyers and sellers) registration and management, product (book) posting and order management. Additionally the software could allow user to look for, main.java.view details of, comment on books and add books to shopping carts. An extension to the software functionality could be price drop notification and book recommendation. This platform promotes affordability, accessibility, and sustainability by enabling users to reuse books efficiently. This project was developed to provide a cost-effective solution for accessing books and encourage the reuse of valuable resources. It solves the problem of high costs for new books by creating an efficient second-hand marketplace.
+
+
+
+### Features:
 + Major Features
   - Account registration and management: allow user to register an account to buy and/or sell books after completing their profiles including but not limited to their name, address and contact information.
   - Product posting: allow any registered user to post a product, edit product details and delete product details.
@@ -14,9 +33,11 @@ The domain of this project is second hand book transaction. This software should
   - Search a product by titles, authors, subject, etc
   - View details of a product including book condition, summary and description.
   - Add a book to shopping cart
-+ Bonus Features
++ Future Features (not implemented)
   - Notify buyers when there's a price decrease
   - Recommend a book to buyer (Exp: Mario asks for futuristic scientific fiction that must contains aliens. Gpt will return 10 books related to this topic and write few sentences recommending each book)
+
+
 
 ### User stories:
 - User story #1: Tom have a few course book to sell, so he wants an account that enables him to post and sell books. (**assigned to Jing**)
@@ -24,25 +45,142 @@ The domain of this project is second hand book transaction. This software should
 - User story #3: Louis wants to buy some text books at lower price because he doesn't afford new ones. He doesn't mind if the book contains notes and drawings. He wants to be able to add the books to shopping cart. (**assigned to Tianao**)
 - User story #4: Britney wants to buy some books for her kids, but she doesn't know which one her kids really like. So she want to pick a few and store them in the cart for later use. (**assigned to Eric**)
 - Team user story: Jack would like to buy some books from a cheaper source after selling some unused one at his home. He wants an account that enables him to do so. (**assigned to Team**)
-### Entities:
-- User: id, username, password, address, contact_information, cart_items (list of productId)
-- Book: id, image_url, title, authors, language, translators, subject, description, samples (table of contents and first few pages)
+
+
+
+### Entities and Data Model:
+Entities:
+- User: id, username, password, address, contact_information, wishlist (list of productId)
+- Book: id, image_url, title, authors, language, translators, subject, description
 - Product: id, book_id, seller_id, book_condition, price, sold
-- Order: id, buyer_id, seller_id, product_id, order_time, order_status, delivery_address
+Data Model:
+﻿
+The data model is designed to capture the relationships between users, books, and products. Each entity is interconnected to facilitate the platform's functionalities:
+User: Can act as both buyer and seller, with references to products they are selling and orders they have placed.
+Book: Serves as a template containing bibliographic information, which multiple products can reference.
+Product: Represents an individual book listed for sale, linked to a specific book and user (seller).
 
 **\* Note that a product must corresponds a book instance. A book instance is created by accessing Google Books API**
 
-### Database:
-Here are how the database is designed to record the data, entities should rely on them but shouldn't be identical to their database conterparts.
 
 
-|                                                        |                                                              |
-|--------------------------------------------------------|--------------------------------------------------------------|
-| <strong>user</strong> <br/> ![user](image/user.png)    | <strong>product</strong> <br/> ![product](image/product.png) |
-| <strong>order</strong> <br/> ![order](image/order.png) |                                                              |
+### Proposed API
+The platform integrates with the Google Books API to fetch book details like title, author, and descriptions.
+**\* Note that a product must corresponds a book instance. A book instance is created by accessing Google Books API**
 
-### Proposed API:
-- Google Books API: use Google Books API for searching book details.
+
+
+### Installing Instruction:
+Requirements:
+- Programming Language: Java
+- API Integration: Google Books API
+- Integrated Development Environment: IntelliJ IDEA
+- 
+Steps to Install:
+Clone the repository: git clone https://github.com/CSC207-Project.git
+
+Install required dependencies:
+Insure the Java Development Kit (JDK) is installed (version 11 or higher).
+
+Run the application:
+Compile the code in IntelliJ IDEA or another IDE.
+
+
+### Usage Guide
+Register an Account:
+- Fill out a form with username and password
+- Change your contact information after logging in
+
+Post a Book for Sale:
+- Navigate to the “Post Product” section, add details, and submit.
+
+Search for Books:
+- Use filters (e.g., genre or author) to browse the catalog.
+
+View a Book:
+- View the details of a book and see who is selling the book.
+
+Add to Wishlist:
+- Select books, add to wishlist and contact the seller later.
+
+
+### License
+Included in Files
+This project is licensed under the Creative Commons Zero v1.0 Universal License.
+
+
+
+### Feedback
+We welcome feedback from users to improve the platform! Submit your feedback through this Google Form. Please ensure feedback is constructive and follows our guidelines for respectful communication.
+https://docs.google.com/forms/d/e/1FAIpQLSe7nTZ12C8e2WsJINz6YT_ZbgUe92TbUcXaSRyD2Ww2ASvdUA/viewform?usp=sf_link
+
+
+
+### Contributions:
+Contributions are welcome! To contribute:
+Contact one of our developers in the members section
+Fork the repository on GitHub.
+Make changes and submit a pull request with a description of your contribution.
+Follow bloew protocals and merge request guidelines to ensure smooth integration
+
+
+
+### Guidelines for Creating a Good Merge Request:
+Write a Clear Title and Description:
+Use a descriptive and concise title that summarizes the purpose of the merge request.
+Provide a detailed description in the body, including:
+The purpose of the changes.
+The problem being solved or feature being added.
+Relevant issue numbers 
+
+Ensure Your Code Meets the Standards:
+Follow the project's coding conventions and guidelines.
+Include comments for any complex logic or changes.
+Write unit tests for new functionality or fixes and ensure all existing tests pass.
+
+Keep the Merge Request Focused:
+Limit the scope to a single feature, bug fix, or improvement.
+Avoid bundling multiple unrelated changes in one request.
+
+Provide Relevant Evidence:
+Attach screenshots, logs, or other evidence for changes that impact the user interface or functionality.
+Include a brief explanation of how the changes were tested.
+
+Review and Resolve Conflicts:
+Regularly pull changes from the main branch to minimize conflicts.
+Resolve any merge conflicts locally before submitting the request.
+
+
+
+### Protocols for Reviewing Contributions and Merging Them:
+Initial Review:
+Ensure the merge request adheres to the contribution guidelines (e.g., clean architecture, tests included).
+Verify that the changes align with the project's goals and roadmap.
+
+Code Review Process:
+At least one team member must review the changes before approval.
+
+Reviewers should check for:
+Code quality and adherence to project standards.
+Potential impacts on existing functionality.
+Proper test coverage and evidence of testing.
+
+Run Automated Checks:
+Ensure the merge request passes all automated tests, including unit tests and integration tests.
+Check for static code analysis or linting issues if applicable.
+
+Request Changes if Necessary:
+Provide specific, constructive feedback for improvements.
+Mark the merge request as "Changes Requested" until the issues are resolved.
+Approval and Merge:
+
+Once the merge request meets all requirements and passes reviews, a team member with merge privileges can approve it.
+Use a non-fast-forward merge or squash commit (based on the team's preference) to ensure a clean commit history.
+Post-Merge Protocols:
+
+Notify contributors about the successful merge and next steps.
+Ensure any related documentation, issue tracking, or release notes are updated accordingly.
+
 
 ### Meeting Schedules:
 Meetings: every Saturday offline or online meetings
