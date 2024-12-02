@@ -3,17 +3,17 @@
 ## Project Specification for Group #66
 
 ### Table of Contents
-1. [Project Overview](#Project-Overview)
-2. [Features](#Features-)
-3. User Stories
-4. Entities and Data Model
-5. Proposed API
-6. Installation Instructions
-7. Usage Guide
-8. License
-9. Feedback
-10. Contributions
-11. Team Members
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [User Stories](#user-stories)
+4. [Entities and Data Model](#entities-and-data-model)
+5. [Proposed API](#proposed-api)
+6. [Installation Instructions](#installation-instructions)
+7. [Usage Guide](#usage-guide)
+8. [License](#license)
+9. [Feedback](#feedback)
+10. [Contributions](#contributions)
+11. [Team Members](#team-members)
 
 ### Project Overview:
 ﻿Purpose: The domain of this project is second hand book transaction. This software should allow user to buy or sell second hand books by providing transaction functionalities including account (for both buyers and sellers) registration and management, product (book) posting and order management. Additionally the software could allow user to look for, main.java.view details of, comment on books and add books to shopping carts. An extension to the software functionality could be price drop notification and book recommendation. This platform promotes affordability, accessibility, and sustainability by enabling users to reuse books efficiently. This project was developed to provide a cost-effective solution for accessing books and encourage the reuse of valuable resources. It solves the problem of high costs for new books by creating an efficient second-hand marketplace.
