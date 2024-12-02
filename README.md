@@ -3,8 +3,8 @@
 ## Project Specification for Group #66
 
 ### Table of Contents
-1. [Project Overview](#Project-Overview-(Domain))
-2. Features
+1. [Project Overview](#Project-Overview)
+2. [Features](#Features)
 3. User Stories
 4. Entities and Data Model
 5. Proposed API
