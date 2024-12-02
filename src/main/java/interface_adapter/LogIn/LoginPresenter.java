@@ -1,5 +1,7 @@
 package interface_adapter.LogIn;
 
+import interface_adapter.MainPage.LoggedInState;
+import interface_adapter.MainPage.LoggedInViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.user.auth.AuthOutputBoundary;
 import use_case.user.auth.AuthOutputData;

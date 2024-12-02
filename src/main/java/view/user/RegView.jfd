@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.4" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.3" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -50,7 +50,7 @@ new FormModel {
 					"value": "Center"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {comp button1:::p::p, space ::170:x, comp cancelButton:::p::p, space :p:5:p, comp okButton:::p::p, space :::p}}"
+					"$horizontalGroup": "par l {seq l {comp button1:::p::p, space ::164:x, comp cancelButton:::p::p, space :p:5:p, comp okButton:::p::p, space :::p}}"
 					"$verticalGroup": "par l {par b:l {comp cancelButton::b:p::p, comp button1::b:p::p, comp okButton::b:p::p}}"
 				} ) {
 					name: "buttonBar"
@@ -75,7 +75,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 450, 250 )
+			"size": new java.awt.Dimension( 450, 270 )
 		} )
 	}
 }

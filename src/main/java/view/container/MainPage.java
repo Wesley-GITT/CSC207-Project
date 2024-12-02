@@ -4,20 +4,30 @@
 
 package view.container;
 
+import interface_adapter.Logout.LogoutController;
+import interface_adapter.MainPage.LoggedInViewModel;
+import interface_adapter.MainPage.MainPageViewModel;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * @author webster
  */
-public class Main extends JFrame {
-    public Main() {
+public class MainPage extends JFrame{
+
+    private final String viewName = "Main Page";
+    private final MainPageViewModel mainPageViewModel;
+    private LogoutController logoutController;
+
+    public MainPage(MainPageViewModel mainPageViewModel) {
         initComponents();
+        this.mainPageViewModel = mainPageViewModel;
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - Jing Wei
+        // Generated using JFormDesigner Evaluation license - eric
         menuBar1 = new JMenuBar();
         menu2 = new JMenu();
         menuItem7 = new JMenuItem();
@@ -102,23 +112,34 @@ public class Main extends JFrame {
         //======== panel2 ========
         {
             panel2.setMinimumSize(new Dimension(600, 360));
-            panel2.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax.
-            swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border
-            . TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog"
-            ,java .awt .Font .BOLD ,12 ), java. awt. Color. red) ,panel2. getBorder
-            ( )) ); panel2. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java
-            .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException
-            ( ); }} );
+            panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
+            . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmDes\u0069gner \u0045valua\u0074ion" , javax. swing .border . TitledBorder
+            . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .
+            awt . Font. BOLD ,12 ) ,java . awt. Color .red ) ,panel2. getBorder () ) )
+            ; panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+            ) { if( "\u0062order" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
+            ;
             panel2.setLayout(new CardLayout());
         }
         contentPane.add(panel2, "card1");
         pack();
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
+
+
+        menuItem5.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                evt -> {
+                    if (evt.getSource().equals(menuItem5)) {
+                        logoutController.execute();
+                    }
+                }
+        );
+
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - Jing Wei
+    // Generated using JFormDesigner Evaluation license - eric
     private JMenuBar menuBar1;
     private JMenu menu2;
     private JMenuItem menuItem7;
@@ -131,4 +152,15 @@ public class Main extends JFrame {
     private JMenuItem menuItem4;
     private JPanel panel2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+
+    public String getViewName() {
+        return viewName;
+    }
+
+
+    public void setLogoutController(LogoutController logoutController) {
+        this.logoutController = logoutController;
+    }
+
 }
