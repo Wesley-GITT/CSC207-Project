@@ -108,7 +108,7 @@ Add to Cart and Checkout:
 
 ### License
 Included in Files
-This project is licensed under the MIT License, allowing users to modify, distribute, and use the code freely.
+This project is licensed under the Creative Commons Zero v1.0 Universal License.
 
 
 
