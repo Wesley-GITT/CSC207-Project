@@ -1,7 +1,7 @@
 # CSC207 - Second-Hand Book Transaction Platform
 
 <div>
-<img src="https://readme-typing-svg.demolab.com/?pause=1&size=50&color=f75c7e&center=True&width=1200&height=120&vCenter=True&lines=Click+the+⭐+Star+please .;Any+questions+can+be+asked+in+Issue." />
+<img src="https://readme-typing-svg.demolab.com/?pause=1&size=50&color=f75c7e&center=True&width=1200&height=120&vCenter=True&lines=Click+the+Project+Overview+please .;Any+questions+can+be+submit+in+Feedback" />
 </div>
 
 ## Project Specification for Group #66
