@@ -5,6 +5,7 @@
 package view.user;
 
 import interface_adapter.LogIn.LoginController;
+import interface_adapter.LogIn.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupState;
 import interface_adapter.signup.SignupViewModel;
@@ -28,9 +29,10 @@ public class RegView extends JDialog implements ActionListener, PropertyChangeLi
     private final SignupViewModel signupViewModel;
     private SignupController signupController;
 
-    public RegView(SignupViewModel viewModel) {
+    public RegView(SignupViewModel viewModel, SignupController signupController) {
         initComponents();
         signupViewModel = viewModel;
+        this.signupController = signupController;
     }
 
     private void initComponents() {
@@ -59,13 +61,14 @@ public class RegView extends JDialog implements ActionListener, PropertyChangeLi
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new
-            javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e", javax
-            . swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java
-            .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 ), java. awt
-            . Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans.
-            PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("borde\u0072" .
-            equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (
+            new javax. swing. border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e"
+            , javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM
+            , new java .awt .Font ("Dialo\u0067" ,java .awt .Font .BOLD ,12 )
+            , java. awt. Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (
+            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
+            ) {if ("borde\u0072" .equals (e .getPropertyName () )) throw new RuntimeException( )
+            ; }} );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
@@ -144,7 +147,7 @@ public class RegView extends JDialog implements ActionListener, PropertyChangeLi
                 okButton.setText("Continue");
 
                 //---- button1 ----
-                button1.setText("Sign Up");
+                button1.setText("Sign In");
 
                 GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
                 buttonBar.setLayout(buttonBarLayout);
@@ -174,7 +177,6 @@ public class RegView extends JDialog implements ActionListener, PropertyChangeLi
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 
         okButton.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(okButton)) {
@@ -190,13 +192,31 @@ public class RegView extends JDialog implements ActionListener, PropertyChangeLi
                 }
         );
 
-        button1.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        signupController.switchToLoginView();
-                    }
+//        button1.addActionListener(
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent evt) {
+//                        signupController.switchToLoginView();
+//                    }
+//                }
+//        );
+
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                if (evt.getSource().equals(button1)) {
+                    signupController.switchToMyUserView();
                 }
-        );
+            }
+        });
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                if (evt.getSource().equals(cancelButton)) {
+                    signupController.switchToOriginalView();
+                }
+            }
+        });
 
 //        cancelButton.addActionListener(this);
 //
@@ -230,8 +250,6 @@ public class RegView extends JDialog implements ActionListener, PropertyChangeLi
     private JButton okButton;
     private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-
-
 
     private void addUsernameListener() {
         textField1.getDocument().addDocumentListener(new DocumentListener() {
@@ -333,3 +351,8 @@ public class RegView extends JDialog implements ActionListener, PropertyChangeLi
     }
 
 }
+
+
+
+
+

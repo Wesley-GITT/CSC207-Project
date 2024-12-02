@@ -30,6 +30,18 @@ public class LogoutInteractorTest {
             public void prepareFailView(String errorMessage) {
                 fail("Use case failure is unexpected");
             }
+
+            @Override
+            public void switchToOriginView() {
+
+//                successPresenter.switchToOriginView();
+
+            }
+
+            @Override
+            public void switchToRegView() {
+
+            }
         };
 
         AuthInteractor interactor = new AuthInteractor(userRepo, successPresenter);
@@ -52,6 +64,16 @@ public class LogoutInteractorTest {
             @Override
             public void prepareFailView(String errorMessage) {
                 assertEquals("User `wes` doesn't exist", errorMessage);
+            }
+
+            @Override
+            public void switchToOriginView() {
+
+            }
+
+            @Override
+            public void switchToRegView() {
+
             }
         };
 
@@ -77,6 +99,16 @@ public class LogoutInteractorTest {
             @Override
             public void prepareFailView(String errorMessage) {
                 assertEquals("Incorrect username and/or password", errorMessage);
+            }
+
+            @Override
+            public void switchToOriginView() {
+
+            }
+
+            @Override
+            public void switchToRegView() {
+
             }
         };
 

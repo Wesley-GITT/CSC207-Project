@@ -65,7 +65,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button1"
-						"text": "Sign Up"
+						"text": "Sign In"
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "South"

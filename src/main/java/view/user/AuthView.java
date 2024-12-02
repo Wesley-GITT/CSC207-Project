@@ -7,6 +7,7 @@ package view.user;
 import interface_adapter.LogIn.LoginController;
 import interface_adapter.LogIn.LoginState;
 import interface_adapter.LogIn.LoginViewModel;
+import interface_adapter.signup.SignupViewModel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -28,9 +29,10 @@ public class AuthView extends JDialog implements ActionListener, PropertyChangeL
     private LoginController loginController;
 
 
-    public AuthView(LoginViewModel loginViewModel) {
+    public AuthView(LoginViewModel loginViewModel, LoginController loginController) {
         initComponents();
         this.loginViewModel = loginViewModel;
+        this.loginController = loginController;
     }
 
     private void initComponents() {
@@ -179,7 +181,22 @@ public class AuthView extends JDialog implements ActionListener, PropertyChangeL
                     }
                 }
         );
-        cancelButton.addActionListener(this);
+//        cancelButton.addActionListener(this);
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                if (evt.getSource().equals(cancelButton)) {
+                    loginController.switchToOriginView();
+                }
+            }
+        });
+
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                loginController.switchToRegView();
+            }
+        });
 
         textField1.getDocument().addDocumentListener(new DocumentListener() {
 

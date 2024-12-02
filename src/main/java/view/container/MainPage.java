@@ -5,7 +5,6 @@
 package view.container;
 
 import interface_adapter.Logout.LogoutController;
-import interface_adapter.MainPage.LoggedInViewModel;
 import interface_adapter.MainPage.MainPageViewModel;
 
 import javax.swing.*;

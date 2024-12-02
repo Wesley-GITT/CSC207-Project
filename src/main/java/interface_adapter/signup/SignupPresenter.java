@@ -44,13 +44,13 @@ public class SignupPresenter implements RegOutputBoundary {
 
     @Override
     public void switchToOriginalView() {
-        // viewManagerModel.setState(loginViewModel.getViewName());
-        // viewManagerModel.firePropertyChanged();
-        // implementation expected
+         viewManagerModel.setState(loginViewModel.getViewName());
+         viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void switchToMyUserView() {
-        // Implementation expected
+        viewManagerModel.setState(loginViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 }

@@ -26,4 +26,12 @@ public class LoginController {
 
         loginUseCaseInteractor.execute(loginInputData);
     }
+
+    public void switchToRegView() {
+        loginUseCaseInteractor.switchToRegView();
+    }
+
+    public void switchToOriginView() {
+        loginUseCaseInteractor.switchToOriginView();
+    }
 }

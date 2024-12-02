@@ -8,7 +8,7 @@ import interface_adapter.ViewModel;
 public class MainPageViewModel extends ViewModel<MainPageState> {
 
     public MainPageViewModel() {
-        super("Main");
+        super("Main Page");
         setState(new MainPageState());
     }
 

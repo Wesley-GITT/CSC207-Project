@@ -11,17 +11,23 @@ public class Main {
      * @param args unused arguments
      */
     public static void main(String[] args) {
-        final AppBuilder appBuilder = new AppBuilder();
-        final JFrame application = appBuilder
-                .addLoginView()
-                .addSignupView()
-                .addMainPage()
-                .addSignupUseCase()
-                .addLoginUseCase()
-                .addLogoutUseCase()
-                .build();
+//        final AppBuilder appBuilder = new AppBuilder();
+//        final JFrame application = appBuilder
+//                .addLoginView()
+//                .addSignupView()
+//                .addMainPage()
+//                .addSignupUseCase()
+//                .addLoginUseCase()
+//                .addLogoutUseCase()
+//                .build();
+//
+//        application.pack();
+//        application.setVisible(true);
 
-        application.pack();
-        application.setVisible(true);
+
+        AppBuilder appBuilder = new AppBuilder();
+        appBuilder.addLoginView()
+                .addSignupView()
+                .build();
     }
 }
