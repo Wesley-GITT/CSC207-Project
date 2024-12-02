@@ -26,6 +26,7 @@ public class ViewItem extends JPanel {
         button1 = new JButton();
         panel1 = new JPanel();
         label5 = new JLabel();
+        checkBox1 = new JCheckBox();
         label6 = new JLabel();
         textField3 = new JTextField();
         label4 = new JLabel();
@@ -34,13 +35,12 @@ public class ViewItem extends JPanel {
 
         //======== this ========
         setMinimumSize(new Dimension(457, 450));
-        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-        .border.EmptyBorder(0,0,0,0), "JF\u006frmDesi\u0067ner Ev\u0061luatio\u006e",javax.swing.border.TitledBorder
-        .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("Dialo\u0067",java.
-        awt.Font.BOLD,12),java.awt.Color.red), getBorder()))
-        ; addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-        ){if("borde\u0072".equals(e.getPropertyName()))throw new RuntimeException();}})
-        ;
+        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
+        EmptyBorder( 0, 0, 0, 0) , "JF\u006frmDes\u0069gner \u0045valua\u0074ion", javax. swing. border. TitledBorder. CENTER, javax. swing
+        . border. TitledBorder. BOTTOM, new java .awt .Font ("D\u0069alog" ,java .awt .Font .BOLD ,12 ),
+        java. awt. Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( )
+        { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062order" .equals (e .getPropertyName () ))
+        throw new RuntimeException( ); }} );
         setLayout(new GridBagLayout());
         ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0, 0};
         ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
@@ -91,9 +91,9 @@ public class ViewItem extends JPanel {
             panel1.setMinimumSize(new Dimension(400, 600));
             panel1.setAutoscrolls(true);
             panel1.setLayout(new GridBagLayout());
-            ((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {0, 0};
+            ((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {0, 0, 0};
             ((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
-            ((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {1.0, 1.0E-4};
+            ((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {1.0, 0.0, 1.0E-4};
             ((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, 1.0E-4};
 
             //---- label5 ----
@@ -102,22 +102,29 @@ public class ViewItem extends JPanel {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 0, 0), 0, 0));
 
+            //---- checkBox1 ----
+            checkBox1.setText("Sold");
+            checkBox1.setEnabled(false);
+            panel1.add(checkBox1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
+                new Insets(0, 0, 0, 0), 0, 0));
+
             //---- label6 ----
             label6.setText("Contact Information");
-            panel1.add(label6, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+            panel1.add(label6, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0,
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 0, 0), 0, 0));
 
             //---- textField3 ----
             textField3.setText("<Contact Information>");
             textField3.setEditable(false);
-            panel1.add(textField3, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+            panel1.add(textField3, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0,
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 0, 0), 0, 0));
 
             //---- label4 ----
             label4.setText("Book Condition");
-            panel1.add(label4, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+            panel1.add(label4, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 0, 0), 0, 0));
 
@@ -129,7 +136,7 @@ public class ViewItem extends JPanel {
                 textPane1.setEditable(false);
                 scrollPane1.setViewportView(textPane1);
             }
-            panel1.add(scrollPane1, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0,
+            panel1.add(scrollPane1, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
         }
@@ -149,6 +156,7 @@ public class ViewItem extends JPanel {
     private JButton button1;
     private JPanel panel1;
     private JLabel label5;
+    private JCheckBox checkBox1;
     private JLabel label6;
     private JTextField textField3;
     private JLabel label4;
