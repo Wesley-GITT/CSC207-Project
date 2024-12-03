@@ -4,16 +4,34 @@
 
 package view.user;
 
+import interface_adapter.user.reg.RegController;
+import interface_adapter.user.reg.RegState;
+import interface_adapter.user.reg.RegViewModel;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * @author Jing Wei
  */
-public class RegView extends JDialog {
+public class RegView extends JDialog implements PropertyChangeListener {
 
-    public RegView() {
+    private final String viewName = "registration";
+
+    private final RegViewModel regViewModel;
+    private final RegController regController;
+
+    public RegView(Window owner, RegViewModel regViewModel, RegController regController) {
+        super(owner);
+        this.regViewModel = regViewModel;
+        this.regController = regController;
+
+        this.regViewModel.addPropertyChangeListener(this);
+
         initComponents();
     }
 
@@ -27,9 +45,9 @@ public class RegView extends JDialog {
         label2 = new JLabel();
         passwordField1 = new JPasswordField();
         label3 = new JLabel();
-        label4 = new JLabel();
         passwordField2 = new JPasswordField();
         label5 = new JLabel();
+        label4 = new JLabel();
         buttonBar = new JPanel();
         cancelButton = new JButton();
         okButton = new JButton();
@@ -43,77 +61,62 @@ public class RegView extends JDialog {
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax
-            . swing. border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing
-            . border. TitledBorder. CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .
-            Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color. red
-            ) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override
-            public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName (
-            ) )) throw new RuntimeException( ); }} );
+            dialogPane.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder (
+            0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder
+            . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .
+            red ) ,dialogPane. getBorder () ) ); dialogPane. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java .
+            beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
             dialogPane.setLayout(new BorderLayout());
 
             //======== contentPanel ========
             {
+                contentPanel.setLayout(new GridBagLayout());
+                ((GridBagLayout)contentPanel.getLayout()).columnWidths = new int[] {97, 0, 0};
+                ((GridBagLayout)contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+                ((GridBagLayout)contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
+                ((GridBagLayout)contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+                contentPanel.add(textField1, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(5, 0, 5, 4), 0, 0));
 
                 //---- label1 ----
                 label1.setText("Username:");
+                contentPanel.add(label1, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(4, 4, 5, 9), 0, 0));
 
                 //---- label2 ----
                 label2.setText("Password:");
+                contentPanel.add(label2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(4, 4, 5, 9), 0, 0));
+                contentPanel.add(passwordField1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(5, 0, 5, 4), 0, 0));
 
                 //---- label3 ----
                 label3.setText("Create an account.");
                 label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + 4f));
+                contentPanel.add(label3, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(10, 4, 11, 4), 0, 0));
+                contentPanel.add(passwordField2, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(5, 0, 5, 4), 0, 0));
+
+                //---- label5 ----
+                label5.setText("Confirm Password:");
+                contentPanel.add(label5, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                    new Insets(4, 4, 5, 9), 0, 0));
 
                 //---- label4 ----
                 label4.setText("Error Message");
                 label4.setForeground(new Color(0xb3261e));
-
-                //---- label5 ----
-                label5.setText("Confirm Password:");
-
-                GroupLayout contentPanelLayout = new GroupLayout(contentPanel);
-                contentPanel.setLayout(contentPanelLayout);
-                contentPanelLayout.setHorizontalGroup(
-                    contentPanelLayout.createParallelGroup()
-                        .addGroup(contentPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(contentPanelLayout.createParallelGroup()
-                                .addGroup(contentPanelLayout.createSequentialGroup()
-                                    .addGroup(contentPanelLayout.createParallelGroup()
-                                        .addComponent(label5)
-                                        .addGroup(GroupLayout.Alignment.TRAILING, contentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(label2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(label1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(passwordField1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                                        .addComponent(textField1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                                        .addComponent(passwordField2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)))
-                                .addComponent(label3)
-                                .addComponent(label4))
-                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                );
-                contentPanelLayout.setVerticalGroup(
-                    contentPanelLayout.createParallelGroup()
-                        .addGroup(contentPanelLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(label3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label4)
-                            .addGap(7, 7, 7)
-                            .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(contentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(passwordField1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(contentPanelLayout.createParallelGroup()
-                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(passwordField2, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)))
-                );
+                label4.setVisible(false);
+                contentPanel.add(label4, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 4, 0, 4), 0, 0));
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
@@ -123,12 +126,15 @@ public class RegView extends JDialog {
 
                 //---- cancelButton ----
                 cancelButton.setText("Cancel");
+                cancelButton.addActionListener(e -> cancel(e));
 
                 //---- okButton ----
                 okButton.setText("Continue");
+                okButton.addActionListener(e -> signup(e));
 
                 //---- button1 ----
                 button1.setText("Sign In");
+                button1.addActionListener(e -> switchToSignIn(e));
 
                 GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
                 buttonBar.setLayout(buttonBarLayout);
@@ -136,7 +142,7 @@ public class RegView extends JDialog {
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createSequentialGroup()
                             .addComponent(button1)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
                             .addComponent(cancelButton)
                             .addGap(5, 5, 5)
                             .addComponent(okButton)
@@ -153,7 +159,7 @@ public class RegView extends JDialog {
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(450, 250);
+        setSize(450, 260);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -167,12 +173,53 @@ public class RegView extends JDialog {
     private JLabel label2;
     private JPasswordField passwordField1;
     private JLabel label3;
-    private JLabel label4;
     private JPasswordField passwordField2;
     private JLabel label5;
+    private JLabel label4;
     private JPanel buttonBar;
     private JButton cancelButton;
     private JButton okButton;
     private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        final RegState state = (RegState) evt.getNewValue();
+        final String signupError = state.getRegisterError();
+        if (signupError != null) {
+            label4.setText(signupError);
+            label4.setVisible(true);
+        } else {
+            label4.setVisible(false);
+        }
+    }
+
+    public String getViewName() {
+        return viewName;
+    }
+
+    private void close() {
+        textField1.setText("");
+        passwordField1.setText("");
+        passwordField2.setText("");
+        dispose();
+    }
+
+    private void cancel(ActionEvent e) {
+        close();
+    }
+
+    private void signup(ActionEvent e) {
+        final String username = textField1.getText();
+        final String password1 = String.valueOf(passwordField1.getPassword());
+        final String password2 = String.valueOf(passwordField2.getPassword());
+
+        regController.execute(username, password1, password2);
+        close();
+    }
+
+    private void switchToSignIn(ActionEvent e) {
+        regController.switchToSignIn();
+        close();
+    }
 }

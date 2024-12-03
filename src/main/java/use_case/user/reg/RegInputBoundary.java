@@ -4,7 +4,5 @@ public interface RegInputBoundary {
 
     void execute(RegInputData regInputData);
 
-    void switchToOriginalView();
-
-    void switchToMyUserView();
+    void switchToSignIn();
 }

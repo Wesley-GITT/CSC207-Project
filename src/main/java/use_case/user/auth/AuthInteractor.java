@@ -29,4 +29,9 @@ public class AuthInteractor implements AuthInputBoundary {
             authPresenter.prepareSuccessView(authOutputData);
         }
     }
+
+    @Override
+    public void switchToSignUp() {
+        authPresenter.switchToSignUp();
+    }
 }

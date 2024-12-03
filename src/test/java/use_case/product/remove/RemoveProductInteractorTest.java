@@ -92,7 +92,7 @@ public class RemoveProductInteractorTest {
 
             @Override
             public void prepareFailView(String errorMessage) {
-                assertEquals("Product with ID `2` does not exist", errorMessage);
+                assertEquals("ListProductView with ID `2` does not exist", errorMessage);
             }
         };
 

@@ -25,7 +25,7 @@ public class RemoveProductInteractor implements RemoveProductInputBoundary {
         final int productId = removeProductInputData.getProductId();
 
         if (!productDataAccessObject.exist(productId)) {
-            removeProductPresenter.prepareFailView("Product with ID `" + productId + "` does not exist");
+            removeProductPresenter.prepareFailView("ListProductView with ID `" + productId + "` does not exist");
             return;
         }
 

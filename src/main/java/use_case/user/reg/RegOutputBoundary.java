@@ -6,7 +6,5 @@ public interface RegOutputBoundary {
 
     void prepareFailView(String errorMessage);
 
-    void switchToOriginalView();
-
-    void switchToMyUserView();
+    void switchToSignIn();
 }

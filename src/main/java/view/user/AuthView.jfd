@@ -10,34 +10,60 @@ new FormModel {
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {seq l {par l {comp label2:::p:65:p, comp label1:::p::p}, space :::p, par l {comp textField1::::340:x, comp passwordField1::::340:x}, space :::p}, seq {par l {comp label3:::p::p, comp label4::l:p::p}, space :p:1:p}}}}"
-					"$verticalGroup": "par l {seq t {space :p:8:p, comp label3::::30:x, space :::p, comp label4:::p::p, space :p:8:p, par t {comp label1:::p:27:p, comp textField1:::p:27:p}, space :::p, par b {comp label2::b:p:27:p, comp passwordField1::b:p:27:p}, space :::p}}"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "right:0, 0:1.0"
+					"$rowSpecs": "0, center:0, 0, 0"
+					"$alignTop": true
+					"$alignLeft": true
 				} ) {
 					name: "contentPanel"
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField1"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label1"
-						"text": "Username:"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label2"
-						"text": "Password:"
-					} )
-					add( new FormComponent( "javax.swing.JPasswordField" ) {
-						name: "passwordField1"
-					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label3"
 						"text": "Sign in to your account."
 						"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 4, false )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridwidth": 2
+						"insets": new java.awt.Insets( 10, 4, 6, 4 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "Username:"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 1
+						"insets": new java.awt.Insets( 7, 4, 0, 4 )
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField1"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 1
+						"gridx": 1
+						"insets": new java.awt.Insets( 8, 0, 0, 4 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "Password:"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 2
+						"insets": new java.awt.Insets( 7, 4, 0, 4 )
+						"hAlign": 4
+					} )
+					add( new FormComponent( "javax.swing.JPasswordField" ) {
+						name: "passwordField1"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 2
+						"insets": new java.awt.Insets( 8, 0, 0, 4 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label4"
 						"text": "Error Message"
 						"foreground": new java.awt.Color( 179, 38, 30, 255 )
+						"visible": false
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridy": 3
+						"gridwidth": 2
+						"insets": new java.awt.Insets( 0, 6, 4, 4 )
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "Center"
@@ -51,14 +77,17 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "cancelButton"
 						"text": "Cancel"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancel", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "okButton"
 						"text": "Continue"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "signin", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "button1"
 						"text": "Sign Up"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "switchToSignUp", true ) )
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "South"
@@ -68,7 +97,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 450, 225 )
+			"size": new java.awt.Dimension( 450, 215 )
 		} )
 	}
 }

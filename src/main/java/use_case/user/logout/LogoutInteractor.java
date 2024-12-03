@@ -9,7 +9,7 @@ public class LogoutInteractor implements LogoutInputBoundary {
     }
 
     @Override
-    public void execute(LogoutInputData logoutInputData) {
-        logoutPresenter.prepareSuccessView(new LogoutOutputData());
+    public void execute() {
+        logoutPresenter.prepareSuccessView();
     }
 }
