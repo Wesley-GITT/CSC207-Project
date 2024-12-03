@@ -36,12 +36,7 @@ public class RegInteractor implements RegInputBoundary {
     }
 
     @Override
-    public void switchToOriginalView() {
-        regPresenter.switchToOriginalView();
-    }
-
-    @Override
-    public void switchToMyUserView() {
-        regPresenter.switchToMyUserView();
+    public void switchToSignIn() {
+        regPresenter.switchToSignIn();
     }
 }

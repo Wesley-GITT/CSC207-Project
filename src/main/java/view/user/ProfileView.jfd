@@ -1,0 +1,89 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.4" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "center:0, 0:1.0, 0"
+			"$rowSpecs": "0, 0, 0, top:0, top:0, top:0, 0"
+			"$alignTop": true
+			"$alignLeft": true
+			"$hGap": 16
+			"$vGap": 12
+		} ) {
+			name: "this"
+			"minimumSize": new java.awt.Dimension( 457, 450 )
+			addEvent( new FormEvent( "java.awt.event.ComponentListener", "componentShown", "thisComponentShown", true ) )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Basics"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"vAlign": 5
+				"gridheight": 3
+				"hAlign": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Logged in as: <Username>"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 1
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Change Username"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "changeUsernameButtonClicked", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 1
+				"gridx": 2
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Change Password"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "changePasswordButtonClicked", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 2
+				"gridx": 2
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "My Profile"
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridheight": 2
+				"vAlign": 5
+				"gridy": 3
+				"hAlign": 0
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField1"
+				"text": "Email: <Email>"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 1
+				"vAlign": 1
+				"gridwidth": 2
+				"gridy": 3
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "textField2"
+				"text": "Telephone: <Telephone>"
+				"editable": false
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 4
+				"vAlign": 1
+				"gridx": 1
+				"gridwidth": 2
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Edit my profile"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "editMyProfileButtonClicked", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridx": 2
+				"gridy": 5
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 560, 285 )
+		} )
+	}
+}

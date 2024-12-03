@@ -28,13 +28,8 @@ public class RegInteractorTest {
             }
 
             @Override
-            public void switchToOriginalView() {
-                // this might be expected
-            }
+            public void switchToSignIn() {
 
-            @Override
-            public void switchToMyUserView() {
-                // this might be expected
             }
         };
 
@@ -63,13 +58,8 @@ public class RegInteractorTest {
             }
 
             @Override
-            public void switchToOriginalView() {
-                // this might be expected
-            }
+            public void switchToSignIn() {
 
-            @Override
-            public void switchToMyUserView() {
-                // this might be expected
             }
         };
 
@@ -94,13 +84,8 @@ public class RegInteractorTest {
             }
 
             @Override
-            public void switchToOriginalView() {
-                // this might be expected
-            }
+            public void switchToSignIn() {
 
-            @Override
-            public void switchToMyUserView() {
-                // this might be expected
             }
         };
 

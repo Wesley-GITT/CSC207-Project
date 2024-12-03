@@ -1,0 +1,71 @@
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.4" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+			"$columnSpecs": "left:0, 0, 0:1.0"
+			"$rowSpecs": "0, 0:1.0, 0"
+			"$alignTop": true
+			"$alignLeft": true
+			"$hGap": 6
+			"$vGap": 8
+		} ) {
+			name: "this"
+			"minimumSize": new java.awt.Dimension( 457, 450 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "My Wishlist"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 4, false )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"vAlign": 5
+				"hAlign": 2
+				"insets": new java.awt.Insets( 8, 6, 0, 0 )
+				"gridwidth": 3
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( 0 )
+						} )
+					}, new java.util.Vector {
+						add( "Product ID" )
+					}, new java.util.Vector {
+						add( class java.lang.Integer )
+					}, new java.util.Vector {
+						add( false )
+					}, new java.util.Vector {
+						add( null )
+					} )
+				} )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 1
+				"gridwidth": 3
+				"insets": new java.awt.Insets( 0, 4, 0, 4 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Remove"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "removeButtonClicked", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 2
+				"insets": new java.awt.Insets( 0, 4, 6, 0 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Details"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "detailsButtonClicked", true ) )
+			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+				"gridy": 2
+				"gridx": 1
+				"insets": new java.awt.Insets( 0, 0, 6, 0 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 560, 285 )
+		} )
+	}
+}

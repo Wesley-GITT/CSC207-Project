@@ -17,7 +17,7 @@ public class ViewProductInteractor implements ViewProductInputBoundary {
     public void execute(ViewProductInputData viewProductInputData) {
         final int productId = viewProductInputData.getProductId();
         if (!productDataAccessObject.exist(productId)) {
-            viewProductPresenter.prepareFailView("Product with ID `" + productId + "` doesn't exist");
+            viewProductPresenter.prepareFailView("ListProductView with ID `" + productId + "` doesn't exist");
             return;
         }
 

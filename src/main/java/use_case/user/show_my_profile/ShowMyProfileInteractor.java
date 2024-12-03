@@ -25,7 +25,7 @@ public class ShowMyProfileInteractor implements ShowMyProfileInputBoundary {
             final String telephone = user.getTelephone();
             final String email = user.getEmail();
 
-            ShowMyProfileOutputData outputData = new ShowMyProfileOutputData(telephone, email);
+            ShowMyProfileOutputData outputData = new ShowMyProfileOutputData(username, telephone, email);
             showMyProfilePresenter.prepareSuccessView(outputData);
         }
     }

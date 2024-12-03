@@ -2,7 +2,6 @@ package use_case.user.logout;
 
 public interface LogoutOutputBoundary {
 
-    void prepareSuccessView(LogoutOutputData outputData);
+    void prepareSuccessView();
 
-    void prepareFailView(String errorMessage);
 }
