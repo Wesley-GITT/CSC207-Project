@@ -16,12 +16,14 @@ import use_case.book.search.SearchBookDataAccessInterface;
 import use_case.book.view.ViewBookDataAccessInterface;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.*;
 
 
 public class APIBookDataAccessObject implements ViewBookDataAccessInterface, SearchBookDataAccessInterface {
 
     private final String baseUrl = "https://www.googleapis.com/books/v1/volumes";
+    // private final String pos = "&key=AIzaSyCjFtxl0aJp-HONN6lpsYNCyCi-1Mqoi0I";
 
     private String getJSONStringByKey(JSONObject object, String key) {
         if (object.has(key)) {
@@ -60,7 +62,7 @@ public class APIBookDataAccessObject implements ViewBookDataAccessInterface, Sea
             }
 
             BookFactory bookFactory = new BookFactory();
-            return bookFactory.create(id, title, imageURL, authors, publisher, publishedDate, description, language);
+            return bookFactory.create(id, imageURL, title, authors, publisher, publishedDate, description, language);
 
         } catch (IOException | ParseException | JSONException e) {
             throw new RuntimeException(e);
@@ -86,7 +88,7 @@ public class APIBookDataAccessObject implements ViewBookDataAccessInterface, Sea
     @Override
     public List<String> search(String keyword, int startIndex, int maxItemNum) {
         try {
-            HttpGet httpGet = new HttpGet(baseUrl + "?q=" + keyword + "&startIndex=" + startIndex + "&maxResults=" + maxItemNum);
+            HttpGet httpGet = new HttpGet(baseUrl + "?q=" + URLEncoder.encode(keyword) + "&startIndex=" + startIndex + "&maxResults=" + maxItemNum);
             CloseableHttpClient httpClient = HttpClients.createDefault();
             CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
             HttpEntity httpEntity = httpResponse.getEntity();

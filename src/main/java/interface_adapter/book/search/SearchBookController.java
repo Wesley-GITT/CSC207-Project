@@ -15,7 +15,7 @@ public class SearchBookController {
     }
 
     public void execute(String keyword, int startIndex, boolean withProduct) {
-        final SearchBookInputData searchBookInputData = new SearchBookInputData(keyword, 20, startIndex, withProduct);
+        final SearchBookInputData searchBookInputData = new SearchBookInputData(keyword, 10, startIndex, withProduct);
         searchBookInteractor.execute(searchBookInputData);
     }
 }

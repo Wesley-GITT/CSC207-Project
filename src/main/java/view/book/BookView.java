@@ -43,6 +43,8 @@ import java.util.Set;
  */
 public class BookView extends JPanel implements PropertyChangeListener {
 
+    private final String viewName = "view book";
+
     private final BookViewModel bookViewModel;
     private final ProductViewModel productViewModel;
     private final ProductController productController;
@@ -80,6 +82,7 @@ public class BookView extends JPanel implements PropertyChangeListener {
         this.updateWishlistController = updateWishlistController;
         this.viewManagerModel = viewManagerModel;
 
+        this.bookViewModel.addPropertyChangeListener(this);
         this.productViewModel.addPropertyChangeListener(this);
         this.showOtherProfileViewModel.addPropertyChangeListener(this);
         this.listBookProductViewModel.addPropertyChangeListener(this);
@@ -111,12 +114,12 @@ public class BookView extends JPanel implements PropertyChangeListener {
 
         //======== this ========
         setMinimumSize(new Dimension(457, 450));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-        ( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-        . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-        propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing.
+        border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER
+        ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font
+        . BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) );  addPropertyChangeListener(
+        new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r"
+        .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } );
         setLayout(new GridBagLayout());
         ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0, 0};
         ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
@@ -124,8 +127,11 @@ public class BookView extends JPanel implements PropertyChangeListener {
         ((GridBagLayout)getLayout()).rowWeights = new double[] {0.0, 1.0, 0.0, 1.0, 1.0E-4};
 
         //---- label1 ----
-        label1.setText("<image>");
-        add(label1, new GridBagConstraints(0, 0, 1, 2, 0.0, 0.0,
+        label1.setIconTextGap(10);
+        label1.setMinimumSize(new Dimension(120, 80));
+        label1.setMaximumSize(new Dimension(1024, 256));
+        label1.setPreferredSize(new Dimension(80, 40));
+        add(label1, new GridBagConstraints(0, 0, 1, 3, 0.0, 0.0,
             GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
             new Insets(6, 4, 12, 16), 0, 0));
 
@@ -329,7 +335,7 @@ public class BookView extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         final Object state = evt.getNewValue();
-        if (state instanceof BookState) {
+        if (state instanceof BookState){
             propertyChangeBook((BookState) state);
         } else if (state instanceof ListBookProductState) {
             propertyChangeListBookProduct((ListBookProductState) state);
@@ -367,5 +373,9 @@ public class BookView extends JPanel implements PropertyChangeListener {
 
         ViewManagerState managerState = viewManagerModel.getState();
         managerState.setPopupName("update product");
+    }
+
+    public String getViewName() {
+        return viewName;
     }
 }

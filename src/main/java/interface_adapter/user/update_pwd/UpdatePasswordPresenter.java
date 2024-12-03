@@ -22,6 +22,7 @@ public class UpdatePasswordPresenter implements UpdatePasswordOutputBoundary {
     public void prepareSuccessView(UpdatePasswordOutputData response) {
         ViewManagerState state = viewManagerModel.getState();
         state.setPassword(response.getPassword());
+        state.setPopupName("");
         viewManagerModel.firePropertyChanged();
     }
 

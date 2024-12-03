@@ -58,6 +58,8 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
         this.dialogues = new HashMap<>();
 
         initComponents();
+
+        this.viewManagerModel.addPropertyChangeListener(this);
     }
 
     public void setViews(AuthView authView, RegView regView, UpdateNameView updateNameView, UpdateProfileView updateProfileView,
@@ -71,6 +73,13 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
         this.listProductView = listProductView;
         this.searchBookView = searchBookView;
         this.bookView = bookView;
+
+        // put these JPanel into top-level JPanel
+        panel2.add(profileView.getViewName(), profileView);
+        panel2.add(wishlistView.getViewName(), wishlistView);
+        panel2.add(listProductView.getViewName(), listProductView);
+        panel2.add(searchBookView.getViewName(), searchBookView);
+        panel2.add(bookView.getViewName(), bookView);
 
         this.dialogues.put(authView.getViewName(), authView);
         this.dialogues.put(regView.getViewName(), regView);
@@ -200,13 +209,12 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
         //======== panel2 ========
         {
             panel2.setMinimumSize(new Dimension(600, 360));
-            panel2.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-            .border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder
-            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.
-            awt.Font.BOLD,12),java.awt.Color.red),panel2. getBorder()))
-            ;panel2. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}})
-            ;
+            panel2.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .
+            EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing
+            . border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,
+            java . awt. Color .red ) ,panel2. getBorder () ) ); panel2. addPropertyChangeListener( new java. beans .PropertyChangeListener ( )
+            { @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )
+            throw new RuntimeException( ) ;} } );
             panel2.setLayout(new CardLayout());
         }
         contentPane.add(panel2, "card1");
@@ -230,13 +238,11 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void showDialogue(String dialogName) {
-        if (dialogues.containsKey(dialogName)) {
-            for (String key: dialogues.keySet()) {
-                if (key.equals(dialogName)) {
-                    dialogues.get(key).setVisible(true);
-                } else {
-                    dialogues.get(key).setVisible(false);
-                }
+        for (String key: dialogues.keySet()) {
+            if (key.equals(dialogName)) {
+                dialogues.get(key).setVisible(true);
+            } else {
+                dialogues.get(key).setVisible(false);
             }
         }
     }
@@ -268,7 +274,10 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
         
         // non empty viewName means to switch the view
         cardLayout.show(panel2, viewName);
+
+        // clear pop-up name
         showDialogue(popupName);
+        state.setPopupName("");
 
         if (!username.equals("") && !password.equals("")) {
             enablePrivateViews();
@@ -276,7 +285,4 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
             disablePrivateViews();
         }
     }
-
-
-
 }

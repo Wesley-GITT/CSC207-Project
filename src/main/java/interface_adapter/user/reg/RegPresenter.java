@@ -24,6 +24,7 @@ public class RegPresenter implements RegOutputBoundary {
         ViewManagerState state = viewManagerModel.getState();
         state.setUsername(response.getUsername());
         state.setPassword(response.getPassword());
+        state.setPopupName("");
         viewManagerModel.firePropertyChanged();
     }
 
@@ -37,7 +38,7 @@ public class RegPresenter implements RegOutputBoundary {
     @Override
     public void switchToSignIn() {
         final ViewManagerState state = viewManagerModel.getState();
-        state.setPopupName("registration");
+        state.setPopupName("authentication");
         viewManagerModel.firePropertyChanged();
     }
 }

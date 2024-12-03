@@ -4,9 +4,9 @@ package interface_adapter.user.show_my_profile;
  * The state for the Signup View Model.
  */
 public class ShowMyProfileState {
-    private String username;
-    private String telephone;
-    private String email;
+    private String username = "";
+    private String telephone = "";
+    private String email = "";
     private String ShowMyProfileError;
 
     public String getUsername() {

@@ -148,7 +148,7 @@ public class AuthView extends JDialog implements PropertyChangeListener {
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(450, 215);
+        setSize(450, 255);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -206,6 +206,5 @@ public class AuthView extends JDialog implements PropertyChangeListener {
         final String password = String.valueOf(passwordField1.getPassword());
 
         authController.execute(username, password);
-        close();
     }
 }

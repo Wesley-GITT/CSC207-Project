@@ -28,7 +28,7 @@ public class AuthPresenter implements AuthOutputBoundary {
         ViewManagerState managerState = viewManagerModel.getState();
         managerState.setUsername(response.getUsername());
         managerState.setPassword(response.getPassword());
-        managerState.setPopupName(null);
+        managerState.setPopupName("");
         viewManagerModel.firePropertyChanged();
     }
 
@@ -42,7 +42,7 @@ public class AuthPresenter implements AuthOutputBoundary {
     @Override
     public void switchToSignUp() {
         ViewManagerState managerState = viewManagerModel.getState();
-        managerState.setPopupName("sign in");
+        managerState.setPopupName("registration");
         viewManagerModel.firePropertyChanged();
     }
 }

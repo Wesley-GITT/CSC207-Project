@@ -43,12 +43,10 @@ public class InMemoryUserDataAccessObject implements
 
         MyUser u = usersByName.get(username);
 
-        if (u.getPassword() != password) {
-            return false;
-        }
-
-        return true;
+        // Use equals to compare the content of the strings
+        return u.getPassword().equals(password);
     }
+
 
     @Override
     public MyUser get(String username, String password) {
