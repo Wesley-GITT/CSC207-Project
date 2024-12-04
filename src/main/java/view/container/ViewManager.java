@@ -113,7 +113,7 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
 
     private void wishlistMenuItemClicked(ActionEvent e) {
         ViewManagerState state = viewManagerModel.getState();
-        state.setViewName("my wishlist");
+        state.setViewName("my product");
         viewManagerModel.firePropertyChanged();
     }
 

@@ -107,7 +107,6 @@ import view.container.ViewManager;
 import view.product.EditProductView;
 import view.product.ListProductView;
 import view.user.*;
-
 import javax.swing.*;
 
 public class MainWithAPI {

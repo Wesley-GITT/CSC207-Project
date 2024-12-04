@@ -143,7 +143,7 @@ public class BookView extends JPanel implements PropertyChangeListener {
 
         //---- button2 ----
         button2.setText("I want to sell");
-        button2.addActionListener(e -> sellButtonClicked(e));
+        button2.addActionListener(this::sellButtonClicked);
         add(button2, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
             GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
             new Insets(6, 0, 12, 4), 0, 0));
@@ -373,6 +373,7 @@ public class BookView extends JPanel implements PropertyChangeListener {
 
         ViewManagerState managerState = viewManagerModel.getState();
         managerState.setPopupName("update product");
+
     }
 
     public String getViewName() {
