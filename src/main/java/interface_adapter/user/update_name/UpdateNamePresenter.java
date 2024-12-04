@@ -16,7 +16,8 @@ public class UpdateNamePresenter implements UpdateNameOutputBoundary {
     private final ShowMyProfileViewModel showMyProfileViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    public UpdateNamePresenter(UpdateNameViewModel updateNameViewModel, ShowMyProfileViewModel showMyProfileViewModel, ViewManagerModel viewManagerModel) {
+    public UpdateNamePresenter(UpdateNameViewModel updateNameViewModel,
+                               ShowMyProfileViewModel showMyProfileViewModel, ViewManagerModel viewManagerModel) {
         this.updateNameViewModel = updateNameViewModel;
         this.showMyProfileViewModel = showMyProfileViewModel;
         this.viewManagerModel = viewManagerModel;
@@ -25,11 +26,11 @@ public class UpdateNamePresenter implements UpdateNameOutputBoundary {
     @Override
     public void prepareSuccessView(UpdateNameOutputData response) {
         final String newUsername = response.getUsername();
-        ShowMyProfileState state = showMyProfileViewModel.getState();
+        final ShowMyProfileState state = showMyProfileViewModel.getState();
         state.setUsername(newUsername);
         showMyProfileViewModel.firePropertyChanged();
 
-        ViewManagerState managerState = viewManagerModel.getState();
+        final ViewManagerState managerState = viewManagerModel.getState();
         managerState.setUsername(newUsername);
         viewManagerModel.firePropertyChanged();
     }

@@ -9,3 +9,4 @@ public interface AuthUserDataAccessInterface extends
         UserExistDataAccessInterface,
         UserGetDataAccessInterface {
 }
+

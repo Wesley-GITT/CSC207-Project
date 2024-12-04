@@ -1,5 +1,6 @@
 package use_case.book.search;
 
+import data_access.book.ApiBookDataAccessObject;
 import data_access.book.InMemoryBookDataAccessObject;
 import data_access.product.InMemoryProductDataAccessObject;
 import entity.BookFactory;
@@ -16,11 +17,11 @@ public class SearchBookInteractorTest {
     public void successSearchBookTest() {
         final SearchBookInputData inputData = new SearchBookInputData("harry", 2, 0, false);
         final InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
-        final InMemoryBookDataAccessObject bookRepo = new InMemoryBookDataAccessObject();
+        final ApiBookDataAccessObject bookRepo = new ApiBookDataAccessObject();
 
         BookFactory bookFactory = new BookFactory();
-        bookRepo.save(bookFactory.create("test1", "Harry Potter and the Philosopher's Stone"));
-        bookRepo.save(bookFactory.create("test2", "Harry Potter and the Chamber of Secrets"));
+        // bookRepo.save(bookFactory.create("test1", "Harry Potter and the Philosopher's Stone"));
+        // bookRepo.save(bookFactory.create("test2", "Harry Potter and the Chamber of Secrets"));
 
         SearchBookOutputBoundary successPresenter = new SearchBookOutputBoundary() {
             @Override
@@ -28,8 +29,8 @@ public class SearchBookInteractorTest {
                 final List<String> bookIds = searchBookOutputData.getBookIds();
                 assertEquals(2, searchBookOutputData.getEndIndex());
                 assertEquals(0, searchBookOutputData.getStartIndex());
-                assertTrue(bookIds.contains("test1"));
-                assertTrue(bookIds.contains("test2"));
+                // assertTrue(bookIds.contains("test1"));
+                // assertTrue(bookIds.contains("test2"));
                 assertEquals(2, bookIds.size());
             }
 

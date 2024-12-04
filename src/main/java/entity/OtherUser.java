@@ -1,5 +1,8 @@
 package entity;
 
+/**
+ * The Presenter for the Login Use Case.
+ */
 public class OtherUser {
 
     protected int id;
@@ -12,9 +15,13 @@ public class OtherUser {
         this.contactInfo = contactInfo;
     }
 
-    public int getId() { return id; }
+    public int getId() {
+        return id;
+    }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

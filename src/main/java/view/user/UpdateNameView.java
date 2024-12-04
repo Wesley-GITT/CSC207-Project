@@ -4,18 +4,20 @@
 
 package view.user;
 
-import interface_adapter.user.update_name.UpdateNameController;
-import interface_adapter.user.update_name.UpdateNameState;
-import interface_adapter.user.update_name.UpdateNameViewModel;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import interface_adapter.user.update_name.UpdateNameController;
+import interface_adapter.user.update_name.UpdateNameState;
+import interface_adapter.user.update_name.UpdateNameViewModel;
+
 /**
+ * The .
  * @author webster
  */
 public class UpdateNameView extends JDialog implements PropertyChangeListener {
@@ -48,69 +50,81 @@ public class UpdateNameView extends JDialog implements PropertyChangeListener {
         cancelButton = new JButton();
         okButton = new JButton();
 
-        //======== this ========
+        // ======== this ========
         setResizable(false);
-        var contentPane = getContentPane();
+        final var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
-        //======== dialogPane ========
+        // ======== dialogPane ========
         {
-            dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border.
-            EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder. CENTER, javax. swing
-            . border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ),
-            java. awt. Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( )
-            { @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals (e .getPropertyName () ))
-            throw new RuntimeException( ); }} );
+            final int tw = 12;
+            dialogPane.setBorder(new EmptyBorder(tw, tw, tw, tw));
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border
+                    .EmptyBorder(0, 0, 0, 0) ,"JFor\u006dDesi\u0067ner \u0045valu\u0061tion",
+                    javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BOTTOM, new java.awt
+                    .Font("Dia\u006cog", java.awt.Font.BOLD, tw),
+                    java.awt.Color.red), dialogPane.getBorder()));
+            dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                @Override public void propertyChange(java.beans .PropertyChangeEvent e) {if ("bord\u0065r" .equals(e.getPropertyName()))
+                        throw new RuntimeException();
+                }
+            }
+            );
             dialogPane.setLayout(new BorderLayout());
 
-            //======== contentPanel ========
+            // ======== contentPanel ========
             {
+                final double ss = 1.0E-4;
+                final int fo = 4;
+                final int fi = 5;
+                final int nne = 9;
+                final int sx = 6;
                 contentPanel.setLayout(new GridBagLayout());
-                ((GridBagLayout)contentPanel.getLayout()).columnWidths = new int[] {0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-                ((GridBagLayout)contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
+                ((GridBagLayout) contentPanel.getLayout()).columnWidths = new int[] {0, 0, 0};
+                ((GridBagLayout) contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0};
+                ((GridBagLayout) contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, ss};
+                ((GridBagLayout) contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, ss};
                 contentPanel.add(textField1, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                    new Insets(fi, 0, fi, fo), 0, 0));
 
-                //---- label1 ----
+                // ---- label1 ----
                 label1.setText("New username:");
                 contentPanel.add(label1, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                    new Insets(fo, fo, fi, nne), 0, 0));
 
-                //---- label3 ----
+                // ---- label3 ----
                 label3.setText("Update Username");
                 label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + 4f));
                 contentPanel.add(label3, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(6, 4, 9, 4), 0, 0));
-
-                //---- label4 ----
+                    new Insets(sx, fo, nne, fo), 0, 0));
+                final int ss2 = 0xb3261e;
+                // ---- label4 ----
                 label4.setText("Error Message");
-                label4.setForeground(new Color(0xb3261e));
+                label4.setForeground(new Color(ss2));
                 label4.setVisible(false);
                 contentPanel.add(label4, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 4, 0, 4), 0, 0));
+                    new Insets(0, fo, 0, fo), 0, 0));
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
-            //======== buttonBar ========
+            // ======== buttonBar ========
             {
-                buttonBar.setBorder(new EmptyBorder(12, 0, 0, 0));
+                final int wr = 12;
+                buttonBar.setBorder(new EmptyBorder(wr, 0, 0, 0));
 
-                //---- cancelButton ----
+                // ---- cancelButton ----
                 cancelButton.setText("Cancel");
                 cancelButton.addActionListener(e -> cancel(e));
 
-                //---- okButton ----
+                // ---- okButton ----
                 okButton.setText("Continue");
                 okButton.addActionListener(e -> updateName(e));
 
-                GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
+                final GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
                 buttonBar.setLayout(buttonBarLayout);
                 buttonBarLayout.setHorizontalGroup(
                     buttonBarLayout.createParallelGroup()
@@ -130,8 +144,10 @@ public class UpdateNameView extends JDialog implements PropertyChangeListener {
             }
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
+        final int ff = 450;
+        final int gg = 180;
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(450, 180);
+        setSize(ff, gg);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }

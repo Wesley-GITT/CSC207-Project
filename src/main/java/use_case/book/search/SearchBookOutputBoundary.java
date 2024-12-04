@@ -9,5 +9,9 @@ public interface SearchBookOutputBoundary {
      */
     void prepareSuccessView(SearchBookOutputData searchBookOutputData);
 
+    /**
+     * Prepares the failure view with the search results.
+     * @param errorMessage errorMessage
+     */
     void prepareFailView(String errorMessage);
 }

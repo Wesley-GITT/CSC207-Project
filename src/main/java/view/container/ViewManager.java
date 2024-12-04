@@ -4,6 +4,15 @@
 
 package view.container;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.swing.*;
+
 import interface_adapter.container.ViewManagerModel;
 import interface_adapter.container.ViewManagerState;
 import interface_adapter.user.logout.LogoutController;
@@ -16,15 +25,8 @@ import view.product.EditProductView;
 import view.product.ListProductView;
 import view.user.*;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
+ * One.
  * @author webster
  */
 public class ViewManager extends JFrame implements PropertyChangeListener {
@@ -58,19 +60,42 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
         this.dialogues = new HashMap<>();
 
         initComponents();
+
+        this.viewManagerModel.addPropertyChangeListener(this);
     }
 
-    public void setViews(AuthView authView, RegView regView, UpdateNameView updateNameView, UpdateProfileView updateProfileView,
+    /**
+     * The Presenter for the Login Use Case.
+     * @param authView :
+     * @param bookView :
+     * @param editProductView :
+     * @param listProductView :
+     * @param profileView :
+     * @param regView :
+     * @param searchBookView :
+     * @param updateNameView :
+     * @param updateProfileView :
+     * @param updatePwdView :
+     * @param wishlistView :
+     *
+     */
+    public void setViews(AuthView authView, RegView regView, UpdateNameView updateNameView,
+                         UpdateProfileView updateProfileView,
                          UpdatePwdView updatePwdView, EditProductView editProductView, ProfileView profileView,
                          WishlistView wishlistView, ListProductView listProductView, SearchBookView searchBookView,
-                         BookView bookView){
-
-
+                         BookView bookView) {
         this.profileView = profileView;
         this.wishlistView = wishlistView;
         this.listProductView = listProductView;
         this.searchBookView = searchBookView;
         this.bookView = bookView;
+
+        // put these JPanel into top-level JPanel
+        panel2.add(profileView.getViewName(), profileView);
+        panel2.add(wishlistView.getViewName(), wishlistView);
+        panel2.add(listProductView.getViewName(), listProductView);
+        panel2.add(searchBookView.getViewName(), searchBookView);
+        panel2.add(bookView.getViewName(), bookView);
 
         this.dialogues.put(authView.getViewName(), authView);
         this.dialogues.put(regView.getViewName(), regView);
@@ -81,13 +106,13 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
     }
 
     private void searchMenuItemClicked(ActionEvent e) {
-        ViewManagerState state = viewManagerModel.getState();
+        final ViewManagerState state = viewManagerModel.getState();
         state.setViewName("search book");
         viewManagerModel.firePropertyChanged();
     }
 
     private void signInMenuItemClicked(ActionEvent e) {
-        ViewManagerState state = viewManagerModel.getState();
+        final ViewManagerState state = viewManagerModel.getState();
         state.setPopupName("authentication");
         viewManagerModel.firePropertyChanged();
     }
@@ -97,19 +122,19 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
     }
 
     private void profileMenuItemClicked(ActionEvent e) {
-        ViewManagerState state = viewManagerModel.getState();
+        final ViewManagerState state = viewManagerModel.getState();
         state.setViewName("my profile");
         viewManagerModel.firePropertyChanged();
     }
 
     private void wishlistMenuItemClicked(ActionEvent e) {
-        ViewManagerState state = viewManagerModel.getState();
-        state.setViewName("my wishlist");
+        final ViewManagerState state = viewManagerModel.getState();
+        state.setViewName("my product");
         viewManagerModel.firePropertyChanged();
     }
 
     private void myProductMenuItemClicked(ActionEvent e) {
-        ViewManagerState state = viewManagerModel.getState();
+        final ViewManagerState state = viewManagerModel.getState();
         state.setViewName("my wishlist");
         viewManagerModel.firePropertyChanged();
     }
@@ -128,19 +153,19 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
         menuItem8 = new JMenuItem();
         panel2 = new JPanel();
 
-        //======== this ========
+        // ======== this ========
         setMinimumSize(new Dimension(600, 450));
-        var contentPane = getContentPane();
+        final var contentPane = getContentPane();
         contentPane.setLayout(new CardLayout());
 
-        //======== menuBar1 ========
+        // ======== menuBar1 ========
         {
 
-            //======== menu2 ========
+            // ======== menu2 ========
             {
                 menu2.setText("Navigation");
 
-                //---- menuItem2 ----
+                // ---- menuItem2 ----
                 menuItem2.setText("Search");
                 menuItem2.setAlignmentX(0.0F);
                 menuItem2.setMargin(new Insets(3, -6, 3, 0));
@@ -150,11 +175,11 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
             }
             menuBar1.add(menu2);
 
-            //======== menu1 ========
+            // ======== menu1 ========
             {
                 menu1.setText("Account");
 
-                //---- menuItem1 ----
+                // ---- menuItem1 ----
                 menuItem1.setText("Sign in/up");
                 menuItem1.setAlignmentX(0.0F);
                 menuItem1.setMargin(new Insets(3, -6, 3, 0));
@@ -162,7 +187,7 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
                 menuItem1.addActionListener(e -> signInMenuItemClicked(e));
                 menu1.add(menuItem1);
 
-                //---- menuItem5 ----
+                // ---- menuItem5 ----
                 menuItem5.setText("Sign out");
                 menuItem5.setAlignmentX(0.0F);
                 menuItem5.setMargin(new Insets(3, -6, 3, 0));
@@ -170,7 +195,7 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
                 menuItem5.addActionListener(e -> signOutMenuItemClicked(e));
                 menu1.add(menuItem5);
 
-                //---- menuItem4 ----
+                // ---- menuItem4 ----
                 menuItem4.setText("Profile");
                 menuItem4.setAlignmentX(0.0F);
                 menuItem4.setMargin(new Insets(3, -6, 3, 0));
@@ -178,7 +203,7 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
                 menuItem4.addActionListener(e -> profileMenuItemClicked(e));
                 menu1.add(menuItem4);
 
-                //---- menuItem6 ----
+                // ---- menuItem6 ----
                 menuItem6.setText("Wishlist");
                 menuItem6.setAlignmentX(0.0F);
                 menuItem6.setMargin(new Insets(3, -6, 3, 0));
@@ -186,7 +211,7 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
                 menuItem6.addActionListener(e -> wishlistMenuItemClicked(e));
                 menu1.add(menuItem6);
 
-                //---- menuItem8 ----
+                // ---- menuItem8 ----
                 menuItem8.setText("My Product");
                 menuItem8.setIconTextGap(0);
                 menuItem8.setMargin(new Insets(3, -6, 3, 6));
@@ -197,16 +222,21 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
         }
         setJMenuBar(menuBar1);
 
-        //======== panel2 ========
+        // ======== panel2 ========
         {
-            panel2.setMinimumSize(new Dimension(600, 360));
-            panel2.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
-            .border.EmptyBorder(0,0,0,0), "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e",javax.swing.border.TitledBorder
-            .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069al\u006fg",java.
-            awt.Font.BOLD,12),java.awt.Color.red),panel2. getBorder()))
-            ;panel2. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
-            ){if("\u0062or\u0064er".equals(e.getPropertyName()))throw new RuntimeException();}})
-            ;
+            final int sixh = 600;
+            final int threh = 360;
+            final int tw1 = 12;
+            panel2.setMinimumSize(new Dimension(sixh, threh));
+            panel2.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.
+            swing.border.EmptyBorder(0, 0, 0, 0),
+            "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax.swing.border.TitledBorder.CENTER, javax.swing
+            .border.TitledBorder.BOTTOM, new java.awt.Font("Dia\u006cog", java.awt.Font.BOLD, tw1) ,
+            java.awt.Color.red), panel2.getBorder())); panel2.addPropertyChangeListener(new java.
+            beans.PropertyChangeListener() {
+                @Override public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    if("bord\u0065r".equals(e.getPropertyName()))
+                        throw new RuntimeException(); } });
             panel2.setLayout(new CardLayout());
         }
         contentPane.add(panel2, "card1");
@@ -230,13 +260,12 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void showDialogue(String dialogName) {
-        if (dialogues.containsKey(dialogName)) {
-            for (String key: dialogues.keySet()) {
-                if (key.equals(dialogName)) {
-                    dialogues.get(key).setVisible(true);
-                } else {
-                    dialogues.get(key).setVisible(false);
-                }
+        for (String key: dialogues.keySet()) {
+            if (key.equals(dialogName)) {
+                dialogues.get(key).setVisible(true);
+            }
+            else {
+                dialogues.get(key).setVisible(false);
             }
         }
     }
@@ -268,15 +297,16 @@ public class ViewManager extends JFrame implements PropertyChangeListener {
         
         // non empty viewName means to switch the view
         cardLayout.show(panel2, viewName);
+
+        // clear pop-up name
         showDialogue(popupName);
+        state.setPopupName("");
 
         if (!username.equals("") && !password.equals("")) {
             enablePrivateViews();
-        } else {
+        }
+        else {
             disablePrivateViews();
         }
     }
-
-
-
 }

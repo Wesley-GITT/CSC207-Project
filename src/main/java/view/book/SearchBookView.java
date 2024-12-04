@@ -4,25 +4,93 @@
 
 package view.book;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
 import interface_adapter.book.search.SearchBookController;
 import interface_adapter.book.search.SearchBookState;
 import interface_adapter.book.search.SearchBookViewModel;
 import interface_adapter.book.view.BookController;
+import interface_adapter.book.view.BookState;
 import interface_adapter.book.view.BookViewModel;
 import interface_adapter.container.ViewManagerModel;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.List;
+import interface_adapter.container.ViewManagerState;
+import view.ViewUtility;
 
 /**
+ * The.
  * @author webster
  */
 public class SearchBookView extends JPanel implements PropertyChangeListener {
+
+    class DataRow {
+        private final String bookId;
+        private final String title;
+        private final String authors;
+        private final String description;
+        private final String publisher;
+        private final String pulishedDate;
+        private final String language;
+
+        /**
+         * The Presenter for the Login Use Case.
+         * @param bookId :
+         * @param title :
+         * @param language :
+         * @param publisher :
+         * @param description :
+         * @param authors :
+         * @param pulishedDate :
+         */
+        public DataRow(String bookId, String title, String authors,
+                       String description, String publisher, String pulishedDate, String language) {
+            this.bookId = bookId;
+            this.title = title;
+            this.authors = authors;
+            this.description = description;
+            this.publisher = publisher;
+            this.pulishedDate = pulishedDate;
+            this.language = language;
+        }
+
+        public String getBookId() {
+            return bookId;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getAuthors() {
+            return authors;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public String getPublisher() {
+            return publisher;
+        }
+
+        public String getPulishedDate() {
+            return pulishedDate;
+        }
+
+        public String getLanguage() {
+            return language;
+        }
+    }
 
     private final String viewName = "search book";
 
@@ -33,6 +101,9 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
     private final ViewManagerModel viewManagerModel;
     private String keyword = "";
     private boolean withProduct = false;
+    private int startIndex = 0;
+
+    private final List<DataRow> data = new ArrayList<>();
 
     public SearchBookView(SearchBookViewModel searchBookViewModel, SearchBookController searchBookController,
                           BookViewModel bookViewModel, BookController bookController, ViewManagerModel viewManagerModel) {
@@ -42,9 +113,23 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
         this.bookController = bookController;
         this.viewManagerModel = viewManagerModel;
 
-        this.searchBookViewModel.addPropertyChangeListener(this);
-
         initComponents();
+
+        this.searchBookViewModel.addPropertyChangeListener(this);
+        this.bookViewModel.addPropertyChangeListener(this);
+    }
+
+    private void table1MousePressed(MouseEvent e) {
+        JTable table =(JTable) e.getSource();
+        Point point = e.getPoint();
+        int row = table.rowAtPoint(point);
+        if (e.getClickCount() == 2 && table.getSelectedRow() != -1) {
+            bookController.execute(data.get(row).getBookId());
+
+            ViewManagerState state = viewManagerModel.getState();
+            state.setViewName("view book");
+            viewManagerModel.firePropertyChanged();
+        }
     }
 
     private void initComponents() {
@@ -55,22 +140,24 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
         button1 = new JButton();
         label1 = new JLabel();
         checkBox1 = new JCheckBox();
+        button2 = new JButton();
         scrollPane1 = new JScrollPane();
-        panel3 = new JPanel();
+        table1 = new JTable();
         panel2 = new JPanel();
         label2 = new JLabel();
         progressBar1 = new JProgressBar();
 
-        //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
-        ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
-        .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
-        propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
-        ;} } );
+        // ======== this ========
+        setBorder(new javax .swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
+        . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder
+        . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
+        awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
+        ;  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e
+        ) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( ) ;} } )
+        ;
         setLayout(new CardLayout());
 
-        //======== panel1 ========
+        // ======== panel1 ========
         {
             panel1.setBorder(new LineBorder(new Color(0xf5f5f5), 3));
             panel1.setForeground(new Color(0xf5f5f5));
@@ -102,16 +189,40 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
                 GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
                 new Insets(0, 0, 3, 3), 0, 0));
 
+            //---- button2 ----
+            button2.setText("More");
+            button2.setEnabled(false);
+            button2.addActionListener(e -> loadMoreButtonClicked(e));
+            panel1.add(button2, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
+                GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                new Insets(0, 0, 3, 0), 0, 0));
+
             //======== scrollPane1 ========
             {
-                scrollPane1.setBorder(null);
-                scrollPane1.setBackground(new Color(0xf5f5f5));
 
-                //======== panel3 ========
-                {
-                    panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
-                }
-                scrollPane1.setViewportView(panel3);
+                //---- table1 ----
+                table1.setModel(new DefaultTableModel(
+                    new Object[][] {
+                    },
+                    new String[] {
+                        "Title", "Authors", "Description", "Publisher", "Published Date", "Language"
+                    }
+                ) {
+                    boolean[] columnEditable = new boolean[] {
+                        false, false, false, false, false, false
+                    };
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return columnEditable[columnIndex];
+                    }
+                });
+                table1.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        table1MousePressed(e);
+                    }
+                });
+                scrollPane1.setViewportView(table1);
             }
             panel1.add(scrollPane1, new GridBagConstraints(0, 2, 3, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -126,7 +237,7 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
                 ((GridBagLayout)panel2.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
 
                 //---- label2 ----
-                label2.setText("Searching");
+                label2.setText("Done");
                 label2.setFont(new Font("Consolas", Font.PLAIN, 11));
                 panel2.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
@@ -154,33 +265,54 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
     private JButton button1;
     private JLabel label1;
     private JCheckBox checkBox1;
+    private JButton button2;
     private JScrollPane scrollPane1;
-    private JPanel panel3;
+    private JTable table1;
     private JPanel panel2;
     private JLabel label2;
     private JProgressBar progressBar1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        final SearchBookState state = (SearchBookState) evt.getNewValue();
+    private void propertyChangeViewBook(BookState state) {
+        final String bookId = state.getId();
+        final String title = state.getTitle();
+        final String authors = ViewUtility.getAuthorString(state.getAuthors());
+        final String description = state.getDescription().replaceAll("(?s)<[^>]*>(\\s*<[^>]*>)*", " ");;
+        final String publisher = state.getPublisher();
+        final String publishDate = state.getPublishedDate();
+        final String lang = state.getLanguage();
+        final DefaultTableModel model = (DefaultTableModel) table1.getModel();
+
+        data.add(new DataRow(bookId, title, authors, description, publisher, publishDate, lang));
+        model.addRow(new Object[]{title, authors, description, publisher, publishDate, lang});
+    }
+
+    private void propertyChangeSearchedBook(SearchBookState state) {
         final String error = state.getSearchBookError();
         final List<String> bookIds = state.getBookIds();
 
         if (error != null) {
             JOptionPane.showMessageDialog(this, "Fail to perform a search: " + error);
-            return;
+        } else {
+            for (String bookId: bookIds) {
+                bookController.execute(bookId);
+            }
         }
 
-        panel3.removeAll();
-
-        for (String bookId: bookIds) {
-            panel3.add(new SearchedItemView(bookViewModel, bookController, viewManagerModel));
-            bookController.execute(bookId);
-        }
+        this.startIndex = state.getEndIndex();
 
         label2.setText("Done");
         progressBar1.setIndeterminate(false);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        final Object state = evt.getNewValue();
+        if (state instanceof SearchBookState) {
+            propertyChangeSearchedBook((SearchBookState) state);
+        } else {
+            propertyChangeViewBook((BookState) state);
+        }
     }
 
     private void searchButtonClicked(ActionEvent e) {
@@ -189,11 +321,22 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
         this.keyword = keyword;
         this.withProduct = withProduct;
 
-        if (keyword == "") {
-            searchBookController.execute(keyword, 0, withProduct);
+        if (keyword != "") {
             label2.setText("Searching");
             progressBar1.setIndeterminate(true);
+            searchBookController.execute(keyword, 0, withProduct);
+            button2.setEnabled(true);
         }
+    }
+
+    private void loadMoreButtonClicked(ActionEvent e) {
+        final String keyword = this.keyword;
+        final boolean withProduct = this.withProduct;
+
+        label2.setText("Searching");
+        progressBar1.setIndeterminate(true);
+        searchBookController.execute(keyword, startIndex, withProduct);
+
     }
 
     public String getViewName() {

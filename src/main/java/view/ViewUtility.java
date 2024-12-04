@@ -7,6 +7,7 @@ public class ViewUtility {
     public static String getAuthorString(Set<String> authors) {
         String authorsStr = "";
         int maxAuthorNum = 2;
+
         int countAuthorNum = 0;
         for (String author: authors) {
             if (countAuthorNum >= maxAuthorNum) {
@@ -26,7 +27,7 @@ public class ViewUtility {
             countAuthorNum += 1;
         }
 
-        if (maxAuthorNum > authors.size()) {
+        if (authors.size() > maxAuthorNum) {
             authorsStr += " and more";
         }
         return authorsStr;

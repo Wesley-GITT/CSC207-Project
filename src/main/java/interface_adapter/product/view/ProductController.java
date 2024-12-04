@@ -14,6 +14,10 @@ public class ProductController {
         this.viewProductInteractor = viewProductInteractor;
     }
 
+    /**
+     * Execute method for ProductController.
+     * @param productId productId
+     */
     public void execute(int productId) {
         final ViewProductInputData viewProductInputData = new ViewProductInputData(productId);
         viewProductInteractor.execute(viewProductInputData);

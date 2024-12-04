@@ -7,7 +7,8 @@ public class ViewBookOutputData {
     private final String id;
     private final String imageUrl;
     private final String title;
-    private final Set<String> authors; // From the second class
+    private final Set<String> authors;
+    // From the second class
     private final String publisher;
     private final String publishedDate;
     private final String description;

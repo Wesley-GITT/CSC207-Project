@@ -1,10 +1,10 @@
 package use_case.book.search;
 
-import use_case.product.list_book_products.ListBookProductDataAccessInterface;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import use_case.product.list_book_products.ListBookProductDataAccessInterface;
 
 public class SearchBookInteractor implements SearchBookInputBoundary {
 
@@ -40,20 +40,21 @@ public class SearchBookInteractor implements SearchBookInputBoundary {
         }
 
         try {
-            List<String> result = new ArrayList<>();
+            final List<String> result = new ArrayList<>();
             while (result.size() < resMaxNumEachSearch) {
-                List<String> bookIds = bookDataAccessObject.search(keyword, endIndex, 40);
+                final List<String> bookIds = bookDataAccessObject.search(keyword, endIndex, 40);
                 if (bookIds.size() == 0) {
                     break;
                 }
 
                 for (String bookId : bookIds) {
-                    Set<Integer> productIds = productDataAccessObject.listByBookId(bookId);
+                    final Set<Integer> productIds = productDataAccessObject.listByBookId(bookId);
                     if (withProduct) {
                         if (!productIds.isEmpty()) {
                             result.add(bookId);
                         }
-                    } else {
+                    }
+                    else {
                         result.add(bookId);
                     }
 
@@ -67,10 +68,11 @@ public class SearchBookInteractor implements SearchBookInputBoundary {
                 }
             }
 
-            SearchBookOutputData outputData = new SearchBookOutputData(
+            final SearchBookOutputData outputData = new SearchBookOutputData(
                     result, startIndex, endIndex, resMaxNumEachSearch);
             searchBookPresenter.prepareSuccessView(outputData);
-        } catch (RuntimeException e) {
+        }
+        catch (RuntimeException e) {
             searchBookPresenter.prepareFailView("API Connection Error");
         }
     }

@@ -1,11 +1,11 @@
 package interface_adapter.book.search;
 
+import java.util.List;
+
 import interface_adapter.container.ViewManagerModel;
 import interface_adapter.container.ViewManagerState;
 import use_case.book.search.SearchBookOutputBoundary;
 import use_case.book.search.SearchBookOutputData;
-
-import java.util.List;
 
 /**
  * The Presenter for the Login Use Case.

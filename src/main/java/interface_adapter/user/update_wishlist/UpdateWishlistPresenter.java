@@ -13,6 +13,11 @@ public class UpdateWishlistPresenter implements UpdateWishlistOutputBoundary {
     private final UpdateWishlistViewModel updateWishlistViewModel;
     private final ShowWishlistViewModel showWishlistViewModel;
 
+    /**
+     * UpdateWishlistPresenter.
+     * @param updateWishlistViewModel updateWishlistViewModel
+     * @param showWishlistViewModel showWishlistViewModel
+     */
     public UpdateWishlistPresenter(UpdateWishlistViewModel updateWishlistViewModel, ShowWishlistViewModel showWishlistViewModel) {
         this.updateWishlistViewModel = updateWishlistViewModel;
         this.showWishlistViewModel = showWishlistViewModel;
@@ -21,7 +26,7 @@ public class UpdateWishlistPresenter implements UpdateWishlistOutputBoundary {
     @Override
     public void prepareSuccessView(UpdateWishlistOutputData response) {
         // On success, switch to the login view.
-        ShowWishlistState showWishlistState = showWishlistViewModel.getState();
+        final ShowWishlistState showWishlistState = showWishlistViewModel.getState();
         showWishlistState.setWishlist(response.getWishlist());
         showWishlistViewModel.firePropertyChanged();
     }

@@ -7,7 +7,8 @@ public class ShowOtherProfileInteractor implements ShowOtherProfileInputBoundary
     private ShowOtherProfileUserDataAccessInterface userDataAccessObject;
     private ShowOtherProfileOutputBoundary showMyProfilePresenter;
 
-    public ShowOtherProfileInteractor(ShowOtherProfileUserDataAccessInterface userDataAccessObject, ShowOtherProfileOutputBoundary showMyProfilePresenter) {
+    public ShowOtherProfileInteractor(ShowOtherProfileUserDataAccessInterface userDataAccessObject,
+                                      ShowOtherProfileOutputBoundary showMyProfilePresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.showMyProfilePresenter = showMyProfilePresenter;
     }
@@ -18,14 +19,15 @@ public class ShowOtherProfileInteractor implements ShowOtherProfileInputBoundary
         final int id = showOtherProfileInputData.getId();
 
         if (!userDataAccessObject.existById(id)) {
-            showMyProfilePresenter.prepareFailView("User with ID `" + id +"` doesn't exist");
-        } else {
+            showMyProfilePresenter.prepareFailView("User with ID `" + id + "` doesn't exist");
+        }
+        else {
             final OtherUser user = userDataAccessObject.getOther(id);
             final String username = user.getUsername();
             final String telephone = user.getTelephone();
             final String email = user.getEmail();
 
-            ShowOtherProfileOutputData outputData = new ShowOtherProfileOutputData(username, telephone, email);
+            final ShowOtherProfileOutputData outputData = new ShowOtherProfileOutputData(username, telephone, email);
             showMyProfilePresenter.prepareSuccessView(outputData);
         }
     }

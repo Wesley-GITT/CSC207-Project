@@ -5,7 +5,7 @@ import entity.Book;
 public interface ViewBookDataAccessInterface {
 
     /**
-     * get a book by its ID.
+     * Get a book by its ID.
      *
      * @param bookId The ID of the book.
      * @return The book entity
@@ -13,7 +13,7 @@ public interface ViewBookDataAccessInterface {
     Book get(String bookId);
 
     /**
-     * check if a book exists using its ID.
+     * Check if a book exists using its ID.
      *
      * @param bookId The ID of the book.
      * @return True if the book entity if found, otherwise false.

@@ -10,6 +10,10 @@ public class LogoutInteractor implements LogoutInputBoundary {
 
     @Override
     public void execute() {
+        // Perform any logout-specific cleanup here
+        System.out.println("LogoutInteractor executed: Clearing user session.");
+
+        // Notify the presenter to handle the view update
         logoutPresenter.prepareSuccessView();
     }
 }

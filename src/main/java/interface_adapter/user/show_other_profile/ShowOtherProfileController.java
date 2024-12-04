@@ -14,6 +14,10 @@ public class ShowOtherProfileController {
         this.showOtherProfileInteractor = showOtherProfileInteractor;
     }
 
+    /**
+     * Execute method for ShowOtherProfileController.
+     * @param userId userId.
+     */
     public void execute(int userId) {
         final ShowOtherProfileInputData showOtherProfileInputData = new ShowOtherProfileInputData(userId);
 

@@ -9,7 +9,7 @@ public class BookState {
     private String id;
     private String imageUrl;
     private String title;
-    private Set<String> authors; // From the second class
+    private Set<String> authors;
     private String publisher;
     private String publishedDate;
     private String description;

@@ -1,12 +1,17 @@
 package data_access.book;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import entity.Book;
 import use_case.book.search.SearchBookDataAccessInterface;
 import use_case.book.view.ViewBookDataAccessInterface;
 
-import java.util.*;
-
-
+/**
+ * API.
+ */
 public class InMemoryBookDataAccessObject implements
         ViewBookDataAccessInterface,
         SearchBookDataAccessInterface {
@@ -27,14 +32,18 @@ public class InMemoryBookDataAccessObject implements
 
     @Override
     public List<String> search(String keyword, int startIndex, int maxListSize) {
-        List<String> result = new ArrayList<>();
+        final List<String> result = new ArrayList<>();
         for (int i = startIndex; i < bookList.size() && i - startIndex < maxResults; i++) {
-            Book book = bookList.get(i);
+            final Book book = bookList.get(i);
             result.add(book.getId());
         }
         return result;
     }
 
+    /**
+     * API.
+     * @param book :
+     */
     public void save(Book book) {
         books.put(book.getId(), book);
         bookList.add(book);

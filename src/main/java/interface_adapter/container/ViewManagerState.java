@@ -2,10 +2,10 @@ package interface_adapter.container;
 
 public class ViewManagerState {
 
-    private String username;
-    private String password;
-    private String viewName;
-    private String popupName;
+    private String username = "";
+    private String password = "";
+    private String viewName = "";
+    private String popupName = "";
 
     public String getUsername() {
         return username;

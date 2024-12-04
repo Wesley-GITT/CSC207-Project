@@ -4,6 +4,21 @@
 
 package view.book;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
 import interface_adapter.book.view.BookState;
 import interface_adapter.book.view.BookViewModel;
 import interface_adapter.container.ViewManagerModel;
@@ -24,24 +39,14 @@ import interface_adapter.user.update_wishlist.UpdateWishlistController;
 import interface_adapter.user.update_wishlist.UpdateWishlistViewModel;
 import view.ViewUtility;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.image.BufferedImage;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
- * @author webster
+ * The Presenter for the Login Use Case.
+ * @author :
  */
 public class BookView extends JPanel implements PropertyChangeListener {
+
+    private final String viewName = "view book";
 
     private final BookViewModel bookViewModel;
     private final ProductViewModel productViewModel;
@@ -59,6 +64,21 @@ public class BookView extends JPanel implements PropertyChangeListener {
     private final List<Integer> productIds = new ArrayList<>();
     private final Set<Integer> wishlist = new HashSet<>();
 
+    /**
+     * The Presenter for the Login Use Case.
+     * @param bookViewModel :
+     * @param listBookProductController :
+     * @param listBookProductViewModel :
+     * @param productController :
+     * @param productViewModel :
+     * @param showOtherProfileController :
+     * @param showOtherProfileViewModel :
+     * @param viewManagerModel :
+     * @param showWishlistController :
+     * @param showWishlistViewModel :
+     * @param updateWishlistController :
+     * @param updateWishlistViewModel :
+     */
     public BookView(
             BookViewModel bookViewModel, ProductViewModel productViewModel, ProductController productController,
             ShowOtherProfileViewModel showOtherProfileViewModel, ShowOtherProfileController showOtherProfileController,
@@ -80,6 +100,7 @@ public class BookView extends JPanel implements PropertyChangeListener {
         this.updateWishlistController = updateWishlistController;
         this.viewManagerModel = viewManagerModel;
 
+        this.bookViewModel.addPropertyChangeListener(this);
         this.productViewModel.addPropertyChangeListener(this);
         this.showOtherProfileViewModel.addPropertyChangeListener(this);
         this.listBookProductViewModel.addPropertyChangeListener(this);
@@ -109,79 +130,104 @@ public class BookView extends JPanel implements PropertyChangeListener {
         scrollPane2 = new JScrollPane();
         textPane2 = new JTextPane();
 
-        //======== this ========
-        setMinimumSize(new Dimension(457, 450));
-        setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder
-        ( 0, 0, 0, 0) , "JF\u006frm\u0044es\u0069gn\u0065r \u0045va\u006cua\u0074io\u006e", javax. swing. border. TitledBorder. CENTER, javax. swing. border
-        . TitledBorder. BOTTOM, new java .awt .Font ("D\u0069al\u006fg" ,java .awt .Font .BOLD ,12 ), java. awt
-        . Color. red) , getBorder( )) );  addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void
-        propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062or\u0064er" .equals (e .getPropertyName () )) throw new RuntimeException( )
-        ; }} );
+        final int fo = 457;
+        final int fr = 450;
+        final int tw1 = 12;
+        final double hh = 1.0E-4;
+
+        // ======== this ========
+        setMinimumSize(new Dimension(fo, fr));
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border
+                .EmptyBorder(0, 0, 0, 0),
+                "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax.swing.border.TitledBorder.CENTER,
+                javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dia\u006cog", java.awt.Font
+                .BOLD, tw1), java.awt.Color.red), getBorder()));
+        addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            @Override public void propertyChange(java.beans.PropertyChangeEvent e) {
+                if ( "\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException(); } });
         setLayout(new GridBagLayout());
-        ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0, 0};
-        ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
-        ((GridBagLayout)getLayout()).columnWeights = new double[] {0.0, 1.0, 0.0, 1.0E-4};
-        ((GridBagLayout)getLayout()).rowWeights = new double[] {0.0, 1.0, 0.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).columnWidths = new int[] {0, 0, 0, 0};
+        ((GridBagLayout) getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
+        ((GridBagLayout) getLayout()).columnWeights = new double[] {0.0, 1.0, 0.0, hh};
+        ((GridBagLayout) getLayout()).rowWeights = new double[] {0.0, 1.0, 0.0, 1.0, hh};
 
-        //---- label1 ----
-        label1.setText("<image>");
-        add(label1, new GridBagConstraints(0, 0, 1, 2, 0.0, 0.0,
+        final int ten = 10;
+        final int oneh = 120;
+        final int eigh = 80;
+        final int oneth = 1024;
+        final int two = 256;
+        final int four = 40;
+        final int rh = 3;
+        final int sx = 6;
+        final int four1 = 4;
+        final int tw = 12;
+        final int sixt = 16;
+
+        // ---- label1 ----
+        label1.setIconTextGap(ten);
+        label1.setMinimumSize(new Dimension(oneh, eigh));
+        label1.setMaximumSize(new Dimension(oneth, two));
+        label1.setPreferredSize(new Dimension(eigh, four));
+        add(label1, new GridBagConstraints(0, 0, 1, rh, 0.0, 0.0,
             GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-            new Insets(6, 4, 12, 16), 0, 0));
+            new Insets(sx, four1, tw, sixt), 0, 0));
 
-        //---- label2 ----
+        // ---- label2 ----
         label2.setText("<title> - <author>");
         add(label2, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
             GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-            new Insets(6, 0, 12, 16), 0, 0));
+            new Insets(sx, 0, tw, sixt), 0, 0));
 
-        //---- button2 ----
+        // ---- button2 ----
         button2.setText("I want to sell");
-        button2.addActionListener(e -> sellButtonClicked(e));
+        button2.addActionListener(this::sellButtonClicked);
         add(button2, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
             GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-            new Insets(6, 0, 12, 4), 0, 0));
+            new Insets(sx, 0, tw, four1), 0, 0));
 
-        //======== scrollPane1 ========
+        // ======== scrollPane1 ========
         {
-
-            //---- textPane1 ----
+            // ---- textPane1 ----
             textPane1.setText("<description>");
             textPane1.setEditable(false);
             scrollPane1.setViewportView(textPane1);
         }
         add(scrollPane1, new GridBagConstraints(1, 1, 2, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 12, 4), 0, 0));
+            new Insets(0, 0, tw, four1), 0, 0));
 
-        //---- comboBox1 ----
+        // ---- comboBox1 ----
         comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
             "<Select a product below>"
         }));
         comboBox1.addActionListener(e -> comboBoxSelectedValueChanged(e));
         add(comboBox1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
             GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-            new Insets(0, 0, 12, 16), 0, 0));
+            new Insets(0, 0, tw, sixt), 0, 0));
 
-        //---- button1 ----
+        // ---- button1 ----
         button1.setText("Add to wishlist");
         button1.setEnabled(false);
         button1.addActionListener(e -> addToWishlistButtonClicked(e));
         add(button1, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
             GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-            new Insets(0, 0, 12, 4), 0, 0));
+            new Insets(0, 0, tw, four1), 0, 0));
 
-        //======== panel1 ========
+        // ======== panel1 ========
         {
-            panel1.setMinimumSize(new Dimension(400, 600));
+            final int four2 = 400;
+            final int six2 = 600;
+            final double one = 1.0E-4;
+
+            panel1.setMinimumSize(new Dimension(four2, six2));
             panel1.setAutoscrolls(true);
             panel1.setLayout(new GridBagLayout());
-            ((GridBagLayout)panel1.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
-            ((GridBagLayout)panel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
-            ((GridBagLayout)panel1.getLayout()).columnWeights = new double[] {1.0, 0.0, 0.0, 1.0E-4};
-            ((GridBagLayout)panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, 1.0E-4};
+            ((GridBagLayout) panel1.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
+            ((GridBagLayout) panel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+            ((GridBagLayout) panel1.getLayout()).columnWeights = new double[] {1.0, 0.0, 0.0, one};
+            ((GridBagLayout) panel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, one};
 
-            //---- label5 ----
+            // ---- label5 ----
             label5.setText("Select sales from above to see detail");
             panel1.add(label5, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
@@ -190,41 +236,43 @@ public class BookView extends JPanel implements PropertyChangeListener {
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 0, 0), 0, 0));
 
-            //---- checkBox1 ----
+            final int f1 = 4;
+            final int thr = 3;
+            final int ten1 = 10;
+            // ---- checkBox1 ----
             checkBox1.setText("Sold");
             checkBox1.setEnabled(false);
             panel1.add(checkBox1, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-                new Insets(0, 0, 0, 4), 0, 0));
+                new Insets(0, 0, 0, f1), 0, 0));
 
-            //---- label6 ----
+            // ---- label6 ----
             label6.setText("Contact Information");
-            panel1.add(label6, new GridBagConstraints(0, 1, 3, 1, 0.0, 0.0,
+            panel1.add(label6, new GridBagConstraints(0, 1, thr, 1, 0.0, 0.0,
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
-                new Insets(4, 0, 4, 4), 0, 0));
+                new Insets(f1, 0, f1, f1), 0, 0));
 
-            //---- textField3 ----
+            // ---- textField3 ----
             textField3.setEditable(false);
-            panel1.add(textField3, new GridBagConstraints(0, 2, 3, 1, 0.0, 0.0,
+            panel1.add(textField3, new GridBagConstraints(0, 2, thr, 1, 0.0, 0.0,
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
-                new Insets(4, 0, 4, 4), 0, 0));
+                new Insets(f1, 0, f1, f1), 0, 0));
 
-            //---- label4 ----
+            // ---- label4 ----
             label4.setText("Book Condition");
-            panel1.add(label4, new GridBagConstraints(0, 3, 3, 1, 0.0, 0.0,
+            panel1.add(label4, new GridBagConstraints(0, thr, thr, 1, 0.0, 0.0,
                 GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-                new Insets(4, 0, 4, 4), 0, 0));
+                new Insets(f1, 0, f1, f1), 0, 0));
 
-            //======== scrollPane2 ========
+            // ======== scrollPane2 ========
             {
-
-                //---- textPane2 ----
+                // ---- textPane2 ----
                 textPane2.setEditable(false);
                 scrollPane2.setViewportView(textPane2);
             }
-            panel1.add(scrollPane2, new GridBagConstraints(0, 4, 3, 1, 0.0, 0.0,
+            panel1.add(scrollPane2, new GridBagConstraints(0, f1, thr, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(4, 0, 10, 4), 0, 0));
+                new Insets(f1, 0, ten1, f1), 0, 0));
         }
         add(panel1, new GridBagConstraints(1, 3, 2, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -254,10 +302,11 @@ public class BookView extends JPanel implements PropertyChangeListener {
 
     private void loadImage(String url) {
         try {
-            URL urlObject = new URL(url);
-            BufferedImage image = ImageIO.read(urlObject);
+            final URL urlObject = new URL(url);
+            final BufferedImage image = ImageIO.read(urlObject);
             label1.setIcon(new ImageIcon(image));
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             label1.setText("");
         }
     }
@@ -267,7 +316,7 @@ public class BookView extends JPanel implements PropertyChangeListener {
         final String bookId = state.getId();
         final String imageUrl = state.getImageUrl();
         final String title = state.getTitle();
-        final String authorString = ViewUtility.getAuthorString(state.getAuthors()); // From the second class
+        final String authorString = ViewUtility.getAuthorString(state.getAuthors());
         final String description = state.getDescription();
 
         if (error != null) {
@@ -282,6 +331,10 @@ public class BookView extends JPanel implements PropertyChangeListener {
         listBookProductController.execute(bookId);
     }
 
+    /**
+     * The Presenter for the Login Use Case.
+     * @param state :
+     */
     private void propertyChangeListBookProduct(ListBookProductState state) {
         final String error = state.getListBookProductError();
         final Set<Integer> productIds = state.getProductIds();
@@ -331,13 +384,17 @@ public class BookView extends JPanel implements PropertyChangeListener {
         final Object state = evt.getNewValue();
         if (state instanceof BookState) {
             propertyChangeBook((BookState) state);
-        } else if (state instanceof ListBookProductState) {
+        }
+        else if (state instanceof ListBookProductState) {
             propertyChangeListBookProduct((ListBookProductState) state);
-        } else if (state instanceof ProductState) {
+        }
+        else if (state instanceof ProductState) {
             propertyChangeProduct((ProductState) state);
-        } else if (state instanceof ShowOtherProfileState){
+        }
+        else if (state instanceof ShowOtherProfileState) {
             propertyChangeShowOtherProfile((ShowOtherProfileState) state);
-        } else {
+        }
+        else {
             propertyChangeShowWishlist((ShowWishlistState) state);
         }
     }
@@ -345,7 +402,8 @@ public class BookView extends JPanel implements PropertyChangeListener {
     private void comboBoxSelectedValueChanged(ActionEvent e) {
         if (comboBox1.getSelectedIndex() > 0) {
             button1.setEnabled(true);
-        } else {
+        }
+        else {
             button1.setEnabled(false);
         }
     }
@@ -360,12 +418,17 @@ public class BookView extends JPanel implements PropertyChangeListener {
     }
 
     private void sellButtonClicked(ActionEvent e) {
-        BookState state = bookViewModel.getState();
-        ProductState productState = productViewModel.getState();
+        final BookState state = bookViewModel.getState();
+        final ProductState productState = productViewModel.getState();
         productState.setBookId(state.getId());
         productViewModel.firePropertyChanged();
 
-        ViewManagerState managerState = viewManagerModel.getState();
+        final ViewManagerState managerState = viewManagerModel.getState();
         managerState.setPopupName("update product");
+
+    }
+
+    public String getViewName() {
+        return viewName;
     }
 }

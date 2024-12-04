@@ -4,7 +4,8 @@ package interface_adapter.product.update;
  * The state for the Login View Model.
  */
 public class UpdateProductState {
-    private int productId; // set productId to -1 to indicate to create product
+    private int productId;
+    // set productId to -1 to indicate to create product
     private String bookId;
     private String updateProductError;
 

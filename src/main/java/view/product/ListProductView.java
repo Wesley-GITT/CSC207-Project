@@ -4,6 +4,19 @@
 
 package view.product;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import interface_adapter.container.ViewManagerModel;
 import interface_adapter.container.ViewManagerState;
 import interface_adapter.product.list_my_products.ListMyProductController;
@@ -15,19 +28,8 @@ import interface_adapter.product.remove.RemoveProductViewModel;
 import interface_adapter.product.update.UpdateProductState;
 import interface_adapter.product.update.UpdateProductViewModel;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 /**
+ * Tje .
  * @author Jing Wei
  */
 public class ListProductView extends JPanel implements PropertyChangeListener {
@@ -83,37 +85,44 @@ public class ListProductView extends JPanel implements PropertyChangeListener {
         button2 = new JButton();
         button1 = new JButton();
 
-        //======== this ========
-        setMinimumSize(new Dimension(457, 450));
+        // ======== this ========
+        final int fi = 457;
+        final int fo = 450;
+        final int we = 12;
+        final double we2 = 1.0E-4;
+        setMinimumSize(new Dimension(fi, fo));
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 thisComponentShown(e);
             }
         });
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border .EmptyBorder
-        ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder. CENTER ,javax . swing. border
-        .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt
-        . Color .red ) , getBorder () ) );  addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override public void
-        propertyChange (java . beans. PropertyChangeEvent e) { if( "bord\u0065r" .equals ( e. getPropertyName () ) )throw new RuntimeException( )
+        setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder
+            (0, 0, 0, 0) ,"JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax.swing.border.TitledBorder.CENTER,javax.swing.border
+            .TitledBorder.BOTTOM, new java.awt.Font("Dia\u006cog", java.awt.Font.BOLD, we), java.awt
+            .Color.red ), getBorder() ));addPropertyChangeListener( new java. beans .PropertyChangeListener (){ @Override public void
+        propertyChange(java.beans.PropertyChangeEvent e) {if("bord\u0065r".equals (e.getPropertyName()))throw new RuntimeException()
         ;} } );
         setLayout(new GridBagLayout());
-        ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0, 0, 0};
-        ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0};
-        ((GridBagLayout)getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0, 0.0, 1.0E-4};
-        ((GridBagLayout)getLayout()).rowWeights = new double[] {0.0, 1.0, 0.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).columnWidths = new int[] {0, 0, 0, 0, 0};
+        ((GridBagLayout) getLayout()).rowHeights = new int[] {0, 0, 0, 0};
+        ((GridBagLayout) getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0, 0.0, we2};
+        ((GridBagLayout) getLayout()).rowWeights = new double[] {0.0, 1.0, 0.0, we2};
 
-        //---- label2 ----
+        // ---- label2 ----
+        final int hh = 4;
+        final int gg = 8;
+        final int qq = 6;
         label2.setText("My Product");
         label2.setFont(new Font(".AppleSystemUIFont", label2.getFont().getStyle() | Font.BOLD, label2.getFont().getSize() + 4));
-        add(label2, new GridBagConstraints(0, 0, 4, 1, 0.0, 0.0,
+        add(label2, new GridBagConstraints(0, 0, hh, 1, 0.0, 0.0,
             GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-            new Insets(8, 6, 8, 0), 0, 0));
+            new Insets(gg, qq, gg, 0), 0, 0));
 
-        //======== scrollPane1 ========
+        // ======== scrollPane1 ========
         {
 
-            //---- table1 ----
+            // ---- table1 ----
             table1.setModel(new DefaultTableModel(
                 new Object[][] {
                     {0},
@@ -140,23 +149,26 @@ public class ListProductView extends JPanel implements PropertyChangeListener {
             table1.setVerifyInputWhenFocusTarget(false);
             scrollPane1.setViewportView(table1);
         }
-        add(scrollPane1, new GridBagConstraints(0, 1, 4, 1, 0.0, 0.0,
+        final int ff = 4;
+        final int jj = 8;
+        final int kk = 6;
+        add(scrollPane1, new GridBagConstraints(0, 1, ff, 1, 0.0, 0.0,
             GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 4, 8, 4), 0, 0));
+            new Insets(0, ff, jj, ff), 0, 0));
 
-        //---- button2 ----
+        // ---- button2 ----
         button2.setText("Remove");
         button2.addActionListener(e -> removeButtonClicked(e));
         add(button2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
             GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-            new Insets(0, 4, 6, 6), 0, 0));
+            new Insets(0, ff, kk, kk), 0, 0));
 
-        //---- button1 ----
+        // ---- button1 ----
         button1.setText("Edit");
         button1.addActionListener(e -> editButtonClicked(e));
         add(button1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
             GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
-            new Insets(0, 0, 6, 6), 0, 0));
+            new Insets(0, 0, kk, kk), 0, 0));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
@@ -210,12 +222,12 @@ public class ListProductView extends JPanel implements PropertyChangeListener {
     private void editButtonClicked(ActionEvent e) {
         final int index = table1.getSelectedRow();
         final int productId = data.get(index).getProductId();
-        UpdateProductState state = updateProductViewModel.getState();
+        final UpdateProductState state = updateProductViewModel.getState();
         state.setProductId(productId);
         updateProductViewModel.firePropertyChanged();
 
         // show edit product dialog
-        ViewManagerState managerState = viewManagerModel.getState();
+        final ViewManagerState managerState = viewManagerModel.getState();
         managerState.setPopupName("update product");
         viewManagerModel.firePropertyChanged();
     }

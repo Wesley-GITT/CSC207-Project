@@ -15,9 +15,12 @@ new FormModel {
 			"minimumSize": new java.awt.Dimension( 457, 450 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"text": "<image>"
+				"iconTextGap": 10
+				"minimumSize": new java.awt.Dimension( 120, 80 )
+				"maximumSize": new java.awt.Dimension( 1024, 256 )
+				"preferredSize": new java.awt.Dimension( 80, 40 )
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
-				"gridheight": 2
+				"gridheight": 3
 				"vAlign": 5
 				"insets": new java.awt.Insets( 6, 4, 0, 0 )
 			} )

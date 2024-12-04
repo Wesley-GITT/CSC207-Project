@@ -16,14 +16,23 @@ public class CreateProductInputData {
         this.price = price;
     }
 
-    public String getUsername() {return username;}
+    public String getUsername() {
+        return username;
+    }
 
-    public String getPassword() {return password;}
+    public String getPassword() {
+        return password;
+    }
 
-    public String getBookId() {return bookId;}
+    public String getBookId() {
+        return bookId;
+    }
 
-    public String getBookCondition() {return bookCondition;}
+    public String getBookCondition() {
+        return bookCondition;
+    }
 
-    public double getPrice() {return price;}
-
+    public double getPrice() {
+        return price;
+    }
 }
