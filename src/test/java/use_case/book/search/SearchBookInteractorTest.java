@@ -1,6 +1,6 @@
 package use_case.book.search;
 
-import data_access.book.APIBookDataAccessObject;
+import data_access.book.ApiBookDataAccessObject;
 import data_access.book.InMemoryBookDataAccessObject;
 import data_access.product.InMemoryProductDataAccessObject;
 import entity.BookFactory;
@@ -17,7 +17,7 @@ public class SearchBookInteractorTest {
     public void successSearchBookTest() {
         final SearchBookInputData inputData = new SearchBookInputData("harry", 2, 0, false);
         final InMemoryProductDataAccessObject productRepo = new InMemoryProductDataAccessObject();
-        final APIBookDataAccessObject bookRepo = new APIBookDataAccessObject();
+        final ApiBookDataAccessObject bookRepo = new ApiBookDataAccessObject();
 
         BookFactory bookFactory = new BookFactory();
         // bookRepo.save(bookFactory.create("test1", "Harry Potter and the Philosopher's Stone"));

@@ -7,7 +7,8 @@ public class UpdatePasswordInteractor implements UpdatePasswordInputBoundary {
     private UpdatePasswordUserDataAccessInterface userDataAccessObject;
     private UpdatePasswordOutputBoundary updatePasswordPresenter;
 
-    public UpdatePasswordInteractor(UpdatePasswordUserDataAccessInterface userDataAccessObject, UpdatePasswordOutputBoundary updatePasswordPresenter) {
+    public UpdatePasswordInteractor(UpdatePasswordUserDataAccessInterface userDataAccessObject,
+                                    UpdatePasswordOutputBoundary updatePasswordPresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.updatePasswordPresenter = updatePasswordPresenter;
     }
@@ -22,9 +23,11 @@ public class UpdatePasswordInteractor implements UpdatePasswordInputBoundary {
 
         if (!userDataAccessObject.isAuthenticated(username, originalPassword)) {
             updatePasswordPresenter.prepareFailView("Authentication failed");
-        } else if (!newPassword.equals(newPasswordRepeated)) {
+        }
+        else if (!newPassword.equals(newPasswordRepeated)) {
             updatePasswordPresenter.prepareFailView("Passwords don't match");
-        } else {
+        }
+        else {
             final MyUser user = userDataAccessObject.get(username, originalPassword);
             user.setPassword(newPassword);
 

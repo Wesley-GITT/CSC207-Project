@@ -5,7 +5,6 @@ import entity.Product;
 import use_case.book.view.ViewBookDataAccessInterface;
 import use_case.user.auth.AuthUserDataAccessInterface;
 
-
 public class UpdateProductInteractor implements UpdateProductInputBoundary {
     private final AuthUserDataAccessInterface userDataAccessObject;
     private final ViewBookDataAccessInterface bookDataAccessObject;
@@ -56,7 +55,7 @@ public class UpdateProductInteractor implements UpdateProductInputBoundary {
 
         productDataAccessObject.save(product);
 
-        UpdateProductOutputData outputData = new UpdateProductOutputData(productId, bookCondition, price, isSold);
+        final UpdateProductOutputData outputData = new UpdateProductOutputData(productId, bookCondition, price, isSold);
         updateProductPresenter.prepareSuccessView(outputData);
     }
 }

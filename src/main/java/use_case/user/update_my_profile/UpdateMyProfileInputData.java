@@ -22,7 +22,11 @@ public class UpdateMyProfileInputData {
         return password;
     }
 
-    public String getTelephone() { return telephone; }
+    public String getTelephone() {
+        return telephone;
+    }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 }

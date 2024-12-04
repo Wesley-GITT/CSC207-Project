@@ -7,7 +7,8 @@ public class UpdateMyProfileInteractor implements UpdateMyProfileInputBoundary {
     private UpdateMyProfileUserDataAccessInterface userDataAccessObject;
     private UpdateMyProfileOutputBoundary updateMyProfilePresenter;
 
-    public UpdateMyProfileInteractor(UpdateMyProfileUserDataAccessInterface userDataAccessObject, UpdateMyProfileOutputBoundary updateMyProfilePresenter) {
+    public UpdateMyProfileInteractor(UpdateMyProfileUserDataAccessInterface userDataAccessObject,
+                                     UpdateMyProfileOutputBoundary updateMyProfilePresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.updateMyProfilePresenter = updateMyProfilePresenter;
     }
@@ -20,7 +21,8 @@ public class UpdateMyProfileInteractor implements UpdateMyProfileInputBoundary {
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             updateMyProfilePresenter.prepareFailView("Authentication failed");
-        } else {
+        }
+        else {
             final String telephone = updateMyProfileInputData.getTelephone();
             final String email = updateMyProfileInputData.getEmail();
 
@@ -29,7 +31,7 @@ public class UpdateMyProfileInteractor implements UpdateMyProfileInputBoundary {
             user.setEmail(email);
             userDataAccessObject.save(user);
 
-            UpdateMyProfileOutputData outputData = new UpdateMyProfileOutputData(telephone, email);
+            final UpdateMyProfileOutputData outputData = new UpdateMyProfileOutputData(telephone, email);
             updateMyProfilePresenter.prepareSuccessView(outputData);
         }
     }

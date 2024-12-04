@@ -4,18 +4,20 @@
 
 package view.user;
 
-import interface_adapter.user.reg.RegController;
-import interface_adapter.user.reg.RegState;
-import interface_adapter.user.reg.RegViewModel;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import interface_adapter.user.reg.RegController;
+import interface_adapter.user.reg.RegState;
+import interface_adapter.user.reg.RegViewModel;
+
 /**
+ * The .
  * @author Jing Wei
  */
 public class RegView extends JDialog implements PropertyChangeListener {
@@ -53,99 +55,120 @@ public class RegView extends JDialog implements PropertyChangeListener {
         okButton = new JButton();
         button1 = new JButton();
 
-        //======== this ========
+        // ======== this ========
         setResizable(false);
-        var contentPane = getContentPane();
+        final var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
-        //======== dialogPane ========
+        // ======== dialogPane ========
         {
-            dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing.
-            border. EmptyBorder( 0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER
-            , javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font
-            .BOLD ,12 ), java. awt. Color. red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (
-            new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r"
-            .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            final int tw = 12;
+            dialogPane.setBorder(new EmptyBorder(tw, tw, tw, tw));
+            dialogPane.setBorder (new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder
+                    (new javax.swing.border.EmptyBorder(0, 0, 0, 0) ,
+                            "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",
+                            javax.swing.border.TitledBorder.CENTER,
+                            javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font ("Dia\u006cog",java.awt.Font
+                            .BOLD, tw), java.awt.Color.red), dialogPane.getBorder()));
+            dialogPane.addPropertyChangeListener(new java. beans. PropertyChangeListener() {
+                @Override public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    if ("\u0062ord\u0065r".equals (e.getPropertyName())) throw new RuntimeException();
+                }
+            }
+            );
             dialogPane.setLayout(new BorderLayout());
 
-            //======== contentPanel ========
+            // ======== contentPanel ========
             {
+                final int ii = 97;
+                final double nn = 1.0E-4;
+                final int fi = 5;
+                final int fo = 4;
+                final int nne = 9;
                 contentPanel.setLayout(new GridBagLayout());
-                ((GridBagLayout)contentPanel.getLayout()).columnWidths = new int[] {97, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-                ((GridBagLayout)contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+                ((GridBagLayout) contentPanel.getLayout()).columnWidths = new int[] {ii, 0, 0};
+                ((GridBagLayout) contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+                ((GridBagLayout) contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, nn};
+                ((GridBagLayout) contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, nn};
                 contentPanel.add(textField1, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                    new Insets(fi, 0, fi, fo), 0, 0));
 
-                //---- label1 ----
+                // ---- label1 ----
                 label1.setText("Username:");
                 contentPanel.add(label1, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                    new Insets(fo, fo, fi, nne), 0, 0));
 
-                //---- label2 ----
+                // ---- label2 ----
                 label2.setText("Password:");
                 contentPanel.add(label2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                    new Insets(fo, fo, fi, nne), 0, 0));
                 contentPanel.add(passwordField1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                    new Insets(fi, 0, fi, fo), 0, 0));
 
-                //---- label3 ----
+                final int te = 10;
+                final int ll = 11;
+                final int thre = 3;
+                final float qq = 4f;
+                // ---- label3 ----
                 label3.setText("Create an account.");
-                label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + 4f));
+                label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD,
+                        label3.getFont().getSize() + qq));
                 contentPanel.add(label3, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(10, 4, 11, 4), 0, 0));
-                contentPanel.add(passwordField2, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
+                    new Insets(te, fo, ll, fo), 0, 0));
+                contentPanel.add(passwordField2, new GridBagConstraints(1, thre, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                    new Insets(fi, 0, fi, fo), 0, 0));
 
-                //---- label5 ----
+                // ---- label5 ----
                 label5.setText("Confirm Password:");
-                contentPanel.add(label5, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
+                contentPanel.add(label5, new GridBagConstraints(0, thre, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                    new Insets(fo, fo, fi, nne), 0, 0));
 
-                //---- label4 ----
+                final int kl = 0xb3261e;
+                // ---- label4 ----
                 label4.setText("Error Message");
-                label4.setForeground(new Color(0xb3261e));
+                label4.setForeground(new Color(kl));
                 label4.setVisible(false);
-                contentPanel.add(label4, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0,
+                contentPanel.add(label4, new GridBagConstraints(0, fo, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 4, 0, 4), 0, 0));
+                    new Insets(0, fo, 0, fo), 0, 0));
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
-            //======== buttonBar ========
+            // ======== buttonBar ========
             {
-                buttonBar.setBorder(new EmptyBorder(12, 0, 0, 0));
+                final int we = 12;
+                buttonBar.setBorder(new EmptyBorder(we, 0, 0, 0));
 
-                //---- cancelButton ----
+                // ---- cancelButton ----
                 cancelButton.setText("Cancel");
                 cancelButton.addActionListener(e -> cancel(e));
 
-                //---- okButton ----
+                // ---- okButton ----
                 okButton.setText("Continue");
                 okButton.addActionListener(e -> signup(e));
 
-                //---- button1 ----
+                // ---- button1 ----
                 button1.setText("Sign In");
                 button1.addActionListener(e -> switchToSignIn(e));
 
-                GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
+                final GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
+                final int uu = 5;
+                final int err = 177;
                 buttonBar.setLayout(buttonBarLayout);
                 buttonBarLayout.setHorizontalGroup(
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createSequentialGroup()
                             .addComponent(button1)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, err, Short.MAX_VALUE)
                             .addComponent(cancelButton)
-                            .addGap(5, 5, 5)
+                            .addGap(uu, uu, uu)
                             .addComponent(okButton)
                             .addContainerGap())
                 );
@@ -190,7 +213,8 @@ public class RegView extends JDialog implements PropertyChangeListener {
         if (signupError != null) {
             label4.setText(signupError);
             label4.setVisible(true);
-        } else {
+        }
+        else {
             label4.setVisible(false);
         }
     }

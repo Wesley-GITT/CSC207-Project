@@ -10,7 +10,17 @@ public interface ShowOtherProfileUserDataAccessInterface extends
         UserGetDataAccessInterface,
         UserSaveDataAccessInterface {
 
+    /**
+     * ExistById.
+     * @param id id
+     * @return boolean
+     */
     boolean existById(int id);
 
+    /**
+     * GetOther.
+     * @param id id
+     * @return OtherUser
+     */
     OtherUser getOther(int id);
 }

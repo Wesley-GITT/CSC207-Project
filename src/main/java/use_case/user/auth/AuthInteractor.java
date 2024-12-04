@@ -13,17 +13,18 @@ public class AuthInteractor implements AuthInputBoundary {
         this.authPresenter = authOutputBoundary;
     }
 
-
     @Override
     public void execute(AuthInputData authInputData) {
         final String username = authInputData.getUsername();
         final String password = authInputData.getPassword();
 
-        if (!userDataAccessObject.existByUsername(username)){
+        if (!userDataAccessObject.existByUsername(username)) {
             authPresenter.prepareFailView("User `" + username + "` doesn't exist");
-        } else if (!userDataAccessObject.isAuthenticated(username, password)) {
+        }
+        else if (!userDataAccessObject.isAuthenticated(username, password)) {
             authPresenter.prepareFailView("Incorrect username and/or password");
-        } else {
+        }
+        else {
             final MyUser user = userDataAccessObject.get(username, password);
             final AuthOutputData authOutputData = new AuthOutputData(user.getId(), username, password);
             authPresenter.prepareSuccessView(authOutputData);

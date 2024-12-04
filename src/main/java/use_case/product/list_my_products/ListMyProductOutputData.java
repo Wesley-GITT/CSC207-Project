@@ -14,3 +14,4 @@ public class ListMyProductOutputData {
         return productIds;
     }
 }
+

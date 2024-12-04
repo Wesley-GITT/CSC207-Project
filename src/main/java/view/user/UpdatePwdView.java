@@ -4,18 +4,20 @@
 
 package view.user;
 
-import interface_adapter.user.update_pwd.UpdatePasswordController;
-import interface_adapter.user.update_pwd.UpdatePasswordState;
-import interface_adapter.user.update_pwd.UpdatePasswordViewModel;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.zip.ZipEntry;
 
-/**
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import interface_adapter.user.update_pwd.UpdatePasswordController;
+import interface_adapter.user.update_pwd.UpdatePasswordState;
+import interface_adapter.user.update_pwd.UpdatePasswordViewModel;
+
+/** UpdatePwdView.
  * @author webster
  */
 public class UpdatePwdView extends JDialog implements PropertyChangeListener {
@@ -25,7 +27,8 @@ public class UpdatePwdView extends JDialog implements PropertyChangeListener {
     private final UpdatePasswordViewModel updatePasswordViewModel;
     private final UpdatePasswordController updatePasswordController;
 
-    public UpdatePwdView(Window owner, UpdatePasswordViewModel updatePasswordViewModel, UpdatePasswordController updatePasswordController) {
+    public UpdatePwdView(Window owner, UpdatePasswordViewModel updatePasswordViewModel,
+                         UpdatePasswordController updatePasswordController) {
         super(owner);
         this.updatePasswordViewModel = updatePasswordViewModel;
         this.updatePasswordController = updatePasswordController;
@@ -52,107 +55,133 @@ public class UpdatePwdView extends JDialog implements PropertyChangeListener {
         cancelButton = new JButton();
         okButton = new JButton();
 
-        //======== this ========
+        // ======== this ========
         setResizable(false);
-        var contentPane = getContentPane();
+        final var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
-        //======== dialogPane ========
+        // ======== dialogPane ========
         {
-            dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing. border. EmptyBorder(
-            0, 0, 0, 0) , "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax. swing. border. TitledBorder. CENTER, javax. swing. border. TitledBorder
-            . BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .awt .Font .BOLD ,12 ), java. awt. Color.
-            red) ,dialogPane. getBorder( )) ); dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .
-            beans .PropertyChangeEvent e) {if ("\u0062ord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} );
+            final int zero = 0;
+            final int twelve = 12;
+            final double dzero = 0.0;
+            final int one = 1;
+            final int four = 4;
+            dialogPane.setBorder(new EmptyBorder(twelve, twelve, twelve, twelve));
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(
+                    new javax.swing.border.EmptyBorder(zero, zero, zero, zero),
+                    "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax.swing.border.TitledBorder
+                    .CENTER, javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dia\u006cog",
+                    java.awt.Font.BOLD, twelve), java.awt.Color.red), dialogPane.getBorder()));
+            dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                @Override public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    if ("\u0062ord\u0065r".equals(e.getPropertyName())) throw new RuntimeException();
+                }
+            });
             dialogPane.setLayout(new BorderLayout());
 
-            //======== contentPanel ========
+            // ======== contentPanel ========
             {
+                final int five = 5;
+                final int two = 2;
+                final int three = 3;
+                final int nine = 9;
+                final double done = 1.0;
+                final double magic = 1.0E-4;
                 contentPanel.setLayout(new GridBagLayout());
-                ((GridBagLayout)contentPanel.getLayout()).columnWidths = new int[] {0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-                ((GridBagLayout)contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
-                contentPanel.add(passwordField1, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                ((GridBagLayout) contentPanel.getLayout()).columnWidths = new int[] {zero, zero, zero};
+                ((GridBagLayout) contentPanel.getLayout()).rowHeights = new int[] {zero, zero, zero, zero, zero, zero};
+                ((GridBagLayout) contentPanel.getLayout()).columnWeights = new double[] {dzero, done, magic};
+                ((GridBagLayout) contentPanel.getLayout()).rowWeights = new double[] {dzero, dzero, dzero, dzero,
+                        dzero, magic};
+                contentPanel.add(passwordField1, new GridBagConstraints(one, one, one, one, dzero, dzero,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(five, zero, five, four), zero, zero));
 
-                //---- label1 ----
+                // ---- label1 ----
                 label1.setText("Old Password:");
-                contentPanel.add(label1, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                contentPanel.add(label1, new GridBagConstraints(zero, one, one, one, dzero, dzero,
+                        GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                        new Insets(four, four, five, nine), zero, zero));
 
-                //---- label2 ----
+                // ---- label2 ----
                 label2.setText("New Password:");
-                contentPanel.add(label2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
-                contentPanel.add(passwordField2, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                contentPanel.add(label2, new GridBagConstraints(zero, two, one, one, dzero, dzero,
+                        GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                        new Insets(four, four, five, nine), zero, zero));
+                contentPanel.add(passwordField2, new GridBagConstraints(one, two, one, one, dzero, dzero,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(five, zero, five, four), zero, zero));
 
-                //---- label3 ----
+                // ---- label3 ----
+                final int ten = 10;
+                final int eleven = 11;
+                final float fourf = 4f;
                 label3.setText("Change your password");
-                label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + 4f));
-                contentPanel.add(label3, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(10, 4, 11, 4), 0, 0));
-                contentPanel.add(passwordField3, new GridBagConstraints(1, 3, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD,
+                        label3.getFont().getSize() + fourf));
+                contentPanel.add(label3, new GridBagConstraints(zero, zero, two, one, dzero, dzero,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(ten, four, eleven, four), zero, zero));
+                contentPanel.add(passwordField3, new GridBagConstraints(one, three, one, one, dzero, dzero,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(five, zero, five, four), zero, zero));
 
-                //---- label5 ----
+                // ---- label5 ----
                 label5.setText("Confirm Password:");
-                contentPanel.add(label5, new GridBagConstraints(0, 3, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                contentPanel.add(label5, new GridBagConstraints(zero, three, one, one, dzero, dzero,
+                        GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
+                        new Insets(four, four, five, nine), zero, zero));
 
-                //---- label4 ----
+                // ---- label4 ----
                 label4.setText("Error Message");
-                label4.setForeground(new Color(0xb3261e));
+                final int mag1 = 0xb3261e;
+                label4.setForeground(new Color(mag1));
                 label4.setVisible(false);
-                contentPanel.add(label4, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 4, 0, 4), 0, 0));
+                contentPanel.add(label4, new GridBagConstraints(zero, four, two, one, dzero, dzero,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(zero, four, zero, four), zero, zero));
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
-            //======== buttonBar ========
+            // ======== buttonBar ========
             {
-                buttonBar.setBorder(new EmptyBorder(12, 0, 0, 0));
+                final int five = 5;
+                buttonBar.setBorder(new EmptyBorder(twelve, zero, zero, zero));
 
-                //---- cancelButton ----
+                // ---- cancelButton ----
                 cancelButton.setText("Cancel");
                 cancelButton.addActionListener(e -> cancel(e));
 
-                //---- okButton ----
+                // ---- okButton ----
                 okButton.setText("Continue");
                 okButton.addActionListener(e -> updatePassword(e));
 
-                GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
+                final GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
+                final int gapNum = 251;
                 buttonBar.setLayout(buttonBarLayout);
                 buttonBarLayout.setHorizontalGroup(
-                    buttonBarLayout.createParallelGroup()
-                        .addGroup(buttonBarLayout.createSequentialGroup()
-                            .addContainerGap(251, Short.MAX_VALUE)
-                            .addComponent(cancelButton)
-                            .addGap(5, 5, 5)
-                            .addComponent(okButton)
-                            .addContainerGap())
+                        buttonBarLayout.createParallelGroup()
+                                .addGroup(buttonBarLayout.createSequentialGroup()
+                                        .addContainerGap(gapNum, Short.MAX_VALUE)
+                                        .addComponent(cancelButton)
+                                        .addGap(five, five, five)
+                                        .addComponent(okButton)
+                                        .addContainerGap())
                 );
                 buttonBarLayout.setVerticalGroup(
-                    buttonBarLayout.createParallelGroup()
-                        .addGroup(buttonBarLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelButton)
-                            .addComponent(okButton))
+                        buttonBarLayout.createParallelGroup()
+                                .addGroup(buttonBarLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cancelButton)
+                                        .addComponent(okButton))
                 );
             }
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
+        final int s1 = 450;
+        final int s2 = 300;
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(450, 300);
+        setSize(s1, s2);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -174,7 +203,6 @@ public class UpdatePwdView extends JDialog implements PropertyChangeListener {
     private JButton okButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-
     public String getViewName() {
         return viewName;
     }
@@ -186,7 +214,8 @@ public class UpdatePwdView extends JDialog implements PropertyChangeListener {
         if (updateProfileError != null) {
             label4.setText(updateProfileError);
             label4.setVisible(true);
-        } else {
+        }
+        else {
             label4.setVisible(false);
         }
     }

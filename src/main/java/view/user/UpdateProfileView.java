@@ -4,18 +4,20 @@
 
 package view.user;
 
-import interface_adapter.user.update_my_profile.UpdateMyProfileController;
-import interface_adapter.user.update_my_profile.UpdateMyProfileState;
-import interface_adapter.user.update_my_profile.UpdateMyProfileViewModel;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import interface_adapter.user.update_my_profile.UpdateMyProfileController;
+import interface_adapter.user.update_my_profile.UpdateMyProfileState;
+import interface_adapter.user.update_my_profile.UpdateMyProfileViewModel;
+
 /**
+ * The.
  * @author webster
  */
 public class UpdateProfileView extends JDialog implements PropertyChangeListener {
@@ -49,86 +51,102 @@ public class UpdateProfileView extends JDialog implements PropertyChangeListener
         cancelButton = new JButton();
         okButton = new JButton();
 
-        //======== this ========
+        // ======== this ========
         setResizable(false);
-        var contentPane = getContentPane();
+        final var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
-        //======== dialogPane ========
+        // ======== dialogPane ========
         {
-            dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder (new javax. swing. border. CompoundBorder( new javax .swing .border .TitledBorder (new javax. swing
-            . border. EmptyBorder( 0, 0, 0, 0) , "JFor\u006dDesi\u0067ner \u0045valu\u0061tion", javax. swing. border. TitledBorder
-            . CENTER, javax. swing. border. TitledBorder. BOTTOM, new java .awt .Font ("Dia\u006cog" ,java .
-            awt .Font .BOLD ,12 ), java. awt. Color. red) ,dialogPane. getBorder( )) )
-            ; dialogPane. addPropertyChangeListener (new java. beans. PropertyChangeListener( ){ @Override public void propertyChange (java .beans .PropertyChangeEvent e
-            ) {if ("bord\u0065r" .equals (e .getPropertyName () )) throw new RuntimeException( ); }} )
-            ;
+            final int tt = 12;
+            dialogPane.setBorder(new EmptyBorder(tt, tt, tt, tt));
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+                .border.EmptyBorder(0, 0, 0, 0), "JFor\u006dDesi\u0067ner \u0045valu\u0061tion",
+                    javax.swing.border.TitledBorder
+                .CENTER, javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font ("Dia\u006cog", java
+                    .awt.Font.BOLD, tt), java.awt.Color.red), dialogPane.getBorder()));
+            dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+                @Override public void propertyChange(java.beans.PropertyChangeEvent e) {
+                    if ("bord\u0065r".equals (e.getPropertyName())) throw new RuntimeException();
+                }
+            }
+            );
             dialogPane.setLayout(new BorderLayout());
 
-            //======== contentPanel ========
+            // ======== contentPanel ========
             {
+                final double ss = 1.0E-4;
                 contentPanel.setLayout(new GridBagLayout());
-                ((GridBagLayout)contentPanel.getLayout()).columnWidths = new int[] {0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-                ((GridBagLayout)contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0E-4};
+                ((GridBagLayout) contentPanel.getLayout()).columnWidths = new int[] {0, 0, 0};
+                ((GridBagLayout) contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0};
+                ((GridBagLayout) contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, ss};
+                ((GridBagLayout) contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, ss};
 
-                //---- label2 ----
+                final int fi = 5;
+                final int fo = 4;
+                final int ni = 9;
+                final int ten = 10;
+                final int ele = 11;
+                // ---- label2 ----
                 label2.setText("Telephone:");
                 contentPanel.add(label2, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                    new Insets(fo, fo, fi, ni), 0, 0));
                 contentPanel.add(textField1, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                    new Insets(fi, 0, fi, fo), 0, 0));
 
-                //---- label3 ----
+                final float ff = 4f;
+                // ---- label3 ----
                 label3.setText("Update profile");
-                label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + 4f));
+                label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + ff));
                 contentPanel.add(label3, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(10, 4, 11, 4), 0, 0));
+                    new Insets(ten, fo, ele, fo), 0, 0));
                 contentPanel.add(textField2, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                    new Insets(fi, 0, fi, fo), 0, 0));
 
-                //---- label5 ----
+                // ---- label5 ----
                 label5.setText("Email:");
                 contentPanel.add(label5, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                     GridBagConstraints.EAST, GridBagConstraints.VERTICAL,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                    new Insets(fo, fo, fi, ni), 0, 0));
 
-                //---- label4 ----
+                // ---- label4 ----
+                final int kl = 0xb3261e;
+                final int hre = 3;
                 label4.setText("Error Message");
-                label4.setForeground(new Color(0xb3261e));
+                label4.setForeground(new Color(kl));
                 label4.setVisible(false);
-                contentPanel.add(label4, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0,
+                contentPanel.add(label4, new GridBagConstraints(0, hre, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 4, 0, 4), 0, 0));
+                    new Insets(0, fo, 0, fo), 0, 0));
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
-            //======== buttonBar ========
+            // ======== buttonBar ========
             {
                 buttonBar.setBorder(new EmptyBorder(12, 0, 0, 0));
 
-                //---- cancelButton ----
+                // ---- cancelButton ----
                 cancelButton.setText("Cancel");
                 cancelButton.addActionListener(e -> cancel(e));
 
-                //---- okButton ----
+                // ---- okButton ----
                 okButton.setText("Continue");
                 okButton.addActionListener(e -> updateProfile(e));
 
-                GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
+                final int fii = 5;
+                final int tll = 251;
+                final GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
                 buttonBar.setLayout(buttonBarLayout);
                 buttonBarLayout.setHorizontalGroup(
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createSequentialGroup()
-                            .addContainerGap(251, Short.MAX_VALUE)
+                            .addContainerGap(tll, Short.MAX_VALUE)
                             .addComponent(cancelButton)
-                            .addGap(5, 5, 5)
+                            .addGap(fii, fii, fii)
                             .addComponent(okButton)
                             .addContainerGap())
                 );

@@ -16,7 +16,6 @@ public class RegInteractor implements RegInputBoundary {
         this.myUserFactory = new MyUserFactory();
     }
 
-
     @Override
     public void execute(RegInputData regInputData) {
         final String username = regInputData.getUsername();
@@ -24,9 +23,11 @@ public class RegInteractor implements RegInputBoundary {
 
         if (!regInputData.getPassword().equals(regInputData.getPasswordRepeated())) {
             regPresenter.prepareFailView("Passwords don't match");
-        } else if (userDataAccessObject.existByUsername(username)) {
+        }
+        else if (userDataAccessObject.existByUsername(username)) {
             regPresenter.prepareFailView("User `" + username + "` already exists");
-        } else {
+        }
+        else {
             final MyUser user = myUserFactory.create(username, password);
             userDataAccessObject.add(user);
 
