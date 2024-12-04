@@ -18,6 +18,9 @@ public class ShowWishlistController {
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Execute method for showWishlistInteractor.
+     */
     public void execute() {
         final ViewManagerState state = viewManagerModel.getState();
         final String username = state.getUsername();

@@ -7,7 +7,8 @@ public class UpdateNameInteractor implements UpdateNameInputBoundary {
     private UpdateNameUserDataAccessInterface userDataAccessObject;
     private UpdateNameOutputBoundary updateNamePresenter;
 
-    public UpdateNameInteractor(UpdateNameUserDataAccessInterface userDataAccessObject, UpdateNameOutputBoundary updateNamePresenter) {
+    public UpdateNameInteractor(UpdateNameUserDataAccessInterface userDataAccessObject,
+                                UpdateNameOutputBoundary updateNamePresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.updateNamePresenter = updateNamePresenter;
     }
@@ -21,16 +22,18 @@ public class UpdateNameInteractor implements UpdateNameInputBoundary {
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             updateNamePresenter.prepareFailView("Authentication failed");
-        } else if (userDataAccessObject.existByUsername(newUsername)) {
+        }
+        else if (userDataAccessObject.existByUsername(newUsername)) {
             updateNamePresenter.prepareFailView("Username `" + newUsername + "` is taken");
-        } else {
+        }
+        else {
             final String address = updateNameInputData.getNewUsername();
             final MyUser user = userDataAccessObject.get(username, password);
 
             user.setUsername(address);
             userDataAccessObject.save(user);
 
-            UpdateNameOutputData outputData = new UpdateNameOutputData(address);
+            final UpdateNameOutputData outputData = new UpdateNameOutputData(address);
             updateNamePresenter.prepareSuccessView(outputData);
         }
     }

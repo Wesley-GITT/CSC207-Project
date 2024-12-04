@@ -16,7 +16,7 @@ public class ShowOtherProfilePresenter implements ShowOtherProfileOutputBoundary
 
     @Override
     public void prepareSuccessView(ShowOtherProfileOutputData response) {
-        ShowOtherProfileState showOtherProfileState = showOtherProfileViewModel.getState();
+        final ShowOtherProfileState showOtherProfileState = showOtherProfileViewModel.getState();
         showOtherProfileState.setUsername(response.getUsername());
         showOtherProfileState.setTelephone(response.getTelephone());
         showOtherProfileState.setEmail(response.getEmail());

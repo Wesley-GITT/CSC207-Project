@@ -21,7 +21,7 @@ public class RegPresenter implements RegOutputBoundary {
     @Override
     public void prepareSuccessView(RegOutputData response) {
         // On success, switch to the login view.
-        ViewManagerState state = viewManagerModel.getState();
+        final ViewManagerState state = viewManagerModel.getState();
         state.setUsername(response.getUsername());
         state.setPassword(response.getPassword());
         state.setPopupName("");

@@ -15,25 +15,14 @@ public class LogoutPresenter implements LogoutOutputBoundary {
         this.viewManagerModel = viewManagerModel;
     }
 
-//    @Override
-//    public void prepareSuccessView() {
-//        // clear username and password and go home if inside user personal page
-//        String viewName = this.viewManagerModel.getState().getViewName();
-//        if (viewName.equals("my profile") || viewName.equals("wishlist")) {
-//            viewName = "home";
-//        }
-//
-//        ViewManagerState state = viewManagerModel.getState();
-//        state.setViewName(viewName);
-//        viewManagerModel.firePropertyChanged();
-//    }
     @Override
     public void prepareSuccessView() {
         // Clear username and password and navigate to the "home" view
-        ViewManagerState state = viewManagerModel.getState();
+        final ViewManagerState state = viewManagerModel.getState();
         state.setUsername("");
         state.setPassword("");
-        state.setViewName("home"); // Always navigate to "home"
+        state.setViewName("home");
+        // Always navigate to "home"
         viewManagerModel.firePropertyChanged();
     }
 }

@@ -10,14 +10,19 @@ import use_case.product.remove.RemoveProductInputData;
  */
 public class RemoveProductController {
 
-    private final RemoveProductInputBoundary removeProductInteractor ;
+    private final RemoveProductInputBoundary removeProductInteractor;
     private final ViewManagerModel viewManagerModel;
 
-    public RemoveProductController(RemoveProductInputBoundary removeProductInteractor, ViewManagerModel viewManagerModel) {
+    public RemoveProductController(RemoveProductInputBoundary removeProductInteractor,
+                                   ViewManagerModel viewManagerModel) {
         this.removeProductInteractor = removeProductInteractor;
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Execute Method for RemoveProductController.
+     * @param productId ProductId
+     */
     public void execute(int productId) {
         final ViewManagerState storage = viewManagerModel.getState();
         final String username = storage.getUsername();

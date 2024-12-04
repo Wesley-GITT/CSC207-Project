@@ -13,6 +13,9 @@ public class LogoutController {
         this.logoutInteractor = logoutInteractor;
     }
 
+    /**
+     * Execute method for LogoutController.
+     */
     public void execute() {
         logoutInteractor.execute();
     }

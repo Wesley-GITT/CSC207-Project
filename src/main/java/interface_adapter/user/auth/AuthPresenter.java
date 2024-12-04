@@ -20,12 +20,12 @@ public class AuthPresenter implements AuthOutputBoundary {
 
     @Override
     public void prepareSuccessView(AuthOutputData response) {
-        AuthState state = authViewModel.getState();
+        final AuthState state = authViewModel.getState();
         state.setLoginError(null);
         authViewModel.firePropertyChanged();
 
         // capture the username and password
-        ViewManagerState managerState = viewManagerModel.getState();
+        final ViewManagerState managerState = viewManagerModel.getState();
         managerState.setUsername(response.getUsername());
         managerState.setPassword(response.getPassword());
         managerState.setPopupName("");
@@ -41,7 +41,7 @@ public class AuthPresenter implements AuthOutputBoundary {
 
     @Override
     public void switchToSignUp() {
-        ViewManagerState managerState = viewManagerModel.getState();
+        final ViewManagerState managerState = viewManagerModel.getState();
         managerState.setPopupName("registration");
         viewManagerModel.firePropertyChanged();
     }

@@ -13,11 +13,15 @@ public class ShowMyProfileController {
     private final ShowMyProfileInputBoundary showMyProfileInteractor;
     private final ViewManagerModel viewManagerModel;
 
-    public ShowMyProfileController(ShowMyProfileInputBoundary showMyProfileInteractor, ViewManagerModel viewManagerModel) {
+    public ShowMyProfileController(ShowMyProfileInputBoundary showMyProfileInteractor,
+                                   ViewManagerModel viewManagerModel) {
         this.showMyProfileInteractor = showMyProfileInteractor;
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Execute Method for ShowMyProfileController.
+     */
     public void execute() {
         final ViewManagerState storage = viewManagerModel.getState();
         final String username = storage.getUsername();

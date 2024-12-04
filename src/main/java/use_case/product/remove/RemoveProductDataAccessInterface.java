@@ -7,6 +7,10 @@ public interface RemoveProductDataAccessInterface extends
         ProductExistDataAccessInterface,
         ProductGetDataAccessInterface {
 
+    /**
+     * Remove method for RemoveProductDataAccessInterface.
+     * @param id id
+     */
     void remove(int id);
 }
 

@@ -20,13 +20,12 @@ public class ShowMyProfilePresenter implements ShowMyProfileOutputBoundary {
 
     @Override
     public void prepareSuccessView(ShowMyProfileOutputData response) {
-        ShowMyProfileState state = showMyProfileViewModel.getState();
+        final ShowMyProfileState state = showMyProfileViewModel.getState();
         state.setUsername(response.getUsername());
         state.setEmail(response.getTelephone());
         state.setEmail(response.getEmail());
         showMyProfileViewModel.firePropertyChanged();
-
-        ViewManagerState managerState = viewManagerModel.getState();
+        final ViewManagerState managerState = viewManagerModel.getState();
         managerState.setViewName("my profile");
         viewManagerModel.firePropertyChanged();
     }

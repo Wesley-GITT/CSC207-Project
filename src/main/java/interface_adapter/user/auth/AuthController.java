@@ -26,6 +26,9 @@ public class AuthController {
         authInteractor.execute(authInputData);
     }
 
+    /**
+     * SwitchToSignUp for authInteractor.
+     */
     public void switchToSignUp() {
         authInteractor.switchToSignUp();
     }

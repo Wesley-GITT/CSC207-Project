@@ -10,14 +10,13 @@ public class ListBookProductPresenter implements ListBookProductOutputBoundary {
 
     private final ListBookProductViewModel listBookProductViewModel;
 
-
     public ListBookProductPresenter(ListBookProductViewModel listBookProductViewModel) {
         this.listBookProductViewModel = listBookProductViewModel;
     }
 
     @Override
     public void prepareSuccessView(ListBookProductOutputData response) {
-        ListBookProductState state = listBookProductViewModel.getState();
+        final ListBookProductState state = listBookProductViewModel.getState();
         state.setProductIds(response.getProductIds());
         listBookProductViewModel.firePropertyChanged();
     }

@@ -13,11 +13,18 @@ public class UpdatePasswordController {
     private final UpdatePasswordInputBoundary updatePasswordInteractor;
     private final ViewManagerModel viewManagerModel;
 
-    public UpdatePasswordController(UpdatePasswordInputBoundary updatePasswordInteractor, ViewManagerModel viewManagerModel) {
+    public UpdatePasswordController(UpdatePasswordInputBoundary updatePasswordInteractor,
+                                    ViewManagerModel viewManagerModel) {
         this.updatePasswordInteractor = updatePasswordInteractor;
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Execute method for UpdatePasswordController.
+     * @param oldPassword oldPassword
+     * @param newPassword1 newPassword1
+     * @param newPassword2 newPassword2
+     */
     public void execute(String oldPassword, String newPassword1, String newPassword2) {
         final ViewManagerState state = viewManagerModel.getState();
         final String username = state.getUsername();

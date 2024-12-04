@@ -12,10 +12,16 @@ public class RemoveProductInputData {
         this.productId = productId;
     }
 
-    public String getUsername() { return username;}
+    public String getUsername() {
+        return username;
+    }
 
-    public String getPassword() { return password;}
+    public String getPassword() {
+        return password;
+    }
 
-    public int getProductId() { return productId;}
+    public int getProductId() {
+        return productId;
+    }
 
 }

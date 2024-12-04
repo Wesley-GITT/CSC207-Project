@@ -1,7 +1,9 @@
 package data_access.book;
 
-import entity.Book;
-import entity.BookFactory;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.*;
+
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
@@ -12,15 +14,16 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import entity.Book;
+import entity.BookFactory;
 import use_case.book.search.SearchBookDataAccessInterface;
 import use_case.book.view.ViewBookDataAccessInterface;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.*;
-
-
-public class APIBookDataAccessObject implements ViewBookDataAccessInterface, SearchBookDataAccessInterface {
+/**
+ * API.
+ */
+public class ApiBookDataAccessObject implements ViewBookDataAccessInterface, SearchBookDataAccessInterface {
 
     private final String baseUrl = "https://www.googleapis.com/books/v1/volumes";
     // private final String pos = "&key=AIzaSyCjFtxl0aJp-HONN6lpsYNCyCi-1Mqoi0I";
@@ -34,53 +37,60 @@ public class APIBookDataAccessObject implements ViewBookDataAccessInterface, Sea
 
     @Override
     public Book get(String bookId) {
-        HttpGet httpGet = new HttpGet(baseUrl + "/" + bookId);
+        final HttpGet httpGet = new HttpGet(baseUrl + "/" + bookId);
         try {
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            String body = EntityUtils.toString(httpEntity);
+            final CloseableHttpClient httpClient = HttpClients.createDefault();
+            final CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
+            final HttpEntity httpEntity = httpResponse.getEntity();
+            final String body = EntityUtils.toString(httpEntity);
 
-            JSONObject jsonQueryResult = new JSONObject(body);
-            JSONObject jsonVolumeInfo = jsonQueryResult.getJSONObject("volumeInfo");
-            JSONArray jsonAuthors = jsonVolumeInfo.getJSONArray("authors");
-            JSONObject jsonImageLinks = jsonVolumeInfo.getJSONObject("imageLinks");
+            final JSONObject jsonQueryResult = new JSONObject(body);
+            final JSONObject jsonVolumeInfo = jsonQueryResult.getJSONObject("volumeInfo");
+            final JSONArray jsonAuthors = jsonVolumeInfo.getJSONArray("authors");
+            final JSONObject jsonImageLinks = jsonVolumeInfo.getJSONObject("imageLinks");
 
-            String id = getJSONStringByKey(jsonQueryResult, "id");
-            String title = getJSONStringByKey(jsonVolumeInfo,"title");
-            String imageURL = getJSONStringByKey(jsonImageLinks, "thumbnail");
-            String publisher = getJSONStringByKey(jsonVolumeInfo,"publisher");
-            String publishedDate = getJSONStringByKey(jsonVolumeInfo,"publishedDate");
-            String description = getJSONStringByKey(jsonVolumeInfo,"description");
-            String language = getJSONStringByKey(jsonVolumeInfo,"language");
+            final String id = getJSONStringByKey(jsonQueryResult, "id");
+            final String title = getJSONStringByKey(jsonVolumeInfo, "title");
+            final String imageURL = getJSONStringByKey(jsonImageLinks, "thumbnail");
+            final String publisher = getJSONStringByKey(jsonVolumeInfo, "publisher");
+            final String publishedDate = getJSONStringByKey(jsonVolumeInfo, "publishedDate");
+            final String description = getJSONStringByKey(jsonVolumeInfo, "description");
+            final String language = getJSONStringByKey(jsonVolumeInfo, "language");
 
-            Set<String> authors = new HashSet<>();
-            Iterator<Object> jsonAuthorIterator = jsonAuthors.iterator();
-            while(jsonAuthorIterator.hasNext()) {
-                String author = (String) jsonAuthorIterator.next();
+            final Set<String> authors = new HashSet<>();
+            final Iterator<Object> jsonAuthorIterator = jsonAuthors.iterator();
+            while (jsonAuthorIterator.hasNext()) {
+                final String author = (String) jsonAuthorIterator.next();
                 authors.add(author);
             }
 
-            BookFactory bookFactory = new BookFactory();
+            final BookFactory bookFactory = new BookFactory();
             return bookFactory.create(id, imageURL, title, authors, publisher, publishedDate, description, language);
 
-        } catch (IOException | ParseException | JSONException e) {
+        }
+        catch (IOException | ParseException | JSONException e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * API.
+     */
     @Override
     public boolean exist(String bookId) {
         try {
-            HttpGet httpGet = new HttpGet(baseUrl + "/" + bookId);
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
-            if (httpResponse.getCode() == 404) {
+            final int error = 404;
+            final HttpGet httpGet = new HttpGet(baseUrl + "/" + bookId);
+            final CloseableHttpClient httpClient = HttpClients.createDefault();
+            final CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
+            if (httpResponse.getCode() == error) {
                 return false;
-            } else {
+            }
+            else {
                 return true;
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -88,27 +98,28 @@ public class APIBookDataAccessObject implements ViewBookDataAccessInterface, Sea
     @Override
     public List<String> search(String keyword, int startIndex, int maxItemNum) {
         try {
-            HttpGet httpGet = new HttpGet(baseUrl + "?q=" + URLEncoder.encode(keyword) + "&startIndex=" + startIndex + "&maxResults=" + maxItemNum);
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
-            HttpEntity httpEntity = httpResponse.getEntity();
-            String body = EntityUtils.toString(httpEntity);
+            final HttpGet httpGet = new HttpGet(baseUrl + "?q=" + URLEncoder.encode(keyword) + "&startIndex=" + startIndex + "&maxResults=" + maxItemNum);
+            final CloseableHttpClient httpClient = HttpClients.createDefault();
+            final CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
+            final HttpEntity httpEntity = httpResponse.getEntity();
+            final String body = EntityUtils.toString(httpEntity);
 
-            List<String> bookIds = new ArrayList<>();
-            JSONObject jsonQueryResult = new JSONObject(body);
+            final List<String> bookIds = new ArrayList<>();
+            final JSONObject jsonQueryResult = new JSONObject(body);
 
             if (jsonQueryResult.has("items")) {
-                JSONArray jsonBookItems = jsonQueryResult.getJSONArray("items");
-                Iterator<Object> jsonBookItemsIteractor = jsonBookItems.iterator();
-                while(jsonBookItemsIteractor.hasNext()) {
-                    JSONObject jsonBook = (JSONObject) jsonBookItemsIteractor.next();
+                final JSONArray jsonBookItems = jsonQueryResult.getJSONArray("items");
+                final Iterator<Object> jsonBookItemsIteractor = jsonBookItems.iterator();
+                while (jsonBookItemsIteractor.hasNext()) {
+                    final JSONObject jsonBook = (JSONObject) jsonBookItemsIteractor.next();
                     bookIds.add(getJSONStringByKey(jsonBook, "id"));
                 }
             }
 
             return bookIds;
 
-        } catch (IOException | ParseException | JSONException e) {
+        }
+        catch (IOException | ParseException | JSONException e) {
             throw new RuntimeException(e);
         }
     }

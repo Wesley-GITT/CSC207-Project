@@ -13,11 +13,15 @@ public class ListMyProductController {
     private final ListMyProductInputBoundary listMyProductInteractor;
     private final ViewManagerModel viewManagerModel;
 
-    public ListMyProductController(ListMyProductInputBoundary listMyProductInteractor, ViewManagerModel viewManagerModel) {
+    public ListMyProductController(ListMyProductInputBoundary listMyProductInteractor,
+                                   ViewManagerModel viewManagerModel) {
         this.listMyProductInteractor = listMyProductInteractor;
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Execute method for ListMyProductController.
+     */
     public void execute() {
         final ViewManagerState storage = viewManagerModel.getState();
         final String username = storage.getUsername();

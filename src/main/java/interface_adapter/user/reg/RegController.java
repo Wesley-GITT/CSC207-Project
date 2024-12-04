@@ -27,6 +27,9 @@ public class RegController {
         regInteractor.execute(signupInputData);
     }
 
+    /**
+     * SwitchToSignIn for regInteractor.
+     */
     public void switchToSignIn() {
         regInteractor.switchToSignIn();
     }

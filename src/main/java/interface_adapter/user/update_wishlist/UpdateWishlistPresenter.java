@@ -13,6 +13,11 @@ public class UpdateWishlistPresenter implements UpdateWishlistOutputBoundary {
     private final UpdateWishlistViewModel updateWishlistViewModel;
     private final ShowWishlistViewModel showWishlistViewModel;
 
+    /**
+     * UpdateWishlistPresenter.
+     * @param updateWishlistViewModel updateWishlistViewModel
+     * @param showWishlistViewModel showWishlistViewModel
+     */
     public UpdateWishlistPresenter(UpdateWishlistViewModel updateWishlistViewModel, ShowWishlistViewModel showWishlistViewModel) {
         this.updateWishlistViewModel = updateWishlistViewModel;
         this.showWishlistViewModel = showWishlistViewModel;

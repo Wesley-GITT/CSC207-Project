@@ -4,6 +4,15 @@
 
 package view.user;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.*;
+
 import interface_adapter.container.ViewManagerModel;
 import interface_adapter.container.ViewManagerState;
 import interface_adapter.user.show_my_profile.ShowMyProfileController;
@@ -14,15 +23,8 @@ import interface_adapter.user.update_my_profile.UpdateMyProfileViewModel;
 import interface_adapter.user.update_name.UpdateNameState;
 import interface_adapter.user.update_name.UpdateNameViewModel;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 /**
+ * ProfileView.
  * @author webster
  */
 public class ProfileView extends JPanel implements PropertyChangeListener {
@@ -76,11 +78,13 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
             }
         });
         setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
-        border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER
-        ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font
-        .BOLD,12),java.awt.Color.red), getBorder())); addPropertyChangeListener(
-        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order"
-        .equals(e.getPropertyName()))throw new RuntimeException();}});
+        border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",
+                javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,
+                new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),
+                java.awt.Color.red), getBorder())); addPropertyChangeListener
+                (new java.beans.PropertyChangeListener()
+                {@Override public void propertyChange(java.beans.PropertyChangeEvent e)
+                {if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new GridBagLayout());
         ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0, 0};
         ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0};

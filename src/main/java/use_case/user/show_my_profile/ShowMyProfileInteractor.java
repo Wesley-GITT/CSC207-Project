@@ -7,7 +7,8 @@ public class ShowMyProfileInteractor implements ShowMyProfileInputBoundary {
     private ShowMyProfileUserDataAccessInterface userDataAccessObject;
     private ShowMyProfileOutputBoundary showMyProfilePresenter;
 
-    public ShowMyProfileInteractor(ShowMyProfileUserDataAccessInterface userDataAccessObject, ShowMyProfileOutputBoundary showMyProfilePresenter) {
+    public ShowMyProfileInteractor(ShowMyProfileUserDataAccessInterface userDataAccessObject,
+                                   ShowMyProfileOutputBoundary showMyProfilePresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.showMyProfilePresenter = showMyProfilePresenter;
     }
@@ -20,12 +21,13 @@ public class ShowMyProfileInteractor implements ShowMyProfileInputBoundary {
 
         if (!userDataAccessObject.isAuthenticated(username, password)) {
             showMyProfilePresenter.prepareFailView("Authentication failed");
-        } else {
+        }
+        else {
             final MyUser user = userDataAccessObject.get(username, password);
             final String telephone = user.getTelephone();
             final String email = user.getEmail();
 
-            ShowMyProfileOutputData outputData = new ShowMyProfileOutputData(username, telephone, email);
+            final ShowMyProfileOutputData outputData = new ShowMyProfileOutputData(username, telephone, email);
             showMyProfilePresenter.prepareSuccessView(outputData);
         }
     }

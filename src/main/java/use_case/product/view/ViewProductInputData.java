@@ -8,6 +8,8 @@ public class ViewProductInputData {
         this.productId = productId;
     }
 
-    public int getProductId() { return productId;}
+    public int getProductId() {
+        return productId;
+    }
 
 }

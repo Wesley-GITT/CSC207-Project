@@ -26,7 +26,7 @@ public class CreateProductPresenter implements CreateProductOutputBoundary {
 
     @Override
     public void prepareSuccessView(CreateProductOutputData response) {
-        UpdateProductState state = updateProductViewModel.getState();
+        final UpdateProductState state = updateProductViewModel.getState();
         state.setProductId(response.getProductId());
         updateProductViewModel.firePropertyChanged();
     }

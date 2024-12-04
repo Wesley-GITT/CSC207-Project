@@ -4,7 +4,6 @@ import entity.MyUser;
 import entity.Product;
 import use_case.user.auth.AuthUserDataAccessInterface;
 
-
 public class RemoveProductInteractor implements RemoveProductInputBoundary {
 
     private final AuthUserDataAccessInterface userDataAccessObject;

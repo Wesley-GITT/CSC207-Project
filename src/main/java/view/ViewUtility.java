@@ -4,9 +4,14 @@ import java.util.Set;
 
 public class ViewUtility {
 
+    /**
+     * GetAuthorString for ViewUtility.
+     * @param authors authors
+     * @return Set of String
+     */
     public static String getAuthorString(Set<String> authors) {
         String authorsStr = "";
-        int maxAuthorNum = 2;
+        final int maxAuthorNum = 2;
 
         int countAuthorNum = 0;
         for (String author: authors) {
@@ -17,10 +22,12 @@ public class ViewUtility {
             authorsStr += author;
             if (countAuthorNum < maxAuthorNum - 2) {
                 authorsStr += ", ";
-            } else if (countAuthorNum < maxAuthorNum - 1){
+            }
+            else if (countAuthorNum < maxAuthorNum - 1) {
                 if (maxAuthorNum > authors.size()) {
                     authorsStr += " and ";
-                } else {
+                }
+                else {
                     authorsStr += ", ";
                 }
             }
