@@ -1,5 +1,9 @@
 package data_access.product;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 import entity.Product;
 import use_case.product.create.CreateProductDataAccessInterface;
 import use_case.product.list_book_products.ListBookProductDataAccessInterface;
@@ -8,10 +12,10 @@ import use_case.product.remove.RemoveProductDataAccessInterface;
 import use_case.product.update.UpdateProductDataAccessInterface;
 import use_case.product.view.ViewProductDataAccessInterface;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
+/**
+ * The Presenter for the Login Use Case.
+ *
+ */
 public class InMemoryProductDataAccessObject implements
         CreateProductDataAccessInterface,
         ListBookProductDataAccessInterface,
@@ -22,16 +26,15 @@ public class InMemoryProductDataAccessObject implements
 
     private final HashMap<Integer, Product> productsById = new HashMap<>();
 
-
     @Override
-    public void add(Product product){
+    public void add(Product product) {
         product.setId(productsById.size());
         save(product);
     }
 
     @Override
-    public Set<Integer> listByUserId(int userId){
-        Set<Integer> result = new HashSet<>();
+    public Set<Integer> listByUserId(int userId) {
+        final Set<Integer> result = new HashSet<>();
         for (Product product: productsById.values()) {
             if (product.getSellerId() == userId) {
                 result.add(product.getId());
@@ -42,7 +45,7 @@ public class InMemoryProductDataAccessObject implements
 
     @Override
     public Set<Integer> listByBookId(String bookId) {
-        Set<Integer> result = new HashSet<>();
+        final Set<Integer> result = new HashSet<>();
         for (Product product: productsById.values()) {
             if (bookId.equals(product.getBookId())) {
                 result.add(product.getId());
@@ -52,22 +55,22 @@ public class InMemoryProductDataAccessObject implements
     }
 
     @Override
-    public void remove(int id){
+    public void remove(int id) {
         productsById.remove(id);
     }
 
     @Override
-    public void save(Product product){
+    public void save(Product product) {
         productsById.put(product.getId(), product);
     }
 
     @Override
-    public boolean exist(int id){
+    public boolean exist(int id) {
         return productsById.containsKey(id);
     }
 
     @Override
-    public Product get(int id){
+    public Product get(int id) {
         return productsById.get(id);
     }
 }

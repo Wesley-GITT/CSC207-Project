@@ -2,6 +2,9 @@ package entity;
 
 import java.util.Set;
 
+/**
+ * The Presenter for the Login Use Case.
+ */
 public class MyUser extends OtherUser {
 
     private String password;
@@ -25,10 +28,18 @@ public class MyUser extends OtherUser {
         this.password = password;
     }
 
+    /**
+     * The Presenter for the Login Use Case.
+     * @param email :
+     */
     public void setEmail(String email) {
         this.contactInfo.setEmail(email);
     }
 
+    /**
+     * The Presenter for the Login Use Case.
+     * @param telephone :
+     */
     public void setTelephone(String telephone) {
         this.contactInfo.setTelephone(telephone);
     }

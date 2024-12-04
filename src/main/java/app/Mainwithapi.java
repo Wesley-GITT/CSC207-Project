@@ -1,6 +1,6 @@
 package app;
 
-import data_access.book.APIBookDataAccessObject;
+import data_access.book.ApiBookDataAccessObject;
 import data_access.product.InMemoryProductDataAccessObject;
 import data_access.user.InMemoryUserDataAccessObject;
 import interface_adapter.book.search.SearchBookController;
@@ -109,13 +109,20 @@ import view.product.ListProductView;
 import view.user.*;
 import javax.swing.*;
 
-public class MainWithAPI {
+/**
+ * The Presenter for the Login Use Case.
+ */
+public class Mainwithapi {
 
+    /**
+     * The Presenter for the Login Use Case.
+     * @param args :
+     */
     public static void main(String[] args) {
 
-        InMemoryUserDataAccessObject inMemoryUserDAO = new InMemoryUserDataAccessObject();
-        InMemoryProductDataAccessObject inMemoryProductDataAccessObject = new InMemoryProductDataAccessObject();
-        APIBookDataAccessObject apiBookDataAccessObject = new APIBookDataAccessObject();
+        final InMemoryUserDataAccessObject inMemoryUserDAO = new InMemoryUserDataAccessObject();
+        final InMemoryProductDataAccessObject inMemoryProductDataAccessObject = new InMemoryProductDataAccessObject();
+        final ApiBookDataAccessObject apiBookDataAccessObject = new ApiBookDataAccessObject();
 
         final ViewManagerModel viewManagerModel = new ViewManagerModel();
         final ViewManager viewManager = new ViewManager(viewManagerModel);
@@ -134,100 +141,154 @@ public class MainWithAPI {
         final RegView regView = new RegView(viewManager, regViewModel, regController);
 
         final ShowMyProfileViewModel showMyProfileViewModel = new ShowMyProfileViewModel();
-        final ShowMyProfileOutputBoundary showMyProfilePresenter = new ShowMyProfilePresenter(showMyProfileViewModel, viewManagerModel);
-        final ShowMyProfileInputBoundary showMyProfileInteractor = new ShowMyProfileInteractor(inMemoryUserDAO, showMyProfilePresenter);
-        final ShowMyProfileController showMyProfileController = new ShowMyProfileController(showMyProfileInteractor, viewManagerModel);
+        final ShowMyProfileOutputBoundary showMyProfilePresenter =
+                new ShowMyProfilePresenter(showMyProfileViewModel, viewManagerModel);
+        final ShowMyProfileInputBoundary showMyProfileInteractor =
+                new ShowMyProfileInteractor(inMemoryUserDAO, showMyProfilePresenter);
+        final ShowMyProfileController showMyProfileController =
+                new ShowMyProfileController(showMyProfileInteractor, viewManagerModel);
 
         final UpdateMyProfileViewModel updateProfileViewModel = new UpdateMyProfileViewModel();
-        final UpdateMyProfileOutputBoundary updateProfilePresenter = new UpdateMyProfilePresenter(updateProfileViewModel, showMyProfileViewModel);
-        final UpdateMyProfileInteractor updateProfileInteractor = new UpdateMyProfileInteractor(inMemoryUserDAO, updateProfilePresenter);
-        final UpdateMyProfileController updateProfileController = new UpdateMyProfileController(updateProfileInteractor, viewManagerModel);
-        final UpdateProfileView updateProfileView = new UpdateProfileView(viewManager, updateProfileViewModel, updateProfileController);
+        final UpdateMyProfileOutputBoundary updateProfilePresenter =
+                new UpdateMyProfilePresenter(updateProfileViewModel, showMyProfileViewModel);
+        final UpdateMyProfileInteractor updateProfileInteractor =
+                new UpdateMyProfileInteractor(inMemoryUserDAO, updateProfilePresenter);
+        final UpdateMyProfileController updateProfileController =
+                new UpdateMyProfileController(updateProfileInteractor, viewManagerModel);
+        final UpdateProfileView updateProfileView =
+                new UpdateProfileView(viewManager, updateProfileViewModel, updateProfileController);
 
         final UpdateNameViewModel updateNameViewModel = new UpdateNameViewModel();
-        final UpdateNameOutputBoundary updateNamePresenter = new UpdateNamePresenter(updateNameViewModel, showMyProfileViewModel, viewManagerModel);
-        final UpdateNameInteractor updateNameInteractor = new UpdateNameInteractor(inMemoryUserDAO, updateNamePresenter);
-        final UpdateNameController updateNameController = new UpdateNameController(updateNameInteractor, viewManagerModel);
-        final UpdateNameView updateNameView = new UpdateNameView(viewManager, updateNameViewModel, updateNameController);
+        final UpdateNameOutputBoundary updateNamePresenter =
+                new UpdateNamePresenter(updateNameViewModel, showMyProfileViewModel, viewManagerModel);
+        final UpdateNameInteractor updateNameInteractor =
+                new UpdateNameInteractor(inMemoryUserDAO, updateNamePresenter);
+        final UpdateNameController updateNameController =
+                new UpdateNameController(updateNameInteractor, viewManagerModel);
+        final UpdateNameView updateNameView =
+                new UpdateNameView(viewManager, updateNameViewModel, updateNameController);
 
-        final ProfileView profileView = new ProfileView(showMyProfileViewModel, showMyProfileController, updateNameViewModel, updateProfileViewModel, viewManagerModel);
+        final ProfileView profileView =
+                new ProfileView(showMyProfileViewModel, showMyProfileController,
+                        updateNameViewModel, updateProfileViewModel, viewManagerModel);
 
         final UpdatePasswordViewModel updatePasswordViewModel = new UpdatePasswordViewModel();
-        final UpdatePasswordOutputBoundary updatePasswordPresenter = new UpdatePasswordPresenter(updatePasswordViewModel, viewManagerModel);
-        final UpdatePasswordInteractor updatePasswordInteractor = new UpdatePasswordInteractor(inMemoryUserDAO, updatePasswordPresenter);
-        final UpdatePasswordController updatePasswordController = new UpdatePasswordController(updatePasswordInteractor, viewManagerModel);
-        final UpdatePwdView updatePwdView = new UpdatePwdView(viewManager, updatePasswordViewModel, updatePasswordController);
+        final UpdatePasswordOutputBoundary updatePasswordPresenter =
+                new UpdatePasswordPresenter(updatePasswordViewModel, viewManagerModel);
+        final UpdatePasswordInteractor updatePasswordInteractor =
+                new UpdatePasswordInteractor(inMemoryUserDAO, updatePasswordPresenter);
+        final UpdatePasswordController updatePasswordController =
+                new UpdatePasswordController(updatePasswordInteractor, viewManagerModel);
+        final UpdatePwdView updatePwdView =
+                new UpdatePwdView(viewManager, updatePasswordViewModel, updatePasswordController);
 
         final BookViewModel bookViewModel = new BookViewModel();
         final ViewBookOutputBoundary viewBookPresenter = new BookPresenter(bookViewModel, viewManagerModel);
-        final ViewBookInputBoundary viewBookInteractor = new ViewBookInteractor(apiBookDataAccessObject, viewBookPresenter);
+        final ViewBookInputBoundary viewBookInteractor =
+                new ViewBookInteractor(apiBookDataAccessObject, viewBookPresenter);
         final BookController bookController = new BookController(viewBookInteractor);
 
         final ShowOtherProfileViewModel showOtherProfileViewModel = new ShowOtherProfileViewModel();
-        final ShowOtherProfileOutputBoundary showOtherProfilePresenter = new ShowOtherProfilePresenter(showOtherProfileViewModel);
-        final ShowOtherProfileInputBoundary showOtherProfileInteractor = new ShowOtherProfileInteractor(inMemoryUserDAO, showOtherProfilePresenter);
-        final ShowOtherProfileController showOtherProfileController = new ShowOtherProfileController(showOtherProfileInteractor);
+        final ShowOtherProfileOutputBoundary showOtherProfilePresenter =
+                new ShowOtherProfilePresenter(showOtherProfileViewModel);
+        final ShowOtherProfileInputBoundary showOtherProfileInteractor =
+                new ShowOtherProfileInteractor(inMemoryUserDAO, showOtherProfilePresenter);
+        final ShowOtherProfileController showOtherProfileController =
+                new ShowOtherProfileController(showOtherProfileInteractor);
 
         final ProductViewModel productViewModel = new ProductViewModel();
-        final ViewProductOutputBoundary productPresenter = new ProductPresenter(productViewModel, bookViewModel, showOtherProfileViewModel);
-        final ViewProductInputBoundary viewProductInteractor = new ViewProductInteractor(inMemoryProductDataAccessObject, productPresenter);
+        final ViewProductOutputBoundary productPresenter =
+                new ProductPresenter(productViewModel, bookViewModel, showOtherProfileViewModel);
+        final ViewProductInputBoundary viewProductInteractor =
+                new ViewProductInteractor(inMemoryProductDataAccessObject, productPresenter);
         final ProductController productController = new ProductController(viewProductInteractor);
 
         final ListBookProductViewModel listBookProductViewModel = new ListBookProductViewModel();
-        final ListBookProductOutputBoundary listBookProductPresenter = new ListBookProductPresenter(listBookProductViewModel);
-        final ListBookProductInputBoundary listBookProductInteractor = new ListBookProductInteractor(apiBookDataAccessObject, inMemoryProductDataAccessObject, listBookProductPresenter);
-        final ListBookProductController listBookProductController = new ListBookProductController(listBookProductInteractor);
+        final ListBookProductOutputBoundary listBookProductPresenter =
+                new ListBookProductPresenter(listBookProductViewModel);
+        final ListBookProductInputBoundary listBookProductInteractor =
+                new ListBookProductInteractor(apiBookDataAccessObject,
+                        inMemoryProductDataAccessObject, listBookProductPresenter);
+        final ListBookProductController listBookProductController =
+                new ListBookProductController(listBookProductInteractor);
 
         final UpdateProductViewModel updateProductViewModel = new UpdateProductViewModel();
-        final UpdateProductOutputBoundary updateProductPresenter = new UpdateProductPresenter(updateProductViewModel, productViewModel);
-        final UpdateProductInputBoundary updateProductInteractor = new UpdateProductInteractor(inMemoryUserDAO, apiBookDataAccessObject, inMemoryProductDataAccessObject, updateProductPresenter);
-        final CreateProductPresenter createProductPresenter = new CreateProductPresenter(updateProductViewModel, productViewModel);
-        final CreateProductInputBoundary createProductInteractor = new CreateProductInteractor(inMemoryUserDAO, inMemoryProductDataAccessObject, createProductPresenter);
-        final UpdateProductController updateProductController = new UpdateProductController(updateProductInteractor, createProductInteractor, viewManagerModel);
+        final UpdateProductOutputBoundary updateProductPresenter =
+                new UpdateProductPresenter(updateProductViewModel, productViewModel);
+        final UpdateProductInputBoundary updateProductInteractor =
+                new UpdateProductInteractor(inMemoryUserDAO, apiBookDataAccessObject,
+                        inMemoryProductDataAccessObject, updateProductPresenter);
+        final CreateProductPresenter createProductPresenter =
+                new CreateProductPresenter(updateProductViewModel, productViewModel);
+        final CreateProductInputBoundary createProductInteractor =
+                new CreateProductInteractor(inMemoryUserDAO, inMemoryProductDataAccessObject, createProductPresenter);
+        final UpdateProductController updateProductController =
+                new UpdateProductController(updateProductInteractor, createProductInteractor, viewManagerModel);
         final EditProductView updateProductView = new EditProductView(
-                updateProductViewModel, updateProductController, bookViewModel, bookController, productViewModel, productController);
+                updateProductViewModel, updateProductController,
+                bookViewModel, bookController, productViewModel, productController);
 
         final ListMyProductViewModel listMyProductViewModel = new ListMyProductViewModel();
         final ListMyProductOutputBoundary listMyProductPresenter = new ListMyProductPresenter(listMyProductViewModel);
-        final ListMyProductInputBoundary listMyProductInteractor = new ListMyProductInteractor(inMemoryUserDAO, inMemoryProductDataAccessObject, listMyProductPresenter);
-        final ListMyProductController listMyProductController = new ListMyProductController(listMyProductInteractor, viewManagerModel);
+        final ListMyProductInputBoundary listMyProductInteractor =
+                new ListMyProductInteractor(inMemoryUserDAO, inMemoryProductDataAccessObject, listMyProductPresenter);
+        final ListMyProductController listMyProductController =
+                new ListMyProductController(listMyProductInteractor, viewManagerModel);
 
         final RemoveProductViewModel removeProductViewModel = new RemoveProductViewModel();
-        final RemoveProductOutputBoundary removeProductPresenter = new RemoveProductPresenter(removeProductViewModel, listMyProductViewModel);
-        final RemoveProductInputBoundary removeProductInteractor = new RemoveProductInteractor(inMemoryUserDAO, inMemoryProductDataAccessObject, removeProductPresenter);
-        final RemoveProductController removeProductController = new RemoveProductController(removeProductInteractor, viewManagerModel);
+        final RemoveProductOutputBoundary removeProductPresenter =
+                new RemoveProductPresenter(removeProductViewModel, listMyProductViewModel);
+        final RemoveProductInputBoundary removeProductInteractor =
+                new RemoveProductInteractor(inMemoryUserDAO, inMemoryProductDataAccessObject, removeProductPresenter);
+        final RemoveProductController removeProductController =
+                new RemoveProductController(removeProductInteractor, viewManagerModel);
 
-        final ListProductView listProductView = new ListProductView(listMyProductViewModel, listMyProductController, removeProductViewModel, removeProductController, updateProductViewModel, viewManagerModel);
+        final ListProductView listProductView =
+                new ListProductView(listMyProductViewModel,
+                        listMyProductController, removeProductViewModel, removeProductController,
+                        updateProductViewModel, viewManagerModel);
 
         final ShowWishlistViewModel showWishlistViewModel = new ShowWishlistViewModel();
-        final ShowWishlistOutputBoundary showWishlistPresenter = new ShowWishlistPresenter(showWishlistViewModel, viewManagerModel);
-        final ShowWishlistInputBoundary showWishlistInteractor = new ShowWishlistInteractor(inMemoryUserDAO, showWishlistPresenter);
-        final ShowWishlistController showWishlistController = new ShowWishlistController(showWishlistInteractor, viewManagerModel);
+        final ShowWishlistOutputBoundary showWishlistPresenter =
+                new ShowWishlistPresenter(showWishlistViewModel, viewManagerModel);
+        final ShowWishlistInputBoundary showWishlistInteractor =
+                new ShowWishlistInteractor(inMemoryUserDAO, showWishlistPresenter);
+        final ShowWishlistController showWishlistController =
+                new ShowWishlistController(showWishlistInteractor, viewManagerModel);
 
         final UpdateWishlistViewModel updateWishlistViewModel = new UpdateWishlistViewModel();
-        final UpdateWishlistOutputBoundary updateWishlistPresenter = new UpdateWishlistPresenter(updateWishlistViewModel, showWishlistViewModel);
-        final UpdateWishlistInputBoundary updateWishlistInteractor = new UpdateWishlistInteractor(inMemoryUserDAO, updateWishlistPresenter);
-        final UpdateWishlistController updateWishlistController = new UpdateWishlistController(updateWishlistInteractor, viewManagerModel);
-        final WishlistView wishlistView = new WishlistView(showWishlistViewModel, showWishlistController, updateWishlistViewModel, updateWishlistController, productViewModel, productController, bookController, viewManagerModel);
-
+        final UpdateWishlistOutputBoundary updateWishlistPresenter =
+                new UpdateWishlistPresenter(updateWishlistViewModel, showWishlistViewModel);
+        final UpdateWishlistInputBoundary updateWishlistInteractor =
+                new UpdateWishlistInteractor(inMemoryUserDAO, updateWishlistPresenter);
+        final UpdateWishlistController updateWishlistController =
+                new UpdateWishlistController(updateWishlistInteractor, viewManagerModel);
+        final WishlistView wishlistView =
+                new WishlistView(showWishlistViewModel, showWishlistController,
+                        updateWishlistViewModel, updateWishlistController,
+                        productViewModel, productController, bookController, viewManagerModel);
 
         final BookView bookView = new BookView(
-                bookViewModel, productViewModel, productController, showOtherProfileViewModel, showOtherProfileController,
+                bookViewModel, productViewModel, productController, showOtherProfileViewModel,
+                showOtherProfileController,
                 listBookProductViewModel, listBookProductController, showWishlistViewModel, showWishlistController,
                 updateWishlistViewModel, updateWishlistController, viewManagerModel);
 
         final SearchBookViewModel searchBookViewModel = new SearchBookViewModel();
-        final SearchBookOutputBoundary searchBookPresenter = new SearchBookPresenter(searchBookViewModel, viewManagerModel);
-        final SearchBookInputBoundary searchBookInteractor = new SearchBookInteractor(inMemoryProductDataAccessObject, apiBookDataAccessObject, searchBookPresenter);
+        final SearchBookOutputBoundary searchBookPresenter =
+                new SearchBookPresenter(searchBookViewModel, viewManagerModel);
+        final SearchBookInputBoundary searchBookInteractor =
+                new SearchBookInteractor(inMemoryProductDataAccessObject, apiBookDataAccessObject, searchBookPresenter);
         final SearchBookController searchBookController = new SearchBookController(searchBookInteractor);
-        final SearchBookView searchBookView = new SearchBookView(searchBookViewModel, searchBookController, bookViewModel, bookController, viewManagerModel);
+        final SearchBookView searchBookView =
+                new SearchBookView(searchBookViewModel, searchBookController, bookViewModel,
+                        bookController, viewManagerModel);
 
         viewManager.setViews(
                 authView, regView, updateNameView, updateProfileView, updatePwdView, updateProductView, profileView,
                 wishlistView, listProductView, searchBookView, bookView);
 
-
-        ViewManagerState state = viewManagerModel.getState();
+        final ViewManagerState state = viewManagerModel.getState();
         state.setViewName("search book");
         viewManagerModel.firePropertyChanged();
 

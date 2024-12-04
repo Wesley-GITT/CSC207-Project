@@ -1,5 +1,8 @@
 package entity;
 
+/**
+ * The Presenter for the Login Use Case.
+ */
 public class ContactInfo {
 
     private String telephone;

@@ -4,6 +4,15 @@
 
 package view.product;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Set;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import interface_adapter.book.view.BookController;
 import interface_adapter.book.view.BookState;
 import interface_adapter.book.view.BookViewModel;
@@ -15,15 +24,8 @@ import interface_adapter.product.view.ProductState;
 import interface_adapter.product.view.ProductViewModel;
 import view.ViewUtility;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Set;
-
 /**
+ * The.
  * @author Jing Wei
  */
 public class EditProductView extends JDialog implements PropertyChangeListener {
@@ -74,109 +76,127 @@ public class EditProductView extends JDialog implements PropertyChangeListener {
         okButton = new JButton();
         checkBox1 = new JCheckBox();
 
-        //======== this ========
+        // ======== this ========
         setResizable(false);
-        var contentPane = getContentPane();
+        final var contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
-        //======== dialogPane ========
+        // ======== dialogPane ========
         {
-            dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(
-            0,0,0,0), "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn",javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder
-            .BOTTOM,new java.awt.Font("Dia\u006cog",java.awt.Font.BOLD,12),java.awt.Color.
-            red),dialogPane. getBorder()));dialogPane. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
-            beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))throw new RuntimeException();}});
+            final int tw = 12;
+            final int zo = 0;
+            dialogPane.setBorder(new EmptyBorder(tw, tw, tw, tw));
+            dialogPane.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.
+                TitledBorder(new javax.swing.border.EmptyBorder(zo, zo, zo, zo),
+                    "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn", javax.swing.border.
+                TitledBorder.CENTER, javax.swing.border.TitledBorder
+                .BOTTOM, new java.awt.Font("Dia\u006cog", java.awt.Font.BOLD, tw), java.awt.Color
+                    .red), dialogPane.getBorder()));
+            dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.
+            beans.PropertyChangeEvent e){if("\u0062ord\u0065r".equals(e.getPropertyName()))
+                        throw new RuntimeException(); } });
             dialogPane.setLayout(new BorderLayout());
 
-            //======== contentPanel ========
+            // ======== contentPanel ========
             {
+                final double num = 1.0E-4;
                 contentPanel.setLayout(new GridBagLayout());
-                ((GridBagLayout)contentPanel.getLayout()).columnWidths = new int[] {0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0};
-                ((GridBagLayout)contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, 1.0E-4};
-                ((GridBagLayout)contentPanel.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0E-4};
+                ((GridBagLayout) contentPanel.getLayout()).columnWidths = new int[] {0, 0, 0};
+                ((GridBagLayout) contentPanel.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0};
+                ((GridBagLayout) contentPanel.getLayout()).columnWeights = new double[] {0.0, 1.0, num};
+                ((GridBagLayout) contentPanel.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, num};
 
-                //---- textField1 ----
+                final int fi = 5;
+                final int fo = 4;
+                final int ni = 9;
+                final int rt = 12;
+                final int th = 13;
+                final int thr = 3;
+                // ---- textField1 ----
                 textField1.setEditable(false);
                 contentPanel.add(textField1, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                    new Insets(fi, 0, fi, fo), 0, 0));
 
-                //---- label1 ----
+                // ---- label1 ----
                 label1.setText("Book:");
                 contentPanel.add(label1, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                    new Insets(fo, fo, fi, ni), 0, 0));
 
-                //---- label2 ----
+                // ---- label2 ----
                 label2.setText("Price:");
                 contentPanel.add(label2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(4, 4, 5, 9), 0, 0));
+                    new Insets(fo, fo, fi, ni), 0, 0));
 
-                //---- textField2 ----
+                // ---- textField2 ----
                 textField2.setModel(new SpinnerNumberModel(0.0, 0.0, null, 1.0));
                 contentPanel.add(textField2, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(5, 0, 5, 4), 0, 0));
+                    new Insets(fi, 0, fi, fo), 0, 0));
 
-                //---- label3 ----
+                // ---- label3 ----
+                final float f = 4f;
                 label3.setText("Create / Edit a product");
-                label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + 4f));
+                label3.setFont(label3.getFont().deriveFont(label3.getFont().getStyle() | Font.BOLD, label3.getFont().getSize() + f));
                 contentPanel.add(label3, new GridBagConstraints(0, 0, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(12, 4, 13, 4), 0, 0));
+                    new Insets(rt, fo, th, fo), 0, 0));
 
-                //---- label5 ----
+                // ---- label5 ----
                 label5.setText("Describe your book condition");
-                contentPanel.add(label5, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0,
+                contentPanel.add(label5, new GridBagConstraints(0, thr, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(4, 4, 5, 4), 0, 0));
+                    new Insets(fo, fo, fi, fo), 0, 0));
 
-                //======== scrollPane1 ========
+                // ======== scrollPane1 ========
                 {
                     scrollPane1.setViewportView(textPane1);
                 }
                 contentPanel.add(scrollPane1, new GridBagConstraints(0, 4, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 4, 5, 4), 0, 0));
+                    new Insets(0, fo, fi, fo), 0, 0));
 
-                //---- label4 ----
+                // ---- label4 ----
+                final int num2 = 0xb3261e;
                 label4.setText("Error Message");
-                label4.setForeground(new Color(0xb3261e));
+                label4.setForeground(new Color(num2));
                 label4.setVisible(false);
-                contentPanel.add(label4, new GridBagConstraints(0, 5, 2, 1, 0.0, 0.0,
+                contentPanel.add(label4, new GridBagConstraints(0, fi, 2, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 4, 0, 4), 0, 0));
+                    new Insets(0, fo, 0, fo), 0, 0));
             }
             dialogPane.add(contentPanel, BorderLayout.CENTER);
 
-            //======== buttonBar ========
+            // ======== buttonBar ========
             {
-                buttonBar.setBorder(new EmptyBorder(12, 0, 0, 0));
+                final int tw3 = 12;
+                buttonBar.setBorder(new EmptyBorder(tw3, 0, 0, 0));
 
-                //---- cancelButton ----
+                // ---- cancelButton ----
                 cancelButton.setText("Cancel");
                 cancelButton.addActionListener(e -> cancel(e));
 
-                //---- okButton ----
+                // ---- okButton ----
                 okButton.setText("Continue");
                 okButton.addActionListener(e -> updateProduct(e));
 
-                //---- checkBox1 ----
+                // ---- checkBox1 ----
                 checkBox1.setText("Already Sold");
 
-                GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
+                final int one = 145;
+                final int s2 = 5;
+                final GroupLayout buttonBarLayout = new GroupLayout(buttonBar);
                 buttonBar.setLayout(buttonBarLayout);
                 buttonBarLayout.setHorizontalGroup(
                     buttonBarLayout.createParallelGroup()
                         .addGroup(buttonBarLayout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(checkBox1)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, one, Short.MAX_VALUE)
                             .addComponent(cancelButton)
-                            .addGap(5, 5, 5)
+                            .addGap(s2, s2, s2)
                             .addComponent(okButton)
                             .addContainerGap())
                 );
@@ -190,8 +210,10 @@ public class EditProductView extends JDialog implements PropertyChangeListener {
             }
             dialogPane.add(buttonBar, BorderLayout.SOUTH);
         }
+        final int ss = 450;
+        final int ff = 335;
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(450, 335);
+        setSize(ss, ff);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -228,7 +250,8 @@ public class EditProductView extends JDialog implements PropertyChangeListener {
             label4.setVisible(true);
             label4.setText(updateProductError);
             return;
-        } else {
+        }
+        else {
             label4.setVisible(false);
         }
 
@@ -301,7 +324,8 @@ public class EditProductView extends JDialog implements PropertyChangeListener {
         
         if (productId < 0) {
             updateProductController.execute(bookId, bookCondition, price);
-        } else {
+        }
+        else {
             updateProductController.execute(productId, bookCondition, price, sold);
         }
         close();

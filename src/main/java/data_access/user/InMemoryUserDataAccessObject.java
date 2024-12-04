@@ -1,5 +1,8 @@
 package data_access.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import entity.MyUser;
 import entity.OtherUser;
 import entity.OtherUserFactory;
@@ -13,9 +16,9 @@ import use_case.user.update_name.UpdateNameUserDataAccessInterface;
 import use_case.user.update_pwd.UpdatePasswordUserDataAccessInterface;
 import use_case.user.update_wishlist.UpdateWishlistDataAccessInterface;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * The Presenter for the Login Use Case.
+ */
 public class InMemoryUserDataAccessObject implements
         AuthUserDataAccessInterface,
         RegUserDataAccessInterface,
@@ -41,12 +44,11 @@ public class InMemoryUserDataAccessObject implements
             return false;
         }
 
-        MyUser u = usersByName.get(username);
+        final MyUser u = usersByName.get(username);
 
         // Use equals to compare the content of the strings
         return u.getPassword().equals(password);
     }
-
 
     @Override
     public MyUser get(String username, String password) {
@@ -72,7 +74,7 @@ public class InMemoryUserDataAccessObject implements
 
     @Override
     public OtherUser getOther(int id) {
-        OtherUserFactory userFactory = new OtherUserFactory();
+        final OtherUserFactory userFactory = new OtherUserFactory();
         return userFactory.create(usersById.get(id));
     }
 }

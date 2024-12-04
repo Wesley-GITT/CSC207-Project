@@ -1,7 +1,11 @@
+
 package entity;
 
 import java.util.Set;
 
+/**
+ * The Presenter for the Login Use Case.
+ */
 public class Book {
 
     private String id;

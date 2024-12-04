@@ -4,6 +4,19 @@
 
 package view.book;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
 import interface_adapter.book.search.SearchBookController;
 import interface_adapter.book.search.SearchBookState;
 import interface_adapter.book.search.SearchBookViewModel;
@@ -14,25 +27,13 @@ import interface_adapter.container.ViewManagerModel;
 import interface_adapter.container.ViewManagerState;
 import view.ViewUtility;
 
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
+ * The.
  * @author webster
  */
 public class SearchBookView extends JPanel implements PropertyChangeListener {
 
     class DataRow {
-
         private final String bookId;
         private final String title;
         private final String authors;
@@ -41,7 +42,18 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
         private final String pulishedDate;
         private final String language;
 
-        public DataRow(String bookId, String title, String authors, String description, String publisher, String pulishedDate, String language) {
+        /**
+         * The Presenter for the Login Use Case.
+         * @param bookId :
+         * @param title :
+         * @param language :
+         * @param publisher :
+         * @param description :
+         * @param authors :
+         * @param pulishedDate :
+         */
+        public DataRow(String bookId, String title, String authors,
+                       String description, String publisher, String pulishedDate, String language) {
             this.bookId = bookId;
             this.title = title;
             this.authors = authors;
@@ -135,8 +147,8 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
         label2 = new JLabel();
         progressBar1 = new JProgressBar();
 
-        //======== this ========
-        setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
+        // ======== this ========
+        setBorder(new javax .swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing
         . border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JFor\u006dDesi\u0067ner \u0045valu\u0061tion" , javax. swing .border . TitledBorder
         . CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "Dia\u006cog", java .
         awt . Font. BOLD ,12 ) ,java . awt. Color .red ) , getBorder () ) )
@@ -145,7 +157,7 @@ public class SearchBookView extends JPanel implements PropertyChangeListener {
         ;
         setLayout(new CardLayout());
 
-        //======== panel1 ========
+        // ======== panel1 ========
         {
             panel1.setBorder(new LineBorder(new Color(0xf5f5f5), 3));
             panel1.setForeground(new Color(0xf5f5f5));
