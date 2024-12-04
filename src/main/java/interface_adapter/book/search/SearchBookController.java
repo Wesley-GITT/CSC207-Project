@@ -14,6 +14,12 @@ public class SearchBookController {
         this.searchBookInteractor = searchBookInteractor;
     }
 
+    /**
+     * Execute method for SearchBookController.
+     * @param keyword keyword for searching.
+     * @param startIndex the start index of searching.
+     * @param withProduct withProduct boolean.
+     */
     public void execute(String keyword, int startIndex, boolean withProduct) {
         final SearchBookInputData searchBookInputData = new SearchBookInputData(keyword, 10, startIndex, withProduct);
         searchBookInteractor.execute(searchBookInputData);

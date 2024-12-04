@@ -21,7 +21,8 @@ public class ProductPresenter implements
     private final BookViewModel bookViewModel;
     private final ShowOtherProfileViewModel showOtherProfileViewModel;
 
-    public ProductPresenter(ProductViewModel productViewModel, BookViewModel bookViewModel, ShowOtherProfileViewModel showOtherProfileViewModel) {
+    public ProductPresenter(ProductViewModel productViewModel, BookViewModel bookViewModel,
+                            ShowOtherProfileViewModel showOtherProfileViewModel) {
         this.productViewModel = productViewModel;
         this.bookViewModel = bookViewModel;
         this.showOtherProfileViewModel = showOtherProfileViewModel;
@@ -29,7 +30,7 @@ public class ProductPresenter implements
 
     @Override
     public void prepareSuccessView(ViewProductOutputData response) {
-        ProductState state = productViewModel.getState();
+        final ProductState state = productViewModel.getState();
         state.setProductId(response.getProductId());
         state.setBookId(response.getBookId());
         state.setBookCondition(response.getBookCondition());
@@ -41,7 +42,7 @@ public class ProductPresenter implements
 
     @Override
     public void prepareSuccessView(ViewBookOutputData response) {
-        BookState state = bookViewModel.getState();
+        final BookState state = bookViewModel.getState();
         state.setId(response.getId());
         state.setImageUrl(response.getImageUrl());
         state.setTitle(response.getTitle());
@@ -55,7 +56,7 @@ public class ProductPresenter implements
 
     @Override
     public void prepareSuccessView(ShowOtherProfileOutputData response) {
-        ShowOtherProfileState state = showOtherProfileViewModel.getState();
+        final ShowOtherProfileState state = showOtherProfileViewModel.getState();
         state.setUsername(response.getUsername());
         state.setEmail(response.getEmail());
         state.setTelephone(response.getTelephone());

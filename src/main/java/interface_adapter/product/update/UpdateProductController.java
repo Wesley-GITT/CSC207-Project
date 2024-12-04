@@ -25,19 +25,34 @@ public class UpdateProductController {
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Execute method for UpdateProductController.
+     * @param productId productId
+     * @param bookCondition bookCondition
+     * @param price price
+     * @param isSold isSold
+     */
     public void execute(int productId, String bookCondition, double price, boolean isSold) {
         final ViewManagerState state = viewManagerModel.getState();
         final String username = state.getUsername();
         final String password = state.getPassword();
-        final UpdateProductInputData updateProductInputData = new UpdateProductInputData(username, password, productId, bookCondition, price, isSold);
+        final UpdateProductInputData updateProductInputData = new UpdateProductInputData(
+                username, password, productId, bookCondition, price, isSold);
         updateProductInteractor.execute(updateProductInputData);
     }
 
+    /**
+     * Overloading, execute method for UpdateProductController.
+     * @param bookId bookId
+     * @param bookCondition bookCondition
+     * @param price price
+     */
     public void execute(String bookId, String bookCondition, double price) {
         final ViewManagerState state = viewManagerModel.getState();
         final String username = state.getUsername();
         final String password = state.getPassword();
-        final CreateProductInputData createProductInputData = new CreateProductInputData(username, password, bookId, bookCondition, price);
+        final CreateProductInputData createProductInputData = new CreateProductInputData(
+                username, password, bookId, bookCondition, price);
         createProductInteractor.execute(createProductInputData);
     }
 }

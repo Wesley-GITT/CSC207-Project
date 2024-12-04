@@ -18,6 +18,10 @@ public class UpdateNameController {
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Execute method for UpdateNameController.
+     * @param newUsername newUsername
+     */
     public void execute(String newUsername) {
         final ViewManagerState state = viewManagerModel.getState();
         final String username = state.getUsername();

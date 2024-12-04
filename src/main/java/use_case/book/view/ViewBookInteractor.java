@@ -22,7 +22,7 @@ public class ViewBookInteractor implements ViewBookInputBoundary {
 
     @Override
     public void execute(ViewBookInputData inputData) {
-        String bookId = inputData.getBookId();
+        final String bookId = inputData.getBookId();
 
         // Fetch the book by its ID
         try {
@@ -31,15 +31,16 @@ public class ViewBookInteractor implements ViewBookInputBoundary {
                 return;
             }
 
-            Book book = BookDataAccessObject.get(bookId);
-            ViewBookOutputData outputData = new ViewBookOutputData(
+            final Book book = BookDataAccessObject.get(bookId);
+            final ViewBookOutputData outputData = new ViewBookOutputData(
                     book.getId(), book.getImageUrl(), book.getTitle(), book.getAuthors(),
                     book.getPublisher(), book.getPublishedDate(), book.getDescription(),
                     book.getLanguage()
             );
 
             viewBookPresenter.prepareSuccessView(outputData);
-        } catch (RuntimeException e) {
+        }
+        catch (RuntimeException e) {
             viewBookPresenter.prepareFailView("API Connection Error");
         }
 

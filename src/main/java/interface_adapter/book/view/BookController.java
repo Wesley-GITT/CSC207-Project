@@ -14,6 +14,10 @@ public class BookController {
         this.viewBookInteractor = viewBookInteractor;
     }
 
+    /**
+     * Execute method for BookController.
+     * @param bookId BookId
+     */
     public void execute(String bookId) {
         final ViewBookInputData viewBookInputData = new ViewBookInputData(bookId);
         viewBookInteractor.execute(viewBookInputData);

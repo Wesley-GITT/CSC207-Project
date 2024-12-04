@@ -21,11 +21,11 @@ public class ShowWishlistPresenter implements ShowWishlistOutputBoundary {
 
     @Override
     public void prepareSuccessView(ShowWishlistOutputData response) {
-        ShowWishlistState state = showWishlistViewModel.getState();
+        final ShowWishlistState state = showWishlistViewModel.getState();
         state.setWishlist(response.getWishlist());
         showWishlistViewModel.firePropertyChanged();
 
-        ViewManagerState managerState = viewManagerModel.getState();
+        final ViewManagerState managerState = viewManagerModel.getState();
         managerState.setViewName("my wishlist");
         showWishlistViewModel.firePropertyChanged();
     }

@@ -4,6 +4,15 @@
 
 package view.user;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.swing.*;
+
 import interface_adapter.container.ViewManagerModel;
 import interface_adapter.container.ViewManagerState;
 import interface_adapter.user.show_my_profile.ShowMyProfileController;
@@ -14,15 +23,8 @@ import interface_adapter.user.update_my_profile.UpdateMyProfileViewModel;
 import interface_adapter.user.update_name.UpdateNameState;
 import interface_adapter.user.update_name.UpdateNameViewModel;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 /**
+ * ProfileView.
  * @author webster
  */
 public class ProfileView extends JPanel implements PropertyChangeListener {
@@ -76,11 +78,13 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
             }
         });
         setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing.
-        border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder.CENTER
-        ,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.awt.Font
-        .BOLD,12),java.awt.Color.red), getBorder())); addPropertyChangeListener(
-        new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e){if("\u0062order"
-        .equals(e.getPropertyName()))throw new RuntimeException();}});
+                border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",
+                javax.swing.border.TitledBorder.CENTER,javax.swing.border.TitledBorder.BOTTOM,
+                new java.awt.Font("D\u0069alog",java.awt.Font.BOLD,12),
+                java.awt.Color.red), getBorder())); addPropertyChangeListener
+                (new java.beans.PropertyChangeListener()
+                {@Override public void propertyChange(java.beans.PropertyChangeEvent e)
+                {if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}});
         setLayout(new GridBagLayout());
         ((GridBagLayout)getLayout()).columnWidths = new int[] {0, 0, 0, 0};
         ((GridBagLayout)getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0, 0, 0};
@@ -90,55 +94,55 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
         //---- label2 ----
         label2.setText("Basics");
         add(label2, new GridBagConstraints(0, 0, 1, 3, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
-            new Insets(0, 0, 12, 16), 0, 0));
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                new Insets(0, 0, 12, 16), 0, 0));
 
         //---- label3 ----
         label3.setText("Logged in as: <Username>");
         add(label3, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 12, 16), 0, 0));
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 12, 16), 0, 0));
 
         //---- button2 ----
         button2.setText("Change Username");
         button2.addActionListener(e -> changeUsernameButtonClicked(e));
         add(button2, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 12, 0), 0, 0));
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 12, 0), 0, 0));
 
         //---- button3 ----
         button3.setText("Change Password");
         button3.addActionListener(e -> changePasswordButtonClicked(e));
         add(button3, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 12, 0), 0, 0));
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 12, 0), 0, 0));
 
         //---- label1 ----
         label1.setText("My Profile");
         add(label1, new GridBagConstraints(0, 3, 1, 2, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
-            new Insets(0, 0, 12, 16), 0, 0));
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
+                new Insets(0, 0, 12, 16), 0, 0));
 
         //---- textField1 ----
         textField1.setText("Email: <Email>");
         textField1.setEditable(false);
         add(textField1, new GridBagConstraints(1, 3, 2, 1, 0.0, 0.0,
-            GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-            new Insets(0, 0, 12, 0), 0, 0));
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
+                new Insets(0, 0, 12, 0), 0, 0));
 
         //---- textField2 ----
         textField2.setText("Telephone: <Telephone>");
         textField2.setEditable(false);
         add(textField2, new GridBagConstraints(1, 4, 2, 1, 0.0, 0.0,
-            GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-            new Insets(0, 0, 12, 0), 0, 0));
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
+                new Insets(0, 0, 12, 0), 0, 0));
 
         //---- button1 ----
         button1.setText("Edit my profile");
         button1.addActionListener(e -> editMyProfileButtonClicked(e));
         add(button1, new GridBagConstraints(2, 5, 1, 1, 0.0, 0.0,
-            GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
-            new Insets(0, 0, 12, 0), 0, 0));
+                GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL,
+                new Insets(0, 0, 12, 0), 0, 0));
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 

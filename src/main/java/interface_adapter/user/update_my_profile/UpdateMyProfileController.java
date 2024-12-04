@@ -13,16 +13,23 @@ public class UpdateMyProfileController {
     private final UpdateMyProfileInputBoundary updateMyProfileInteractor;
     private final ViewManagerModel viewManagerModel;
 
-    public UpdateMyProfileController(UpdateMyProfileInputBoundary updateMyProfileInteractor, ViewManagerModel viewManagerModel) {
+    public UpdateMyProfileController(UpdateMyProfileInputBoundary updateMyProfileInteractor,
+                                     ViewManagerModel viewManagerModel) {
         this.updateMyProfileInteractor = updateMyProfileInteractor;
         this.viewManagerModel = viewManagerModel;
     }
 
+    /**
+     * Execute method for updateMyProfileInteractor.
+     * @param telephone telephone
+     * @param email email
+     */
     public void execute(String telephone, String email) {
         final ViewManagerState state = viewManagerModel.getState();
         final String username = state.getUsername();
         final String password = state.getPassword();
-        final UpdateMyProfileInputData updateMyProfileInputData = new UpdateMyProfileInputData(username, password, telephone, email);
+        final UpdateMyProfileInputData updateMyProfileInputData = new UpdateMyProfileInputData(
+                username, password, telephone, email);
 
         updateMyProfileInteractor.execute(updateMyProfileInputData);
     }

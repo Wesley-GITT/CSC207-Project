@@ -1,12 +1,5 @@
 package view.user;
 
-import interface_adapter.product.list_my_products.ListMyProductController;
-import interface_adapter.product.list_my_products.ListMyProductState;
-import interface_adapter.product.list_my_products.ListMyProductViewModel;
-import interface_adapter.product.view.ProductController;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
@@ -14,6 +7,14 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import interface_adapter.product.list_my_products.ListMyProductController;
+import interface_adapter.product.list_my_products.ListMyProductState;
+import interface_adapter.product.list_my_products.ListMyProductViewModel;
+import interface_adapter.product.view.ProductController;
 
 /**
  * MyProductView displays the user's products with all information.
@@ -48,8 +49,9 @@ public class MyProductView extends JPanel implements PropertyChangeListener {
     }
 
     private void initComponents() {
+        final float fourf = 4f;
         label = new JLabel("My Products");
-        label.setFont(label.getFont().deriveFont(Font.BOLD, label.getFont().getSize() + 4f));
+        label.setFont(label.getFont().deriveFont(Font.BOLD, label.getFont().getSize() + fourf));
 
         table = new JTable();
         table.setModel(new DefaultTableModel(
@@ -76,13 +78,15 @@ public class MyProductView extends JPanel implements PropertyChangeListener {
         detailsButton.addActionListener(this::detailsButtonClicked);
 
         setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        final GridBagConstraints gbc = new GridBagConstraints();
+
+        final int eight = 8;
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(8, 8, 8, 8);
+        gbc.insets = new Insets(eight, eight, eight, eight);
         add(label, gbc);
 
         gbc.gridy = 1;
@@ -111,12 +115,16 @@ public class MyProductView extends JPanel implements PropertyChangeListener {
         }
 
         for (int productId : productIds) {
+            final double num = 99.99;
             // Assuming product details are fetched from another method; mock data is used here.
-            String name = "Product " + productId; // Replace with actual fetch logic.
-            double price = 99.99; // Replace with actual fetch logic.
-            String description = "Description for Product " + productId; // Replace with actual fetch logic.
+            final String name = "Product " + productId;
+            // Replace with actual fetch logic.
+            final double price = num;
+            // Replace with actual fetch logic.
+            final String description = "Description for Product " + productId;
+            // Replace with actual fetch logic.
 
-            DataRow row = new DataRow(productId, name, price, description);
+            final DataRow row = new DataRow(productId, name, price, description);
             data.add(row);
             model.addRow(new Object[]{row.getProductId(), row.getProductName(), row.getPrice(), row.getDescription()});
         }

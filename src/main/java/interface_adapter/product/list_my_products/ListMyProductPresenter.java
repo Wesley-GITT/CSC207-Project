@@ -10,14 +10,13 @@ public class ListMyProductPresenter implements ListMyProductOutputBoundary {
 
     private final ListMyProductViewModel listMyProductViewModel;
 
-
     public ListMyProductPresenter(ListMyProductViewModel listMyProductViewModel) {
         this.listMyProductViewModel = listMyProductViewModel;
     }
 
     @Override
     public void prepareSuccessView(ListMyProductOutputData response) {
-        ListMyProductState state = listMyProductViewModel.getState();
+        final ListMyProductState state = listMyProductViewModel.getState();
         state.setProductIds(response.getProductIds());
         listMyProductViewModel.firePropertyChanged();
     }
